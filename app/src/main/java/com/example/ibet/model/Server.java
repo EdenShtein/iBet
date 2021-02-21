@@ -25,7 +25,7 @@ public class Server {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://localhost:3000/api/users/signup");
+                    URL url = new URL("http://10.0.0.10:3000/api/users/signup"); //You need to write your IPV4 (cmd ipconfig)
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");

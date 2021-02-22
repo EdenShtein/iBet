@@ -4,7 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpFragment" >
+    tools:context=".SignUpFragment">
+
+    <EditText
+        android:id="@+id/signup_repassword_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/customborder"
+        android:ems="10"
+        android:hint="Reconfirm your password"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_password_input" />
 
     <TextView
         android:id="@+id/signup_btm_text"
@@ -40,7 +57,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="112dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:backgroundTint="#009688"
@@ -55,57 +72,45 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/customborder"
         android:ems="10"
         android:hint="Your Email"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/signup_password_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/signup_password_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="60dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/customborder"
         android:ems="10"
         android:hint="Your Password"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/signup_repassword_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/customborder"
-        android:ems="10"
-        android:hint="Your User Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_email_input" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="160dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
+        android:layout_marginBottom="33dp"
         android:scaleType="centerCrop"
         android:src="@drawable/signuplogo"
+        app:layout_constraintBottom_toTopOf="@+id/signup_email_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent"

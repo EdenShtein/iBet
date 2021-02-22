@@ -21,6 +21,7 @@ public class SignUpFragment extends Fragment {
 
     EditText email;
     EditText password;
+    EditText repassword;
 
     Button signup;
 
@@ -33,6 +34,7 @@ public class SignUpFragment extends Fragment {
 
         email=view.findViewById(R.id.signup_email_input);
         password=view.findViewById(R.id.signup_password_input);
+        repassword = view.findViewById(R.id.signup_repassword_input);
         signup=view.findViewById(R.id.signup_continue_btn);
         signin=view.findViewById(R.id.signin_link);
 
@@ -41,8 +43,17 @@ public class SignUpFragment extends Fragment {
             public void onClick(View v) {
                 String useremail=email.getText().toString();
                 String userpassword=password.getText().toString();
+                String rpassword = repassword.getText().toString();
                 if (useremail.equals("") || userpassword.equals("")) {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
+                }
+                if(userpassword.length()<8)
+                {
+                    Toast.makeText(getActivity(),"Password length must be minimum 8 characters",Toast.LENGTH_SHORT).show();
+                }
+                if(!(userpassword.equals(rpassword)))
+                {
+                    Toast.makeText(getActivity(),"Password are not the same",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Model.instance.signUp(useremail,userpassword);

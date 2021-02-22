@@ -1,6 +1,10 @@
 package com.example.ibet.model;
 
+import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -18,7 +22,7 @@ import java.net.URLEncoder;
 
 public class Server {
 
-    public void signUp(String email,String password)
+    public void signUp(String email, String password, Activity activity)
     {
 
         Thread thread = new Thread(new Runnable() {
@@ -41,12 +45,20 @@ public class Server {
 
                     Log.i("JSON", jsonParam.toString());
                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-                    //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
                     os.writeBytes(jsonParam.toString());
 
                     os.flush();
                     os.close();
+                    if(conn.getResponseCode() == 201)
+                    {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(activity, "User created", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
+                    }
                     Log.i("STATUS", String.valueOf(conn.getResponseCode()));
                     Log.i("MSG" , conn.getResponseMessage());
 
@@ -56,8 +68,6 @@ public class Server {
                 }
             }
         });
-
         thread.start();
-
     }
 }

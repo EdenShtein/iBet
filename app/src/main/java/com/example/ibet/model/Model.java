@@ -8,8 +8,12 @@ public class Model {
     public final static Model instance = new Model();
     Server server = new Server();
 
+    public void setActivity(Activity activity){
+        this.mActivity = activity;
+    }
+
     public void signUp(String email,String password)
     {
-        server.signUp(email,password);
+        server.signUp(email,password,mActivity);
     }
 }

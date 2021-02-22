@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,14 +65,24 @@ public class LoginFragment extends Fragment {
                                     Navigation.findNavController(view).navigate(R.id.action_login_to_mainFreed);
                                 }
                                 else {
-                                    Toast.makeText(getActivity(), "Failed to login", Toast.LENGTH_SHORT).show();
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getActivity(), "Failed To Login", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                                 }
                         }
                     });
                 }
             }
         });
-
+        forgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_login_to_forgetPass);
+            }
+        });
 
         return view;
     }

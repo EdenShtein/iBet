@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_login_to_mainFreed"
             app:destination="@id/mainFreedFragment" />
+        <action
+            android:id="@+id/action_login_to_forgetPass"
+            app:destination="@id/forgetPassFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -31,4 +34,9 @@
         android:name="com.example.ibet.MainFreedFragment"
         android:label="fragment_main_freed"
         tools:layout="@layout/fragment_main_freed" />
+    <fragment
+        android:id="@+id/forgetPassFragment"
+        android:name="com.example.ibet.ForgetPassFragment"
+        android:label="fragment_forget_pass"
+        tools:layout="@layout/fragment_forget_pass" />
 </navigation>

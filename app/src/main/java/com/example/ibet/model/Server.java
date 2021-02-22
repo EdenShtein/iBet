@@ -97,12 +97,10 @@ public class Server {
                     os.flush();
                     os.close();
                     int code = conn.getResponseCode();
-                    if(conn.getResponseCode() == 200)
-                    {
 
-                        listener.onComplete(true);
+                    if(conn.getResponseCode() == 200) { listener.onComplete(true); }
+                    else { listener.onComplete(false); }
 
-                    }
                     conn.disconnect();
                 } catch (Exception e) {
                     e.printStackTrace();

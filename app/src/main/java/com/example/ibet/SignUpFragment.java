@@ -33,8 +33,8 @@ public class SignUpFragment extends Fragment {
 
 
         email=view.findViewById(R.id.signup_email_input);
-        password=view.findViewById(R.id.signup_password_input);
-        repassword = view.findViewById(R.id.signup_repassword_input);
+        password=view.findViewById(R.id.signup_pass_input);
+        repassword = view.findViewById(R.id.signup_repass_input);
         signup=view.findViewById(R.id.signup_continue_btn);
         signin=view.findViewById(R.id.signin_link);
 

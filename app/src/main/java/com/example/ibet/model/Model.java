@@ -16,4 +16,13 @@ public class Model {
     {
         server.signUp(email,password,mActivity);
     }
+
+    public interface SuccessListener{
+        void onComplete(boolean result);
+    }
+
+    public void logIn(String email,String password, SuccessListener listener)
+    {
+        server.logIn(email,password,listener);
+    }
 }

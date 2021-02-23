@@ -55,6 +55,7 @@ public class ForgetPassFragment extends Fragment {
                         @Override
                         public void onComplete(boolean result) {
                             if (result) {
+
                                 Navigation.findNavController(view).navigate(R.id.action_forgetPass_to_login);
                             } else {
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {

@@ -12,9 +12,9 @@ public class Model {
         this.mActivity = activity;
     }
 
-    public void signUp(String email,String password)
+    public void signUp(String email,String password,SuccessListener listener)
     {
-        server.signUp(email,password,mActivity);
+        server.signUp(email,password,listener);
     }
 
     public interface SuccessListener{

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +58,29 @@ public class SignUpFragment extends Fragment {
                     Toast.makeText(getActivity(),"Password are not the same",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Model.instance.signUp(useremail,userpassword);
-                    Navigation.findNavController(view).navigate(R.id.action_signUp_to_login);
+                    Model.instance.signUp(useremail, userpassword, new Model.SuccessListener() {
+                        @Override
+                        public void onComplete(boolean result) {
+                            if(result) {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getActivity(), "User Created Successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                Navigation.findNavController(view).navigate(R.id.action_signUp_to_login);
+                            }
+                            else{
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getActivity(), "Failed To Create User", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+                    });
+
                 }
             }
         });

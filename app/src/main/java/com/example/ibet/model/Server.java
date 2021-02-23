@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 
 public class Server {
 
-    public void signUp(String email, String password, Activity activity)
+    public void signUp(String email, String password, Model.SuccessListener listener)
     {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -48,16 +48,9 @@ public class Server {
 
                     os.flush();
                     os.close();
-                    if(conn.getResponseCode() == 201)
-                    {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(activity, "User created", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                    }
+                    int status = conn.getResponseCode();
+                    if(conn.getResponseCode() == 201) { listener.onComplete(true); }
+                    else { listener.onComplete(false); }
                     Log.i("STATUS", String.valueOf(conn.getResponseCode()));
                     Log.i("MSG" , conn.getResponseMessage());
 
@@ -116,7 +109,7 @@ public class Server {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://10.0.0.10:3000/api/users/forgotpassowrd"); //You need to write your IPV4 (cmd ipconfig)
+                    URL url = new URL("http://10.0.0.10:3000/api/users/forgotpassword"); //You need to write your IPV4 (cmd ipconfig)
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");

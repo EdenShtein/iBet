@@ -22,8 +22,7 @@ import java.net.URLEncoder;
 
 public class Server {
 
-    public void signUp(String email, String password, Model.SuccessListener listener)
-    {
+    public void signUp(String email, String password, Model.SuccessListener listener) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -48,6 +47,7 @@ public class Server {
 
                     os.flush();
                     os.close();
+
                     int status = conn.getResponseCode();
                     if(conn.getResponseCode() == 201) { listener.onComplete(true); }
                     else { listener.onComplete(false); }
@@ -60,11 +60,11 @@ public class Server {
                 }
             }
         });
+
         thread.start();
     }
 
-    public void logIn(String email, String password,Model.SuccessListener listener)
-    {
+    public void logIn(String email, String password,Model.SuccessListener listener) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -89,6 +89,7 @@ public class Server {
 
                     os.flush();
                     os.close();
+
                     int code = conn.getResponseCode();
 
                     if(conn.getResponseCode() == 200) { listener.onComplete(true); }
@@ -100,6 +101,7 @@ public class Server {
                 }
             }
         });
+
         thread.start();
     }
 
@@ -126,6 +128,7 @@ public class Server {
 
                     os.flush();
                     os.close();
+
                     int code = conn.getResponseCode();
 
                     if(conn.getResponseCode() == 200) { listener.onComplete(true); }
@@ -137,6 +140,7 @@ public class Server {
                 }
             }
         });
+
         thread.start();
     }
 }

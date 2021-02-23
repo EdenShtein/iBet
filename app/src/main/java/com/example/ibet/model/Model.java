@@ -12,22 +12,19 @@ public class Model {
         this.mActivity = activity;
     }
 
-    public void signUp(String email,String password,SuccessListener listener)
-    {
+    public void signUp(String email,String password,SuccessListener listener) {
         server.signUp(email,password,listener);
     }
 
-    public interface SuccessListener{
+    public interface SuccessListener {
         void onComplete(boolean result);
     }
 
-    public void logIn(String email,String password, SuccessListener listener)
-    {
+    public void logIn(String email,String password, SuccessListener listener) {
         server.logIn(email,password,listener);
     }
 
-    public void resetPass(String email,SuccessListener listener)
-    {
+    public void resetPass(String email,SuccessListener listener) {
         server.resetPass(email,listener);
     }
 }

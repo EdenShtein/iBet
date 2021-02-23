@@ -33,7 +33,6 @@ public class SignUpFragment extends Fragment {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
 
-
         email=view.findViewById(R.id.signup_email_input);
         password=view.findViewById(R.id.signup_pass_input);
         repassword = view.findViewById(R.id.signup_repass_input);
@@ -46,15 +45,16 @@ public class SignUpFragment extends Fragment {
                 String useremail=email.getText().toString();
                 String userpassword=password.getText().toString();
                 String rpassword = repassword.getText().toString();
+
                 if (useremail.equals("") || userpassword.equals("")) {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
-                if(userpassword.length()<8)
-                {
+
+                if(userpassword.length()<8) {
                     Toast.makeText(getActivity(),"Password length must be minimum 8 characters",Toast.LENGTH_SHORT).show();
                 }
-                if(!(userpassword.equals(rpassword)))
-                {
+
+                if(!(userpassword.equals(rpassword))) {
                     Toast.makeText(getActivity(),"Password are not the same",Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -85,13 +85,13 @@ public class SignUpFragment extends Fragment {
             }
         });
 
-
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_signUp_to_login);
             }
         });
+
         return view;
     }
 }

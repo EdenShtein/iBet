@@ -54,14 +54,14 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 String useremail = email.getText().toString();
                 String userpassword = password.getText().toString();
+
                 if (useremail.equals("") && userpassword.equals("")) {
                     Toast.makeText(getActivity(), "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
                 } else {
                     Model.instance.logIn(useremail, userpassword, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {
-                                if(result)
-                                {
+                                if(result) {
                                     Navigation.findNavController(view).navigate(R.id.action_login_to_mainFreed);
                                 }
                                 else {
@@ -77,6 +77,7 @@ public class LoginFragment extends Fragment {
                 }
             }
         });
+
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,5 +1,8 @@
 package com.example.ibet;
 
+import android.app.ActionBar;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +13,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -39,7 +43,9 @@ public class LoginFragment extends Fragment {
         forgetPass=view.findViewById(R.id.login_forgot_btn);
         signIn = view.findViewById(R.id.login_signin_btn);
 
-
+        getActivity().getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                        View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -18,7 +18,7 @@
         android:backgroundTint="#4CAF50"
         android:hapticFeedbackEnabled="false"
         android:text="Sign Up"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -35,7 +35,7 @@
         android:background="@drawable/customborder"
         android:backgroundTint="#4CAF50"
         android:text="Forgot Password?"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/signin_signup_btn"
@@ -89,8 +89,8 @@
 
     <EditText
         android:id="@+id/login_pass_input"
-        android:layout_width="291dp"
-        android:layout_height="44dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="60dp"
@@ -103,3 +103,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_email_input" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

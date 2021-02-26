@@ -118,7 +118,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="56dp"
         android:background="@drawable/customborder"
-        android:text="Send Token"
+        android:text="Send Email"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.221"

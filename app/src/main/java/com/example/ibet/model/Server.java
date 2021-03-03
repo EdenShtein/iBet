@@ -151,9 +151,9 @@ public class Server {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://" + ip +":3000/api/users/resetPassword/:token"); //You need to write your IPV4 (cmd ipconfig)
+                    URL url = new URL("http://" + ip +":3000/api/users/resetPassword/" + token); //You need to write your IPV4 (cmd ipconfig)
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
+                    conn.setRequestMethod("PATCH");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
                     conn.setRequestProperty("Accept","application/json");
                     conn.setDoOutput(true);

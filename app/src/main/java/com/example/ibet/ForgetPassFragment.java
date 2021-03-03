@@ -79,6 +79,26 @@ public class ForgetPassFragment extends Fragment {
                     send.setEnabled(false);
                     reset.setVisibility(View.VISIBLE);
                     reset.setEnabled(true);
+                    Model.instance.emailToken(useremail, new Model.SuccessListener() {
+                        @Override
+                        public void onComplete(boolean result) {
+                            if (result) {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getActivity(), "Email Sent Successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            } else {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getActivity(), "Failed To Send Email", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        }
+                    });
                 }
             }});
 
@@ -86,10 +106,19 @@ public class ForgetPassFragment extends Fragment {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String useremail = email.getText().toString();
+                String userToken = token.getText().toString();
+                String userPass = newpass.getText().toString();
+                String reNewPass = renewpass.getText().toString();
 
-                if (useremail.equals("")) {
-                    Toast.makeText(getActivity(),"You must enter Email",Toast.LENGTH_SHORT).show();
+                if (userToken.equals("") || userPass.equals("") || reNewPass.equals(" ")) {
+                    Toast.makeText(getActivity(),"You Must Enter Full Data",Toast.LENGTH_SHORT).show();
+                }
+                if(userPass.length()<8) {
+                    Toast.makeText(getActivity(),"Password length must be minimum 8 characters",Toast.LENGTH_SHORT).show();
+                }
+
+                if(!(userPass.equals(reNewPass))) {
+                    Toast.makeText(getActivity(),"Password are not the same",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     token.setVisibility(View.VISIBLE);
@@ -100,16 +129,17 @@ public class ForgetPassFragment extends Fragment {
                     renewpass.setEnabled(true);
                     send.setVisibility(View.INVISIBLE);
                     send.setEnabled(false);
-                    Model.instance.resetPass(useremail, new Model.SuccessListener() {
+                    Model.instance.resetPassword(userToken, userPass, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {
-                            if (result) {
+                            if(result) {
                                 Navigation.findNavController(view).navigate(R.id.action_forgetPass_to_login);
-                            } else {
+                            }
+                            else{
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(getActivity(), "Failed To Send Email", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Failed To Send Token", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }

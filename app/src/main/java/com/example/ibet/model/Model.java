@@ -24,7 +24,12 @@ public class Model {
         server.logIn(email,password,listener);
     }
 
-    public void resetPass(String email,SuccessListener listener) {
-        server.resetPass(email,listener);
+    public void emailToken(String email,SuccessListener listener) {
+        server.emailToken(email,listener);
+    }
+
+    public void resetPassword(String token,String password,SuccessListener listener)
+    {
+        server.restPassword(token,password,listener);
     }
 }

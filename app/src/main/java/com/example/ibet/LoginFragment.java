@@ -1,6 +1,7 @@
 package com.example.ibet;
 
 import android.app.ActionBar;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +32,9 @@ public class LoginFragment extends Fragment {
     EditText email;
     EditText password;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,9 +47,12 @@ public class LoginFragment extends Fragment {
         forgetPass=view.findViewById(R.id.login_forgot_btn);
         signIn = view.findViewById(R.id.login_signin_btn);
 
-        getActivity().getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                        View.SYSTEM_UI_FLAG_FULLSCREEN);
+//        getActivity().getWindow().getDecorView().setSystemUiVisibility(
+//                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+//                        View.SYSTEM_UI_FLAG_FULLSCREEN);
+
+        pref = getActivity().getSharedPreferences("MyPref", 0);
+        editor = pref.edit();
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,20 +71,22 @@ public class LoginFragment extends Fragment {
                 if (useremail.equals("") && userpassword.equals("")) {
                     Toast.makeText(getActivity(), "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
                 } else {
-                    Model.instance.logIn(useremail, userpassword, new Model.SuccessListener() {
+                    Model.instance.logIn(useremail, userpassword, new Model.LoginListener() {
+
                         @Override
-                        public void onComplete(boolean result) {
-                                if(result) {
-                                    Navigation.findNavController(view).navigate(R.id.action_login_to_mainFreed);
-                                }
-                                else {
-                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(getActivity(), "Failed To Login", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
+                        public void onComplete(boolean result, String token) {
+                            if(result) {
+                                editor.putString("token",token).apply();
+                                Navigation.findNavController(view).navigate(R.id.action_login_to_mainFreed);
+                            }
+                            else {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getActivity(), "Failed To Login", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     });
                 }

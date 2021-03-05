@@ -46,7 +46,7 @@ public class LoginFragment extends Fragment {
         password=view.findViewById(R.id.login_pass_input);
         forgetPass=view.findViewById(R.id.login_forgot_btn);
         signIn = view.findViewById(R.id.login_signin_btn);
-
+//
 //        getActivity().getWindow().getDecorView().setSystemUiVisibility(
 //                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
 //                        View.SYSTEM_UI_FLAG_FULLSCREEN);
@@ -78,6 +78,12 @@ public class LoginFragment extends Fragment {
                             if(result) {
                                 editor.putString("token",token).apply();
                                 Navigation.findNavController(view).navigate(R.id.action_login_to_mainFreed);
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getActivity(), "Welcome to iBet", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
                             else {
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {

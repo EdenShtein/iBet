@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_group"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateGroupFragment">
+
+    <TextView
+        android:id="@+id/create_group_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="140dp"
+        android:text="Group Name"
+        android:textColor="#4CAF50"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/create_group_league_dropdown"
+        app:layout_constraintEnd_toEndOf="@+id/create_group_league"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/create_group_league"
+        android:layout_width="178dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
+        android:text="League"
+        android:textColor="#4CAF50"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_group_input_name" />
+
+    <EditText
+        android:id="@+id/create_group_input_name"
+        android:layout_width="365dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Enter Your Group Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/create_group_league"
+        app:layout_constraintStart_toEndOf="@+id/create_group_league"
+        app:layout_constraintTop_toBottomOf="@+id/create_group_name" />
+
+    <Spinner
+        android:id="@+id/create_group_league_dropdown"
+        android:layout_width="224dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="358dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_group_name" />
+
+    <Button
+        android:id="@+id/create_group_create_btn"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="36dp"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/create_group_back_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/create_group_back_btn"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="32dp"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/create_group_create_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,7 @@ import java.net.URLEncoder;
 
 public class Server {
 
-    public String ip = "10.0.0.10";
+    public String ip = "192.168.88.164";
     Activity mActivity;
     //SharedPreferences pref;
     //SharedPreferences.Editor editor;

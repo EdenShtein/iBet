@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_mainFreed_to_login"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainFreed_to_createGroup"
+            app:destination="@id/createGroupFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"
@@ -46,5 +49,14 @@
         <action
             android:id="@+id/action_forgetPass_to_login"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createGroupFragment"
+        android:name="com.example.ibet.CreateGroupFragment"
+        android:label="fragment_create_group"
+        tools:layout="@layout/fragment_create_group" >
+        <action
+            android:id="@+id/action_createGroup_to_mainFreed"
+            app:destination="@id/mainFreedFragment" />
     </fragment>
 </navigation>

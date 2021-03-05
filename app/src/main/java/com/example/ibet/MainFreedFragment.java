@@ -14,13 +14,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainFreedFragment extends Fragment {
 
     View view;
    SharedPreferences pref;
-    SharedPreferences.Editor editor;
+   SharedPreferences.Editor editor;
+
+   Button createGroup;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,9 +32,25 @@ public class MainFreedFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_main_freed, container, false);
         pref = getActivity().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
+
+        View decorView = getActivity().getWindow().getDecorView(); // Show the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        decorView.setSystemUiVisibility(uiOptions);
+
+
+        createGroup = view.findViewById(R.id.mainfeed_create_group);
+
         setHasOptionsMenu(true);
+
         String token = pref.getString("token",null);
-       Log.e("Mainfeed",token);
+
+        createGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_mainFreed_to_createGroup);
+            }
+        });
+
         return view;
     }
 

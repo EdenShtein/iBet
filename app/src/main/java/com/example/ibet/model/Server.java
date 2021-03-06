@@ -29,16 +29,7 @@ import java.net.URLEncoder;
 
 public class Server {
 
-    public String ip = "192.168.88.164";
-    Activity mActivity;
-    //SharedPreferences pref;
-    //SharedPreferences.Editor editor;
-
-//    public Server(Activity activity){
-//        this.mActivity = activity;
-//         pref = mActivity.getApplicationContext().getSharedPreferences("MyPref", 0);
-//         editor = pref.edit();
-//    }
+    public String ip = "10.0.0.10";
 
     public void signUp(String email, String password, Model.SuccessListener listener) {
         Thread thread = new Thread(new Runnable() {

@@ -83,4 +83,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/create_group_create_btn" />
 
+    <NumberPicker
+        android:id="@+id/create_group_picker1"
+        android:layout_width="57dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginBottom="136dp"
+        app:layout_constraintBottom_toTopOf="@+id/create_group_create_btn"
+        app:layout_constraintTop_toBottomOf="@+id/create_group_league_dropdown"
+        tools:layout_editor_absoluteX="47dp"
+        android:theme="@style/NumberPickerTheme"
+        tools:ignore="MissingConstraints"></NumberPicker>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

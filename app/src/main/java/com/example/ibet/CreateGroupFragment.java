@@ -23,6 +23,9 @@ public class CreateGroupFragment extends Fragment {
     Spinner leagueDropDown;
 
     NumberPicker picker1;
+    NumberPicker picker2;
+    NumberPicker picker3;
+    NumberPicker picker4;
 
     Button create;
     Button back;
@@ -38,9 +41,21 @@ public class CreateGroupFragment extends Fragment {
         create = view.findViewById(R.id.create_group_create_btn);
         back = view.findViewById(R.id.create_group_back_btn);
         picker1 = view.findViewById(R.id.create_group_picker1);
+        picker2 = view.findViewById(R.id.create_group_picker2);
+        picker3 = view.findViewById(R.id.create_group_picker3);
+        picker4 = view.findViewById(R.id.create_group_picker4);
 
         picker1.setMinValue(1);
         picker1.setMaxValue(5);
+
+        picker2.setMinValue(1);
+        picker2.setMaxValue(5);
+
+        picker3.setMinValue(1);
+        picker3.setMaxValue(5);
+
+        picker4.setMinValue(1);
+        picker4.setMaxValue(5);
 
         picker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override

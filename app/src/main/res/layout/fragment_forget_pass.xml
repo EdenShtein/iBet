@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:ems="10"
@@ -72,43 +72,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgot_newpass_input" />
 
-    <Button
-        android:id="@+id/forgetpass_cancel_btn"
-        android:layout_width="103dp"
-        android:layout_height="49dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/customborder"
-        android:text="Cancel"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/forgetpass_reset_btn" />
-
     <TextView
         android:id="@+id/forgetpass_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="50dp"
         android:text="Forgot Password?"
-        android:textColor="#4CAF50"
+        android:textColor="#202E7E"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <Button
+        android:id="@+id/forgetpass_cancel_btn"
+        android:layout_width="103dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="72dp"
+        android:background="@drawable/customborder"
+        android:text="Cancel"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/forgetpass_reset_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/forgetpass_reset_btn"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/forgetpass_reset_btn"
         android:layout_width="95dp"
         android:layout_height="50dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="76dp"
         android:background="@drawable/customborder"
         android:text="Reset"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/forgetpass_cancel_btn"
-        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgot_renewpass_input" />
 
@@ -116,13 +118,23 @@
         android:id="@+id/forgetpass_send_btn"
         android:layout_width="140dp"
         android:layout_height="49dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="76dp"
         android:background="@drawable/customborder"
         android:text="Send Email"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.221"
+        app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgot_renewpass_input" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="115dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/blueball"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

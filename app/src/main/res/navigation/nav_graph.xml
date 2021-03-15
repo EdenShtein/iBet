@@ -15,7 +15,7 @@
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_login_to_mainFreed"
-            app:destination="@id/mainFreedFragment" />
+            app:destination="@id/mainFeedFragment" />
         <action
             android:id="@+id/action_login_to_forgetPass"
             app:destination="@id/forgetPassFragment" />
@@ -30,7 +30,7 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mainFreedFragment"
+        android:id="@+id/mainFeedFragment"
         android:name="com.example.ibet.MainFreedFragment"
         android:label="fragment_main_freed"
         tools:layout="@layout/fragment_main_freed" >
@@ -57,6 +57,11 @@
         tools:layout="@layout/fragment_create_group" >
         <action
             android:id="@+id/action_createGroup_to_mainFreed"
-            app:destination="@id/mainFreedFragment" />
+            app:destination="@id/mainFeedFragment" />
     </fragment>
+    <activity
+        android:id="@+id/splash_Screen"
+        android:name="com.example.ibet.Splash_Screen"
+        android:label="activity_splash__screen"
+        tools:layout="@layout/activity_splash__screen" />
 </navigation>

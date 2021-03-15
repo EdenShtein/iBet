@@ -39,7 +39,7 @@ public class CreateGroupFragment extends Fragment {
         groupName = view.findViewById(R.id.create_group_input_name);
         leagueDropDown = view.findViewById(R.id.create_group_league_dropdown);
         create = view.findViewById(R.id.create_group_create_btn);
-        back = view.findViewById(R.id.create_group_back_btn);
+        //back = view.findViewById(R.id.create_group_back_btn);
         picker1 = view.findViewById(R.id.create_group_picker1);
         picker2 = view.findViewById(R.id.create_group_picker2);
         picker3 = view.findViewById(R.id.create_group_picker3);
@@ -71,13 +71,6 @@ public class CreateGroupFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, leagues);
         //set the spinners adapter to the previously created one.
         leagueDropDown.setAdapter(adapter);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_createGroup_to_mainFreed);
-            }
-        });
 
 
         return view;

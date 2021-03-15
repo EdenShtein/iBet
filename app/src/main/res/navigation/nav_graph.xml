@@ -35,11 +35,14 @@
         android:label="fragment_main_freed"
         tools:layout="@layout/fragment_main_feed" >
         <action
-            android:id="@+id/action_mainFreed_to_login"
+            android:id="@+id/action_mainFeed_to_login"
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_mainFreed_to_createGroup"
             app:destination="@id/createGroupFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_myProfile"
+            app:destination="@id/myProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"
@@ -64,4 +67,9 @@
         android:name="com.example.ibet.Splash_Screen"
         android:label="activity_splash__screen"
         tools:layout="@layout/activity_splash__screen" />
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.example.ibet.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" />
 </navigation>

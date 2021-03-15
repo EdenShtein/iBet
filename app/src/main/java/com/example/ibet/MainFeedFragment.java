@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.ibet.model.Group.GroupAdapter;
 
@@ -76,12 +75,12 @@ public class MainFeedFragment extends Fragment {
             case R.id.menu_sign_out:
                 if(view != null) {
                     pref.edit().remove("token").commit();
-                    Navigation.findNavController(view).navigate(R.id.action_mainFreed_to_login);
+                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_login);
                 }
                 break;
             case R.id.menu_my_profile:
                 if(view != null) {
-                    Toast.makeText(getActivity(),"blalbla",Toast.LENGTH_LONG).show();
+                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
                }
                 break;
             default:

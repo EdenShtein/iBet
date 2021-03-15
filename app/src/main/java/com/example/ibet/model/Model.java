@@ -2,6 +2,10 @@ package com.example.ibet.model;
 
 import android.app.Activity;
 
+import com.example.ibet.model.Team.Team;
+
+import java.util.ArrayList;
+
 public class Model {
 
     public Activity mActivity;
@@ -42,4 +46,14 @@ public class Model {
     {
         server.restPassword(token,password,listener);
     }
+
+    public interface TeamDataListener{
+        public void onComplete(ArrayList<Team> teamData);
+    }
+
+    public void getAlgoResult(TeamDataListener listener) {
+        server.getAlgoResult(listener);
+    }
+
+
 }

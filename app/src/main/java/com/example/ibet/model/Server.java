@@ -1,35 +1,24 @@
 package com.example.ibet.model;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.example.ibet.model.Team.Team;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class Server {
 
-    public String ip = "192.168.1.113";
+    public String ip = "10.0.0.10";
 
     public void signUp(String email, String password, Model.SuccessListener listener) {
         Thread thread = new Thread(new Runnable() {
@@ -214,6 +203,74 @@ public class Server {
 
                     if(conn.getResponseCode() == 200) { listener.onComplete(true); }
                     else { listener.onComplete(false); }
+
+                    conn.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+    }
+
+
+    public void getAlgoResult(Model.TeamDataListener listener) {
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("http://" + ip +":3000/api/algo/standings"); //You need to write your IPV4 (cmd ipconfig)
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                    conn.setRequestProperty("Accept","application/json");
+
+                    conn.setDoInput(true);
+
+
+                    InputStream is = conn.getInputStream();
+                    JSONObject jObj = null;
+                    String json = "";
+
+
+                    try {
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                                is, "iso-8859-1"), 8);
+                        StringBuilder sb = new StringBuilder();
+                        String line = null;
+                        while ((line = reader.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        is.close();
+                        json = sb.toString();
+                    } catch (Exception e) {
+                        Log.e("Buffer Error", "Error converting result " + e.toString());
+                    }
+
+                    // try parse the string to a JSON object
+                    try {
+                        jObj = new JSONObject(json);
+                    } catch (JSONException e) {
+                        Log.e("JSON Parser", "Error parsing data " + e.toString());
+                    }
+                    JSONArray resultArray = jObj.getJSONArray("data");
+                    ArrayList<Team> teamsData = new ArrayList<>(resultArray.length());
+                    if(conn.getResponseCode() == 200) {
+
+                        for(int i=0;i<resultArray.length();i++)
+                        {
+                            String teamName = resultArray.getJSONObject(i).getString("teamName");
+                            String wins = resultArray.getJSONObject(i).getString("wins");
+                            String losses = resultArray.getJSONObject(i).getString("losses");
+                            Boolean isEliminated = resultArray.getJSONObject(i).getBoolean("isEliminated");
+                            Team t = new Team(teamName,wins,losses,isEliminated);
+                            teamsData.add(t);
+                        }
+                        listener.onComplete(teamsData);
+                    }
+                    else {  }
 
                     conn.disconnect();
                 } catch (Exception e) {

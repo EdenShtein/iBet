@@ -75,8 +75,8 @@
 
     <Button
         android:id="@+id/create_group_create_btn"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_width="272dp"
+        android:layout_height="48dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="40dp"

@@ -11,8 +11,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="292dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="88dp"
         android:text="Main Feed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,4 +26,13 @@
         android:text="Create New Group"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainfeed_groupslist_rv"
+        android:layout_width="0dp"
+        android:layout_height="357dp"
+        app:layout_constraintBottom_toTopOf="@+id/mainfeed_create_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

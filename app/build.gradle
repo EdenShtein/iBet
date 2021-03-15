@@ -48,4 +48,19 @@ dependencies {
 
     implementation 'com.android.volley:volley:1.1.1'
 
+    //room database
+    def room_version = "2.2.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //ViewModel and LiveData
+    def lifecycle_version = "2.1.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    //Cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
 }

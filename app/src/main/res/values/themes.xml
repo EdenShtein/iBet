@@ -28,7 +28,7 @@
         <!-- Primary brand color. -->
 
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FF9800</item>
-        <item name="colorPrimaryDark">#FF9800</item>
+        <item name="colorPrimary">#202E7E</item>
+        <item name="colorPrimaryDark">#202E7E</item>
     </style>
 </resources>

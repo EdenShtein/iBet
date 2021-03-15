@@ -31,9 +31,9 @@
     </fragment>
     <fragment
         android:id="@+id/mainFeedFragment"
-        android:name="com.example.ibet.MainFreedFragment"
+        android:name="com.example.ibet.MainFeedFragment"
         android:label="fragment_main_freed"
-        tools:layout="@layout/fragment_main_freed" >
+        tools:layout="@layout/fragment_main_feed" >
         <action
             android:id="@+id/action_mainFreed_to_login"
             app:destination="@id/loginFragment" />

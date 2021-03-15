@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -25,12 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
         navController = Navigation.findNavController(this,R.id.fragment);
 
-        pref = this.getSharedPreferences("MyPref", 0);
-        editor = pref.edit();
-        String token = pref.getString("token","");
-        if(pref.getString("token",null)!=null)
-        {
-            userIsLogin();
+        Intent intent = getIntent();
+        if(intent != null) {
+            if(intent.getBooleanExtra("isLogin", false)) {
+                userIsLogin();
+            }
         }
     }
     public void userIsLogin() {

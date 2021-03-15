@@ -83,6 +83,11 @@ public class MainFeedFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
                }
                 break;
+            case R.id.menu_teams_result:
+                if(view != null) {
+                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_teamsResult);
+                }
+                break;
             default:
 
         }

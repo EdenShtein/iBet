@@ -8,6 +8,10 @@
         android:title="My Profile"
         />
     <item
+        android:id="@+id/menu_teams_result"
+        android:title="Teams Result"
+        />
+    <item
         android:id="@+id/menu_sign_out"
         android:title="Sign Out"
         ></item>

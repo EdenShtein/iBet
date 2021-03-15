@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_mainFeed_to_myProfile"
             app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_teamsResult"
+            app:destination="@id/teamsResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"
@@ -72,4 +75,9 @@
         android:name="com.example.ibet.MyProfileFragment"
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile" />
+    <fragment
+        android:id="@+id/teamsResultFragment"
+        android:name="com.example.ibet.TeamsResultFragment"
+        android:label="fragment_teams_result"
+        tools:layout="@layout/fragment_teams_result" />
 </navigation>

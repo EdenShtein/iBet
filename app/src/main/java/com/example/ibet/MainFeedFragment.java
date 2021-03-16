@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupAdapter;
+import com.example.ibet.model.Group.GroupViewModel;
+
+import java.nio.file.attribute.GroupPrincipal;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MainFeedFragment extends Fragment {
 
@@ -27,6 +34,8 @@ public class MainFeedFragment extends Fragment {
    public RecyclerView groupsList_rv;
    Button createGroup;
    GroupAdapter groupAdapter;
+   private GroupViewModel groupViewModel;
+   List<Group> groupList = new LinkedList<Group>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,17 +48,25 @@ public class MainFeedFragment extends Fragment {
         View decorView = getActivity().getWindow().getDecorView(); // Show the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         decorView.setSystemUiVisibility(uiOptions);
+        setHasOptionsMenu(true);
 
         groupsList_rv = view.findViewById(R.id.mainfeed_groupslist_rv);
         groupsList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         groupsList_rv.setLayoutManager(layoutManager);
         groupAdapter = new GroupAdapter();
+
+        groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
+
+        Group group = new Group("1","Group 1", "1234");
+        groupList.add(group);
+        groupViewModel.insert(group);
+        groupAdapter.setGroupsData(groupList);
         groupsList_rv.setAdapter(groupAdapter);
 
         createGroup = view.findViewById(R.id.mainfeed_create_group);
 
-        setHasOptionsMenu(true);
+
 
         String token = pref.getString("token",null);
 

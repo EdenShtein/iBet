@@ -5,17 +5,7 @@
     android:id="@+id/main_feed"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFreedFragment">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginTop="88dp"
-        android:text="Main Feed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".MainFeedFragment">
 
     <Button
         android:id="@+id/mainfeed_create_group"
@@ -30,9 +20,39 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainfeed_groupslist_rv"
         android:layout_width="0dp"
-        android:layout_height="357dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/mainfeed_create_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/mainfeed_active_img" />
+
+    <ImageView
+        android:id="@+id/mainfeed_active_img"
+        android:layout_width="137dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="96dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/active_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/mainfeed_groups_img"
+        android:layout_width="152dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginEnd="12dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/groups_s"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toEndOf="@+id/mainfeed_active_img"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.ibet.R;
+import com.squareup.picasso.Picasso;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,12 +28,12 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
         return groupsData.get(position);
     }
 
-    public void setGamesData(List<Group> groups) {
+    public void setGroupsData(List<Group> groups) {
         this.groupsData = groups;
         notifyDataSetChanged();
     }
 
-    // Create GameHolder for the adapter.
+    // Create GroupHolder for the adapter.
     @NonNull
     @Override
     public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,9 +45,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
     // Bind data to the adapter.
     @Override
     public void onBindViewHolder(@NonNull GroupHolder holder, int position) {
-        Group currentGame = groupsData.get(position);
-        holder.bindData(currentGame,position);
-        holder.itemView.setTag(currentGame);
+        Group currentGroup = groupsData.get(position);
+        holder.bindData(currentGroup,position);
+        holder.itemView.setTag(currentGroup);
     }
 
     @Override
@@ -54,10 +56,10 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
     }
 
     public interface OnItemClickListener{
-        void onItemClick(Group game, View view);
+        void onItemClick(Group group, View view);
     }
 
-    //---------------GameHolder----------------//
+    //---------------GroupHolder----------------//
 
     public static class GroupHolder extends RecyclerView.ViewHolder{
         TextView groupText;
@@ -83,12 +85,12 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
         }
 
         public void bindData(Group group, int position){
-//            gameText.setText(group.getName());
-//            gameSubText.setText(game.getPrice());
-//            gameImage.setImageResource(R.drawable.gamechangersimple);
-//            if (game.getImageURL() != null) {
-//                Picasso.get().load(game.getImageURL()).placeholder(R.drawable.gamechangersimple).into(gameImage);
-//            }
+            groupText.setText(group.getName());
+            groupSubText.setText(group.getId());
+            groupImage.setImageResource(R.drawable.brplayer);
+            if (group.getGroupLogo() != null) {
+                Picasso.get().load(group.getGroupLogo()).placeholder(R.drawable.brplayer).into(groupImage);
+            }
 
             this.position = position;
         }

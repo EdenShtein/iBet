@@ -1,5 +1,6 @@
 package com.example.ibet;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -52,15 +53,19 @@ public class TeamsResultFragment extends Fragment {
                                 TableRow tbrow0 = new TableRow(getActivity().getApplicationContext());
                                 TextView tr0 = new TextView(getActivity().getApplicationContext());
                                 tr0.setText(" Team Name ");
+                                tr0.setTextColor(Color.WHITE);
                                 tbrow0.addView(tr0);
                                 TextView tr1 = new TextView(getActivity().getApplicationContext());
                                 tr1.setText(" Wins ");
+                                tr1.setTextColor(Color.WHITE);
                                 tbrow0.addView(tr1);
                                 TextView tr2 = new TextView(getActivity().getApplicationContext());
                                 tr2.setText(" Losses ");
+                                tr2.setTextColor(Color.WHITE);
                                 tbrow0.addView(tr2);
                                 TextView tr3 = new TextView(getActivity().getApplicationContext());
                                 tr3.setText(" Eliminated? ");
+                                tr3.setTextColor(Color.WHITE);
                                 tbrow0.addView(tr3);
                                 table.addView(tbrow0);
 

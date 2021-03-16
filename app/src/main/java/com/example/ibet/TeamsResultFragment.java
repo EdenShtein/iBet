@@ -102,9 +102,10 @@ public class TeamsResultFragment extends Fragment {
 
                                     table.addView(row,i);
 
-                                    button.setVisibility(View.INVISIBLE);
-                                    button.setEnabled(false);
+
                                 }
+                                button.setVisibility(View.INVISIBLE);
+                                button.setEnabled(false);
                             }
                         });
                     }

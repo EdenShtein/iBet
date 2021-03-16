@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ibet.model.Model;
 import com.example.ibet.model.Team.Team;
@@ -35,7 +34,7 @@ public class TeamsResultFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_teams_result, container, false);
 
 
-        button=view.findViewById(R.id.button);
+        button=view.findViewById(R.id.teamsresults_button);
         TableLayout table = view.findViewById(R.id.table);
 
 

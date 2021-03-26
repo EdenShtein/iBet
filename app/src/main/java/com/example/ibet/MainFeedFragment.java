@@ -52,7 +52,7 @@ public class MainFeedFragment extends Fragment {
 
         groupsList_rv = view.findViewById(R.id.mainfeed_groupslist_rv);
         groupsList_rv.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
         groupsList_rv.setLayoutManager(layoutManager);
         groupAdapter = new GroupAdapter();
 
@@ -103,6 +103,11 @@ public class MainFeedFragment extends Fragment {
             case R.id.menu_teams_result:
                 if(view != null) {
                     Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_teamsResult);
+                }
+                break;
+            case R.id.menu_rules:
+                if(view != null) {
+                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_rulesFragment);
                 }
                 break;
             default:

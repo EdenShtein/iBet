@@ -4,6 +4,9 @@
 
 
     <item
+        android:id="@+id/menu_rules"
+        android:title="Rules"></item>
+    <item
         android:id="@+id/menu_my_profile"
         android:title="My Profile"
         />
@@ -13,6 +16,5 @@
         />
     <item
         android:id="@+id/menu_sign_out"
-        android:title="Sign Out"
-        ></item>
+        android:title="Sign Out"></item>
 </menu>

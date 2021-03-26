@@ -13,6 +13,8 @@ import android.widget.ImageView;
 public class Splash_Screen extends AppCompatActivity {
 
     ImageView splash;
+    ImageView splash2;
+    ImageView splash3;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
@@ -24,6 +26,14 @@ public class Splash_Screen extends AppCompatActivity {
         splash = findViewById(R.id.imageViewSplash);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
         splash.startAnimation(animation);
+
+        splash2 = findViewById(R.id.SplashLogo);
+        Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
+        splash2.startAnimation(animation);
+
+        splash3 = findViewById(R.id.SplashBall);
+        Animation animation3 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
+        splash3.startAnimation(animation);
 
         pref = this.getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -41,7 +51,7 @@ public class Splash_Screen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },3000);
+        },4000);
 
     }
 }

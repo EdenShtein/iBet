@@ -46,10 +46,6 @@ public class LoginFragment extends Fragment {
         password=view.findViewById(R.id.login_pass_input);
         forgetPass=view.findViewById(R.id.login_forgot_btn);
         signIn = view.findViewById(R.id.login_signin_btn);
-//
-//        getActivity().getWindow().getDecorView().setSystemUiVisibility(
-//                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-//                        View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         pref = getActivity().getSharedPreferences("MyPref", 0);
         editor = pref.edit();

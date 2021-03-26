@@ -39,10 +39,6 @@ public class SignUpFragment extends Fragment {
         signup=view.findViewById(R.id.signup_continue_btn);
         signin=view.findViewById(R.id.signin_link);
 
-//        View decorView = getActivity().getWindow().getDecorView(); // Show the status bar.
-//        int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-//        decorView.setSystemUiVisibility(uiOptions);
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

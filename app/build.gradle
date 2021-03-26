@@ -46,8 +46,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
 
-    implementation 'com.android.volley:volley:1.1.1'
-
     //room database
     def room_version = "2.2.0"
     implementation "androidx.room:room-runtime:$room_version"
@@ -65,5 +63,8 @@ dependencies {
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Volley
+    implementation 'com.android.volley:volley:1.1.1'
 
 }

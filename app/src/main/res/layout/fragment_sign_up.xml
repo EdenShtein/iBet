@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:ems="10"
@@ -27,7 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:ems="10"
@@ -43,7 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:text="Have an account?"
         android:textColor="#C61414"
         android:textSize="18sp"
@@ -55,7 +55,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="60dp"
         android:shadowColor="#1B1615"
         android:text="Sign In"
@@ -63,7 +63,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/signup_btm_text"
         app:layout_constraintTop_toBottomOf="@+id/signup_continue_btn" />
 
@@ -72,7 +72,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:backgroundTint="#4CAF50"
@@ -85,9 +85,8 @@
     <EditText
         android:id="@+id/signup_email_input"
         android:layout_width="0dp"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:ems="10"
@@ -100,9 +99,10 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="208dp"
-        android:layout_height="158dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="232dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="212dp"
+        android:elevation="5px"
         android:scaleType="fitStart"
         android:src="@drawable/register_title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,12 +112,24 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="90dp"
-        android:layout_height="158dp"
+        android:layout_width="83dp"
+        android:layout_height="136dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="212dp"
+        android:elevation="5px"
         android:src="@drawable/redplayer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/signup_background"
+        android:layout_width="427dp"
+        android:layout_height="295dp"
+        android:src="@drawable/background6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

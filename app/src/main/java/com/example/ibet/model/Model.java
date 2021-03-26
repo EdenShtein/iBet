@@ -20,10 +20,8 @@ public class Model {
 
     public Activity getActivity () {return this.mActivity;}
 
-
-
     public void signUp(String email,String password,SuccessListener listener) {
-        server.signUp(email,password,listener);
+        server.signUp(email,password,listener,mActivity);
     }
 
     public interface SuccessListener {
@@ -35,7 +33,7 @@ public class Model {
     }
 
     public void logIn(String email,String password, LoginListener listener) {
-        server.logIn(email,password,listener);
+        server.logIn(email,password,listener,mActivity);
     }
 
     public void emailToken(String email,SuccessListener listener) {

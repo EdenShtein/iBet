@@ -66,21 +66,12 @@ public class SignUpFragment extends Fragment {
                         @Override
                         public void onComplete(boolean result) {
                             if(result) {
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getActivity(), "User Created Successfully", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                Toast.makeText(getActivity(), "User Created Successfully", Toast.LENGTH_SHORT).show();
                                 Navigation.findNavController(view).navigate(R.id.action_signUp_to_login);
                             }
                             else{
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getActivity(), "Failed To Create User", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                Toast.makeText(getActivity(), "Failed To Create User", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });

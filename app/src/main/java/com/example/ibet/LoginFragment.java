@@ -78,20 +78,11 @@ public class LoginFragment extends Fragment {
                             if(result) {
                                 editor.putString("token",token).apply();
                                 Navigation.findNavController(view).navigate(R.id.action_login_to_mainFreed);
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getActivity(), "Welcome to iBet", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                Toast.makeText(getActivity(), "Welcome to iBet", Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getActivity(), "Failed To Login", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                Toast.makeText(getActivity(), "Failed To Login", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });

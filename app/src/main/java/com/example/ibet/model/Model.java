@@ -37,13 +37,13 @@ public class Model {
     }
 
     public void emailToken(String email,SuccessListener listener) {
-        server.emailToken(email,listener);
+        server.emailToken(email,listener,mActivity);
     }
-
     public void resetPassword(String token,String password,SuccessListener listener)
     {
-        server.restPassword(token,password,listener);
+        server.restPassword(token,password,listener,mActivity);
     }
+
 
     public interface TeamDataListener{
         public void onComplete(ArrayList<Team> teamData);
@@ -51,6 +51,9 @@ public class Model {
 
     public void getAlgoResult(TeamDataListener listener) {
         server.getAlgoResult(listener);
+    }
+    public void getAlgoResults(TeamDataListener listener) {
+        server.getAlgoResult(listener,mActivity);
     }
 
 

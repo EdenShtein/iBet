@@ -83,19 +83,9 @@ public class ForgetPassFragment extends Fragment {
                         @Override
                         public void onComplete(boolean result) {
                             if (result) {
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getActivity(), "Email Sent Successfully", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                Toast.makeText(getActivity(), "Email Sent Successfully", Toast.LENGTH_SHORT).show();
                             } else {
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getActivity(), "Failed To Send Email", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                Toast.makeText(getActivity(), "Failed To Send Email", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

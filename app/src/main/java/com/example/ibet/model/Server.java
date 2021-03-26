@@ -96,85 +96,70 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void emailToken(String email, Model.SuccessListener listener) {
-        Thread thread = new Thread(new Runnable() {
+    public void emailToken(String email, Model.SuccessListener listener,Activity mActivity) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://" + ip +":3000/api/users/forgotpassword";
+
+        JSONObject jsonParam = new JSONObject();
+        try {
+            jsonParam.put("email", email);
+
+        }catch (Exception e) {e.printStackTrace();}
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonParam, new Response.Listener<JSONObject>() {
             @Override
-            public void run() {
+            public void onResponse(JSONObject response) {
+                String status;
                 try {
-                    URL url = new URL("http://" + ip +":3000/api/users/forgotpassword"); //You need to write your IPV4 (cmd ipconfig)
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(true);
-                    conn.setDoInput(true);
-
-                    JSONObject jsonParam = new JSONObject();
-                    jsonParam.put("email", email);
-
-                    Log.i("JSON", jsonParam.toString());
-                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-                    os.writeBytes(jsonParam.toString());
-
-                    os.flush();
-                    os.close();
-
-                    int code = conn.getResponseCode();
-
-                    if(conn.getResponseCode() == 200) { listener.onComplete(true); }
+                    status = response.getString("status");
+                    if(status.equals("success")) { listener.onComplete(true); }
                     else { listener.onComplete(false); }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                    conn.disconnect();
-                } catch (Exception e) {
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void restPassword(String token,String password, Model.SuccessListener listener,Activity mActivity) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://" + ip +":3000/api/users/resetPassword/" + token;
+
+        JSONObject jsonParam = new JSONObject();
+        try {
+            jsonParam.put("token", token);
+            jsonParam.put("password", password);
+            jsonParam.put("passwordConfirm", password);
+
+        }catch (Exception e) {e.printStackTrace();}
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, url, jsonParam, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) { listener.onComplete(true); }
+                    else { listener.onComplete(false); }
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        });
-
-        thread.start();
-    }
-
-    public void restPassword(String token,String password, Model.SuccessListener listener) {
-        Thread thread = new Thread(new Runnable() {
+        }, new Response.ErrorListener() {
             @Override
-            public void run() {
-                try {
-                    URL url = new URL("http://" + ip +":3000/api/users/resetPassword/" + token); //You need to write your IPV4 (cmd ipconfig)
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("PATCH");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(true);
-                    conn.setDoInput(true);
-
-
-                    JSONObject jsonParam = new JSONObject();
-                    jsonParam.put("token", token);
-                    jsonParam.put("password", password);
-                    jsonParam.put("passwordConfirm", password);
-
-                    Log.i("JSON", jsonParam.toString());
-                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-                    os.writeBytes(jsonParam.toString());
-
-                    os.flush();
-                    os.close();
-
-                    int code = conn.getResponseCode();
-
-                    if(conn.getResponseCode() == 200) { listener.onComplete(true); }
-                    else { listener.onComplete(false); }
-
-                    conn.disconnect();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        thread.start();
+        requestQueue.add(jsonObjectRequest);
     }
-
 
     public void getAlgoResult(Model.TeamDataListener listener) {
 
@@ -241,6 +226,47 @@ public class Server {
         });
 
         thread.start();
+    }
+
+    public void getAlgoResult(Model.TeamDataListener listener,Activity mActivity) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://" + ip +":3000/api/algo/standings";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONArray resultArray = response.getJSONArray("data");
+                        ArrayList<Team> teamsData = new ArrayList<>(resultArray.length());
+                        for(int i=0;i<resultArray.length();i++)
+                        {
+                            String teamName = resultArray.getJSONObject(i).getString("teamName");
+                            String wins = resultArray.getJSONObject(i).getString("wins");
+                            String losses = resultArray.getJSONObject(i).getString("losses");
+                            Boolean isEliminated = resultArray.getJSONObject(i).getBoolean("isEliminated");
+                            Team t = new Team(teamName,wins,losses,isEliminated);
+                            teamsData.add(t);
+                        }
+                        listener.onComplete(teamsData);
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
     }
 
 }

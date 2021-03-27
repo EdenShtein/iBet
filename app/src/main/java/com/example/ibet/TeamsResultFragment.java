@@ -56,13 +56,13 @@ public class TeamsResultFragment extends Fragment {
     }
 
     public void initTable(){
-        Model.instance.getAlgoResult(new Model.TeamDataListener() {
+        Model.instance.getAlgoResults(new Model.TeamDataListener() {
             @Override
             public void onComplete(ArrayList<Team> teamData) {
 
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
+//                new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                    @Override
+//                    public void run() {
 
                         TableRow tbrow0 = new TableRow(getActivity().getApplicationContext());
                         TextView tr0 = new TextView(getActivity().getApplicationContext());
@@ -121,8 +121,8 @@ public class TeamsResultFragment extends Fragment {
                         pb.setVisibility(View.INVISIBLE);
 //                        button.setVisibility(View.INVISIBLE);
 //                        button.setEnabled(false);
-                    }
-                });
+//                    }
+//                });
             }
         });
     }

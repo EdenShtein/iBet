@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:ems="10"
@@ -27,7 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:ems="10"
@@ -43,7 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Have an account?"
         android:textColor="#C61414"
         android:textSize="18sp"
@@ -55,7 +55,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
         android:shadowColor="#1B1615"
         android:text="Sign In"
@@ -99,37 +99,36 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="232dp"
-        android:layout_height="145dp"
-        android:layout_marginTop="212dp"
+        android:layout_width="163dp"
+        android:layout_height="104dp"
         android:elevation="5px"
-        android:scaleType="fitStart"
+        android:scaleType="centerCrop"
         android:src="@drawable/register_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_background" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="83dp"
         android:layout_height="136dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="212dp"
         android:elevation="5px"
+        android:scaleType="fitStart"
         android:src="@drawable/redplayer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/signup_background"
-        android:layout_width="427dp"
-        android:layout_height="295dp"
+        android:layout_width="448dp"
+        android:layout_height="292dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/background6"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

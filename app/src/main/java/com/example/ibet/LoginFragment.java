@@ -47,6 +47,11 @@ public class LoginFragment extends Fragment {
         forgetPass=view.findViewById(R.id.login_forgot_btn);
         signIn = view.findViewById(R.id.login_signin_btn);
 
+        View decorView = getActivity().getWindow().getDecorView(); // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        decorView.setSystemUiVisibility(uiOptions);
+
+
         pref = getActivity().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
 

@@ -111,4 +111,9 @@
             android:id="@+id/action_editUserFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/invitationPopUpFragment"
+        android:name="com.example.ibet.InvitationPopUpFragment"
+        android:label="fragment_invitation_pop_up"
+        tools:layout="@layout/fragment_invitation_pop_up" />
 </navigation>

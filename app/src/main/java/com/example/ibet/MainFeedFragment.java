@@ -1,5 +1,6 @@
 package com.example.ibet;
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupAdapter;
@@ -36,6 +39,7 @@ public class MainFeedFragment extends Fragment {
    GroupAdapter groupAdapter;
    private GroupViewModel groupViewModel;
    List<Group> groupList = new LinkedList<Group>();
+   Dialog myDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +79,30 @@ public class MainFeedFragment extends Fragment {
             }
         });
 
+        myDialog = new Dialog(view.getContext());
+
         return view;
+    }
+
+    public void ShowPopup(View v){
+        ImageView closeBtn;
+        Button confirmBtn;
+        myDialog.setContentView(R.layout.fragment_invitation_pop_up);
+        closeBtn = myDialog.findViewById(R.id.pop_close_btn);
+        confirmBtn = (Button) myDialog.findViewById(R.id.pop_confirm_btn);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.show();
     }
 
     @Override
@@ -101,6 +128,11 @@ public class MainFeedFragment extends Fragment {
             case R.id.menu_teams_result:
                 if(view != null) {
                     Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_teamsResult);
+                }
+                break;
+            case R.id.menu_invite:
+                if(view != null) {
+                    ShowPopup(view);
                 }
                 break;
             default:

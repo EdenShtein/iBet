@@ -2,11 +2,17 @@ package com.example.ibet;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -24,11 +30,15 @@ public class RulesFragment extends Fragment {
     TextView textView10;
     TextView textView11;
 
+    View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_rules, container, false);
+        view = inflater.inflate(R.layout.fragment_rules, container, false);
+        setHasOptionsMenu(true);
+
         textView1 = view.findViewById(R.id.rules_text1);
         textView2 = view.findViewById(R.id.rules_text2);
         textView3 = view.findViewById(R.id.rules_text3);
@@ -89,5 +99,26 @@ public class RulesFragment extends Fragment {
                 "feel free to email [**ibet@gmail.com**](mailto:ibet@gmail.com) and we will get back to you as soon as we can.");
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.rules_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.rules_back:
+                if(view != null) {
+                    Navigation.findNavController(view).navigate(R.id.action_rulesFragment_to_myProfile);
+                }
+                break;
+            default:
+
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 }

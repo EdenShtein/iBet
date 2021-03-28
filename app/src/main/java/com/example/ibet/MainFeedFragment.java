@@ -66,8 +66,6 @@ public class MainFeedFragment extends Fragment {
 
         createGroup = view.findViewById(R.id.mainfeed_create_group);
 
-
-
         String token = pref.getString("token",null);
 
         createGroup.setOnClickListener(new View.OnClickListener() {
@@ -103,11 +101,6 @@ public class MainFeedFragment extends Fragment {
             case R.id.menu_teams_result:
                 if(view != null) {
                     Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_teamsResult);
-                }
-                break;
-            case R.id.menu_rules:
-                if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_rulesFragment);
                 }
                 break;
             default:

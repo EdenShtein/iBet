@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class Server {
 
-    public String ip = "10.0.0.10";
+    public String ip = "192.168.1.113";
 
     public void signUp(String email, String password, Model.SuccessListener listener, Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());

@@ -4,12 +4,15 @@
 
 
     <item
-        android:id="@+id/menu_rules"
-        android:title="Rules"></item>
+        android:id="@+id/menu_invite"
+        android:icon="@drawable/invite_btn"
+        android:title="invite"
+        app:showAsAction="always"></item>
     <item
         android:id="@+id/menu_my_profile"
+        android:icon="@drawable/profile_img"
         android:title="My Profile"
-        />
+        app:showAsAction="always" />
     <item
         android:id="@+id/menu_teams_result"
         android:title="Teams Result"

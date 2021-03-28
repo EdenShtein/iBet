@@ -11,6 +11,8 @@ import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +71,12 @@ public class LoginFragment extends Fragment {
                 String useremail = email.getText().toString();
                 String userpassword = password.getText().toString();
 
-                if (useremail.equals("") && userpassword.equals("")) {
+                if (useremail.equals("") || userpassword.equals("")) {
                     Toast.makeText(getActivity(), "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                if(!isValidEmail(useremail)){
+                    Toast.makeText(getActivity(), "Please Enter Validate Email", Toast.LENGTH_SHORT).show();
+                }else {
                     Model.instance.logIn(useremail, userpassword, new Model.LoginListener() {
 
                         @Override
@@ -99,5 +104,9 @@ public class LoginFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 }

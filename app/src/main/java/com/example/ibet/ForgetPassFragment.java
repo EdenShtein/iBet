@@ -7,6 +7,8 @@ import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +70,10 @@ public class ForgetPassFragment extends Fragment {
 
                 if (useremail.equals("")) {
                     Toast.makeText(getActivity(), "You must enter Email", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                if(!isValidEmail(useremail)){
+                    Toast.makeText(getActivity(), "Please Enter Validate Email", Toast.LENGTH_SHORT).show();
+                }else {
                     token.setVisibility(View.VISIBLE);
                     token.setEnabled(true);
                     newpass.setVisibility(View.VISIBLE);
@@ -126,12 +131,8 @@ public class ForgetPassFragment extends Fragment {
                                 Navigation.findNavController(view).navigate(R.id.action_forgetPass_to_login);
                             }
                             else{
-                                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getActivity(), "Failed To Send Token", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                                Toast.makeText(getActivity(), "Failed To Send Token", Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     });
@@ -140,5 +141,9 @@ public class ForgetPassFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 }

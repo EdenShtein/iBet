@@ -75,7 +75,7 @@ public class MainFeedFragment extends Fragment {
         createGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_mainFreed_to_createGroup);
+                Navigation.findNavController(view).navigate(R.id.action_mainFeedFragment_to_createGroupFragment);
             }
         });
 

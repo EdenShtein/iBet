@@ -77,7 +77,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="50dp"
         android:text="Forgot Password?"
         android:textColor="#202E7E"
@@ -130,11 +130,12 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="115dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/blueball"
+        android:layout_width="69dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="68dp"
+        android:src="@drawable/basketball"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

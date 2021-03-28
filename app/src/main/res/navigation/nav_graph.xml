@@ -38,9 +38,6 @@
             android:id="@+id/action_mainFeed_to_login"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_mainFreed_to_createGroup"
-            app:destination="@id/createGroupFragment" />
-        <action
             android:id="@+id/action_mainFeed_to_myProfile"
             app:destination="@id/myProfileFragment" />
         <action
@@ -49,6 +46,9 @@
         <action
             android:id="@+id/action_mainFeed_to_rulesFragment"
             app:destination="@id/rulesFragment" />
+        <action
+            android:id="@+id/action_mainFeedFragment_to_createGroupFragment"
+            app:destination="@id/createGroupFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"
@@ -65,7 +65,7 @@
         android:label="fragment_create_group"
         tools:layout="@layout/fragment_create_group" >
         <action
-            android:id="@+id/action_createGroup_to_mainFreed"
+            android:id="@+id/action_createGroupFragment_to_mainFeedFragment"
             app:destination="@id/mainFeedFragment" />
     </fragment>
     <activity

@@ -2,11 +2,15 @@ package com.example.ibet;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -25,16 +29,16 @@ public class CreateGroupFragment extends Fragment {
     NumberPicker picker1;
     NumberPicker picker2;
     NumberPicker picker3;
-    NumberPicker picker4;
 
     Button create;
-    Button back;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_create_group, container, false);
+
+        setHasOptionsMenu(true);
 
         groupName = view.findViewById(R.id.create_group_input_name);
         leagueDropDown = view.findViewById(R.id.create_group_league_dropdown);
@@ -43,7 +47,6 @@ public class CreateGroupFragment extends Fragment {
         picker1 = view.findViewById(R.id.create_group_picker1);
         picker2 = view.findViewById(R.id.create_group_picker2);
         picker3 = view.findViewById(R.id.create_group_picker3);
-        picker4 = view.findViewById(R.id.create_group_picker4);
 
         picker1.setMinValue(1);
         picker1.setMaxValue(5);
@@ -53,9 +56,6 @@ public class CreateGroupFragment extends Fragment {
 
         picker3.setMinValue(1);
         picker3.setMaxValue(5);
-
-        picker4.setMinValue(1);
-        picker4.setMaxValue(5);
 
         picker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -74,5 +74,27 @@ public class CreateGroupFragment extends Fragment {
 
 
         return view;
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.back_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.back_btn:
+                if(view != null) {
+                    Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_mainFeedFragment);
+                }
+                break;
+            default:
+
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 }

@@ -12,7 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -103,14 +102,14 @@ public class RulesFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.rules_menu,menu);
+        inflater.inflate(R.menu.back_menu,menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.rules_back:
+            case R.id.back_btn:
                 if(view != null) {
                     Navigation.findNavController(view).navigate(R.id.action_rulesFragment_to_myProfile);
                 }

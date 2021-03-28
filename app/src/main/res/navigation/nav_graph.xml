@@ -84,6 +84,9 @@
         <action
             android:id="@+id/action_myProfileFragment_to_mainFeedFragment"
             app:destination="@id/mainFeedFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_editUserFragment"
+            app:destination="@id/editUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/teamsResultFragment"
@@ -97,6 +100,15 @@
         tools:layout="@layout/fragment_rules" >
         <action
             android:id="@+id/action_rulesFragment_to_myProfile"
+            app:destination="@id/myProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editUserFragment"
+        android:name="com.example.ibet.EditUserFragment"
+        android:label="fragment_edit_user"
+        tools:layout="@layout/fragment_edit_user" >
+        <action
+            android:id="@+id/action_editUserFragment_to_myProfileFragment"
             app:destination="@id/myProfileFragment" />
     </fragment>
 </navigation>

@@ -32,7 +32,6 @@ public class MyProfileFragment extends Fragment {
     GroupViewModel groupViewModel;
     List<Group> groupList = new LinkedList<Group>();
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,9 +72,14 @@ public class MyProfileFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_rulesFragment);
                 }
                 break;
-            case R.id.rules_back:
+            case R.id.back_btn:
                 if(view != null) {
                     Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_mainFeedFragment);
+                }
+                break;
+            case R.id.profile_edit:
+                if(view != null) {
+                    Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_editUserFragment);
                 }
                 break;
             default:

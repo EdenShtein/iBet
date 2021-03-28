@@ -4,12 +4,17 @@
 
 
     <item
+        android:id="@+id/profile_edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="profile_edit"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/menu_rules"
         android:icon="@drawable/rules_btn"
         android:title="Rules"
         app:showAsAction="always"></item>
     <item
-        android:id="@+id/rules_back"
+        android:id="@+id/back_btn"
         android:icon="@android:drawable/ic_menu_revert"
         android:title="profile_back"
         app:showAsAction="always" />

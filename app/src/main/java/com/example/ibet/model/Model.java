@@ -3,6 +3,7 @@ package com.example.ibet.model;
 import android.app.Activity;
 
 import com.example.ibet.model.Team.Team;
+import com.example.ibet.model.User.User;
 
 import java.util.ArrayList;
 
@@ -54,6 +55,13 @@ public class Model {
     }
     public void getAlgoResults(TeamDataListener listener) {
         server.getAlgoResult(listener,mActivity);
+    }
+
+    public interface UserDetailsListener{
+        public void onComplete(User user);
+    }
+    public void getCurrentUserDetails(UserDetailsListener listener){
+        server.getCurrentUserDetails(listener,mActivity);
     }
 
 

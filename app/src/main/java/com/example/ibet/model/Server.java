@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ibet.model.Team.Team;
+import com.example.ibet.model.User.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 
 public class Server {
 
-    public String ip = "192.168.1.113";
+    public String ip = "10.0.0.10";
 
     public void signUp(String email, String password, Model.SuccessListener listener, Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
@@ -251,6 +252,38 @@ public class Server {
                             teamsData.add(t);
                         }
                         listener.onComplete(teamsData);
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void getCurrentUserDetails(Model.UserDetailsListener listener,Activity mActivity) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://" + ip +":3000/api/users/me";
+        User user = null;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONObject resultJson = response.getJSONObject("data");
+                        listener.onComplete(user);
                     }
                     else{
 

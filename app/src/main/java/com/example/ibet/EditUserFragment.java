@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ibet.model.Model;
+import com.example.ibet.model.User.User;
+
 
 public class EditUserFragment extends Fragment {
 
@@ -24,6 +27,7 @@ public class EditUserFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_edit_user, container, false);
         setHasOptionsMenu(true);
+        onInit();
 
         return view;
     }
@@ -47,5 +51,14 @@ public class EditUserFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void onInit(){
+        Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
+            @Override
+            public void onComplete(User user) {
+
+            }
+        });
     }
 }

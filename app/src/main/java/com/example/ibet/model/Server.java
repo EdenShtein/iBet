@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,6 +25,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Server {
 
@@ -31,7 +34,7 @@ public class Server {
 
     public void signUp(String email, String password, Model.SuccessListener listener, Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://" + ip + ":3000/api/users/signup";
+        final String url = "https://ibet-app.herokuapp.com/api/users/signup";
 
         JSONObject jsonParam = new JSONObject();
         try {
@@ -64,7 +67,7 @@ public class Server {
 
     public void logIn(String email, String password,Model.LoginListener listener,Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://" + ip +":3000/api/users/login";
+        final String url = "http://ibet-app.herokuapp.com/api/users/login";
 
         JSONObject jsonParam = new JSONObject();
         try {
@@ -99,7 +102,7 @@ public class Server {
 
     public void emailToken(String email, Model.SuccessListener listener,Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://" + ip +":3000/api/users/forgotpassword";
+        final String url = "http://ibet-app.herokuapp.com/api/users/forgotpassword";
 
         JSONObject jsonParam = new JSONObject();
         try {
@@ -131,7 +134,7 @@ public class Server {
 
     public void restPassword(String token,String password, Model.SuccessListener listener,Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://" + ip +":3000/api/users/resetPassword/" + token;
+        final String url = "http://ibet-app.herokuapp.com/api/users/resetPassword/" + token;
 
         JSONObject jsonParam = new JSONObject();
         try {
@@ -162,7 +165,7 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void getAlgoResult(Model.TeamDataListener listener) {
+    /*public void getAlgoResult(Model.TeamDataListener listener) {
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -227,11 +230,11 @@ public class Server {
         });
 
         thread.start();
-    }
+    }*/
 
     public void getAlgoResult(Model.TeamDataListener listener,Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://" + ip +":3000/api/algo/standings";
+        final String url = "http://ibet-app.herokuapp.com/api/algo/standings";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -272,7 +275,7 @@ public class Server {
 
     public void getCurrentUserDetails(Model.UserDetailsListener listener,Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://" + ip +":3000/api/users/me";
+        final String url = "http://ibet-app.herokuapp.com/api/users/me";
         User user = null;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -293,12 +296,22 @@ public class Server {
                 }
 
             }
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        });
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("token", "value");
+                return headers;
+            }
+        };
         requestQueue.add(jsonObjectRequest);
     }
 

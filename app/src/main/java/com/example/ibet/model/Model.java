@@ -1,6 +1,7 @@
 package com.example.ibet.model;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.User.User;
@@ -11,7 +12,10 @@ public class Model {
 
     public Activity mActivity;
 
-    public final static Model instance = new Model();
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
+    public final static Model instance = new Model(){};
     Server server = new Server();
 
 
@@ -50,9 +54,9 @@ public class Model {
         public void onComplete(ArrayList<Team> teamData);
     }
 
-    public void getAlgoResult(TeamDataListener listener) {
+    /*public void getAlgoResult(TeamDataListener listener) {
         server.getAlgoResult(listener);
-    }
+    }*/
     public void getAlgoResults(TeamDataListener listener) {
         server.getAlgoResult(listener,mActivity);
     }

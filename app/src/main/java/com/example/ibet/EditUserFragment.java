@@ -1,5 +1,6 @@
 package com.example.ibet;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,11 +22,15 @@ public class EditUserFragment extends Fragment {
 
     View view;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_edit_user, container, false);
+
         setHasOptionsMenu(true);
         onInit();
 

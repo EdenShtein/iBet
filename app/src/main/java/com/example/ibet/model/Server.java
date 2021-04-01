@@ -273,7 +273,7 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void getCurrentUserDetails(Model.UserDetailsListener listener,Activity mActivity) {
+    public void getCurrentUserDetails(Model.UserDetailsListener listener,Activity mActivity,String token) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
         final String url = "http://ibet-app.herokuapp.com/api/users/me";
         User user = null;
@@ -286,6 +286,8 @@ public class Server {
                     status = response.getString("status");
                     if(status.equals("success")) {
                         JSONObject resultJson = response.getJSONObject("data");
+                        String email = resultJson.getString("email");
+                        user.setEmail(email);
                         listener.onComplete(user);
                     }
                     else{
@@ -307,10 +309,12 @@ public class Server {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                //headers.put("Content-Type", "application/json");
-                headers.put("token", "value");
+                headers.put("Content-Type", "application/json");
+                if(token!=null)
+                    headers.put("Authorization","Bearer "+token);
                 return headers;
             }
+
         };
         requestQueue.add(jsonObjectRequest);
     }

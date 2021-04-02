@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     public void userIsLogin() {
         navController.navigate(R.id.action_login_to_mainFreed);
     }

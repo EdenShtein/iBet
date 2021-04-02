@@ -54,7 +54,6 @@ public class MyProfileFragment extends Fragment {
         groupAdapter.setGroupsData(groupList);
         groupsList_rv.setAdapter(groupAdapter);
 
-
         return view;
     }
 
@@ -85,7 +84,7 @@ public class MyProfileFragment extends Fragment {
             default:
 
         }
-        return super.onOptionsItemSelected(item);
 
+        return super.onOptionsItemSelected(item);
     }
 }

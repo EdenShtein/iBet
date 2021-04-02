@@ -90,12 +90,14 @@ public class MainFeedFragment extends Fragment {
         myDialog.setContentView(R.layout.fragment_invitation_pop_up);
         closeBtn = myDialog.findViewById(R.id.pop_close_btn);
         confirmBtn = (Button) myDialog.findViewById(R.id.pop_confirm_btn);
+
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myDialog.dismiss();
             }
         });
+
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,8 +140,8 @@ public class MainFeedFragment extends Fragment {
             default:
 
         }
-        return super.onOptionsItemSelected(item);
 
+        return super.onOptionsItemSelected(item);
     }
 }
 

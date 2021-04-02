@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -276,18 +277,20 @@ public class Server {
     public void getCurrentUserDetails(Model.UserDetailsListener listener,Activity mActivity,String token) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
         final String url = "http://ibet-app.herokuapp.com/api/users/me";
-        User user = null;
+
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Log.d("response1",response.toString());
                 String status;
                 try {
+                    User user;
                     status = response.getString("status");
                     if(status.equals("success")) {
-                        JSONArray resultArray = response.getJSONArray("data");
-                        String email = resultArray.getJSONObject(0).getString("email");
-                        user.setEmail(email);
+                        JSONObject data = response.getJSONObject("data");
+                        String email = data.getString("email");
+                        user = new User(email);
                         listener.onComplete(user);
                     }
                     else{
@@ -303,19 +306,20 @@ public class Server {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("Error1", error.getMessage());
             }
         })
         {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                if(token!=null)
-                    headers.put("Authorization","Bearer "+token);
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
                 return headers;
             }
 
         };
+        requestQueue.getCache().clear();
         requestQueue.add(jsonObjectRequest);
     }
 

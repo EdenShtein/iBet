@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_createGroupFragment_to_mainFeedFragment"
             app:destination="@id/mainFeedFragment" />
+        <action
+            android:id="@+id/action_createGroupFragment_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
     </fragment>
     <activity
         android:id="@+id/splash_Screen"
@@ -116,4 +119,13 @@
         android:name="com.example.ibet.InvitationPopUpFragment"
         android:label="fragment_invitation_pop_up"
         tools:layout="@layout/fragment_invitation_pop_up" />
+    <fragment
+        android:id="@+id/groupDetailsFragment"
+        android:name="com.example.ibet.GroupDetailsFragment"
+        android:label="fragment_group_details"
+        tools:layout="@layout/fragment_group_details" >
+        <action
+            android:id="@+id/action_groupDetailsFragment_to_mainFeedFragment"
+            app:destination="@id/mainFeedFragment" />
+    </fragment>
 </navigation>

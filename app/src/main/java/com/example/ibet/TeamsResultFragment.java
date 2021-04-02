@@ -38,18 +38,9 @@ public class TeamsResultFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_teams_result, container, false);
 
-
-        //button=view.findViewById(R.id.teamsresults_button);
         table = view.findViewById(R.id.table);
         pb=view.findViewById(R.id.teamsresults_pb);
 
-
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
         pb.setVisibility(View.VISIBLE);
         initTable();
         return view;

@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.ibet.model.Model;
 import com.example.ibet.model.User.User;
@@ -25,11 +26,15 @@ public class EditUserFragment extends Fragment {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
+    EditText email;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_edit_user, container, false);
+
+        email = view.findViewById(R.id.edituser_email_input);
 
         setHasOptionsMenu(true);
         onInit();
@@ -62,7 +67,7 @@ public class EditUserFragment extends Fragment {
         Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
             @Override
             public void onComplete(User user) {
-
+                email.setText(user.getEmail());
             }
         });
     }

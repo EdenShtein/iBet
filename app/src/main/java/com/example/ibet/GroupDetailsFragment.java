@@ -12,11 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class GroupDetailsFragment extends Fragment {
 
     View view;
+    TextView league;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -24,6 +27,15 @@ public class GroupDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_group_details, container, false);
         setHasOptionsMenu(true);
+
+        league = view.findViewById(R.id.group_details_sub);
+
+        league.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_leagueDetailsFragment);
+            }
+        });
 
         return view;
     }

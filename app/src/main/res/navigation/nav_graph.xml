@@ -127,5 +127,17 @@
         <action
             android:id="@+id/action_groupDetailsFragment_to_mainFeedFragment"
             app:destination="@id/mainFeedFragment" />
+        <action
+            android:id="@+id/action_groupDetailsFragment_to_leagueDetailsFragment"
+            app:destination="@id/leagueDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leagueDetailsFragment"
+        android:name="com.example.ibet.LeagueDetailsFragment"
+        android:label="fragment_league_details"
+        tools:layout="@layout/fragment_league_details" >
+        <action
+            android:id="@+id/action_leagueDetailsFragment_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
     </fragment>
 </navigation>

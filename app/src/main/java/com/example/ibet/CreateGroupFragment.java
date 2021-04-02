@@ -77,7 +77,6 @@ public class CreateGroupFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 

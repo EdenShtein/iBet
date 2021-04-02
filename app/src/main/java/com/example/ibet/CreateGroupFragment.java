@@ -27,9 +27,9 @@ public class CreateGroupFragment extends Fragment {
     EditText groupName;
     Spinner leagueDropDown;
 
-    NumberPicker picker1;
-    NumberPicker picker2;
-    NumberPicker picker3;
+    NumberPicker fullTimePointsPicker;
+    NumberPicker halfTimePointsPicker;
+    NumberPicker totalGamePointsPicker;
 
     Button create;
 
@@ -44,23 +44,15 @@ public class CreateGroupFragment extends Fragment {
         groupName = view.findViewById(R.id.create_group_input_name);
         leagueDropDown = view.findViewById(R.id.create_group_league_dropdown);
         create = view.findViewById(R.id.create_group_create_btn);
-        picker1 = view.findViewById(R.id.create_group_picker1);
-        picker2 = view.findViewById(R.id.create_group_picker2);
-        picker3 = view.findViewById(R.id.create_group_picker3);
+        fullTimePointsPicker = view.findViewById(R.id.create_group_picker1);
+        halfTimePointsPicker = view.findViewById(R.id.create_group_picker2);
+        totalGamePointsPicker = view.findViewById(R.id.create_group_picker3);
 
-        picker1.setMinValue(1);
-        picker1.setMaxValue(20);
-        picker1.setValue(1);
+        setPointsPicker(fullTimePointsPicker, 1, 20, 1);
+        setPointsPicker(halfTimePointsPicker, 1, 20, 3);
+        setPointsPicker(totalGamePointsPicker, 1, 20, 2);
 
-        picker2.setMinValue(1);
-        picker2.setMaxValue(20);
-        picker2.setValue(3);
-
-        picker3.setMinValue(1);
-        picker3.setMaxValue(20);
-        picker3.setValue(2);
-
-        picker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        fullTimePointsPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 Log.d("picker1",String.valueOf(newVal));
@@ -85,7 +77,6 @@ public class CreateGroupFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -109,5 +100,16 @@ public class CreateGroupFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    // Sets default values for the point pickers
+    public void setPointsPicker(NumberPicker pointPicker, int min, int max, int value) {
+        try {
+            pointPicker.setMinValue(min);
+            pointPicker.setMaxValue(max);
+            pointPicker.setValue(value);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }

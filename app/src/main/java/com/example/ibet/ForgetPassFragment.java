@@ -66,14 +66,14 @@ public class ForgetPassFragment extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String useremail = email.getText().toString();
+                String userEmail = email.getText().toString();
 
-                if (useremail.equals("")) {
+                if (userEmail.equals("")) {
                     Toast.makeText(getActivity(), "You must enter Email", Toast.LENGTH_SHORT).show();
                 }
-                if(!isValidEmail(useremail)){
+                if(!isValidEmail(userEmail)){
                     Toast.makeText(getActivity(), "Please Enter Validate Email", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     token.setVisibility(View.VISIBLE);
                     token.setEnabled(true);
                     newpass.setVisibility(View.VISIBLE);
@@ -84,7 +84,7 @@ public class ForgetPassFragment extends Fragment {
                     send.setEnabled(false);
                     reset.setVisibility(View.VISIBLE);
                     reset.setEnabled(true);
-                    Model.instance.emailToken(useremail, new Model.SuccessListener() {
+                    Model.instance.emailToken(userEmail, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {
                             if (result) {
@@ -97,7 +97,6 @@ public class ForgetPassFragment extends Fragment {
                 }
             }});
 
-
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,14 +107,14 @@ public class ForgetPassFragment extends Fragment {
                 if (userToken.equals("") || userPass.equals("") || reNewPass.equals(" ")) {
                     Toast.makeText(getActivity(),"You Must Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
-                if(userPass.length()<8) {
+
+                if(userPass.length() < 8) {
                     Toast.makeText(getActivity(),"Password length must be minimum 8 characters",Toast.LENGTH_SHORT).show();
                 }
 
                 if(!(userPass.equals(reNewPass))) {
                     Toast.makeText(getActivity(),"Password are not the same",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     token.setVisibility(View.VISIBLE);
                     token.setEnabled(true);
                     newpass.setVisibility(View.VISIBLE);
@@ -129,10 +128,8 @@ public class ForgetPassFragment extends Fragment {
                         public void onComplete(boolean result) {
                             if(result) {
                                 Navigation.findNavController(view).navigate(R.id.action_forgetPass_to_login);
-                            }
-                            else{
+                            } else{
                                 Toast.makeText(getActivity(), "Failed To Send Token", Toast.LENGTH_SHORT).show();
-
                             }
                         }
                     });

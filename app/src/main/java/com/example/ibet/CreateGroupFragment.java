@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 public class CreateGroupFragment extends Fragment {
@@ -74,6 +75,15 @@ public class CreateGroupFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, leagues);
         //set the spinners adapter to the previously created one.
         leagueDropDown.setAdapter(adapter);
+
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (groupName.getText().equals(" ") || groupName.getText().length()<2){
+                    Toast.makeText(getActivity(), "Please Enter a valid group name!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
         return view;

@@ -67,7 +67,7 @@ public class Server {
 
     public void logIn(String email, String password,Model.LoginListener listener,Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://ibet-app.herokuapp.com/api/users/login";
+        final String url = "https://ibet-app.herokuapp.com/api/users/login";
 
         JSONObject jsonParam = new JSONObject();
         try {
@@ -285,8 +285,8 @@ public class Server {
                 try {
                     status = response.getString("status");
                     if(status.equals("success")) {
-                        JSONObject resultJson = response.getJSONObject("data");
-                        String email = resultJson.getString("email");
+                        JSONArray resultArray = response.getJSONArray("data");
+                        String email = resultArray.getJSONObject(0).getString("email");
                         user.setEmail(email);
                         listener.onComplete(user);
                     }

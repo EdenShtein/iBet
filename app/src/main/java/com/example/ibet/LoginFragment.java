@@ -82,7 +82,14 @@ public class LoginFragment extends Fragment {
                         @Override
                         public void onComplete(boolean result, String token) {
                             if(result) {
+                                if(pref.getString("token",null)!=null)
+                                {
+                                    editor.remove("token");
+                                    editor.commit();
+                                }
+                                else{
                                 editor.putString("token",token).apply();
+                                editor.commit();}
                                 Navigation.findNavController(view).navigate(R.id.action_login_to_mainFreed);
                                 Toast.makeText(getActivity(), "Welcome to iBet", Toast.LENGTH_SHORT).show();
                             }

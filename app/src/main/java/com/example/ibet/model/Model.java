@@ -66,7 +66,6 @@ public class Model {
     }
     public void getCurrentUserDetails(UserDetailsListener listener){
         pref = mActivity.getSharedPreferences("MyPref", 0);
-        editor = pref.edit();
         String token = pref.getString("token",null);
         server.getCurrentUserDetails(listener,mActivity,token);
     }

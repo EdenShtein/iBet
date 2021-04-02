@@ -49,13 +49,16 @@ public class CreateGroupFragment extends Fragment {
         picker3 = view.findViewById(R.id.create_group_picker3);
 
         picker1.setMinValue(1);
-        picker1.setMaxValue(5);
+        picker1.setMaxValue(20);
+        picker1.setValue(1);
 
         picker2.setMinValue(1);
-        picker2.setMaxValue(5);
+        picker2.setMaxValue(20);
+        picker2.setValue(3);
 
         picker3.setMinValue(1);
-        picker3.setMaxValue(5);
+        picker3.setMaxValue(20);
+        picker3.setValue(2);
 
         picker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override

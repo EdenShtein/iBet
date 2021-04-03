@@ -76,5 +76,11 @@ public class Model {
         server.updateMe(listener,mActivity,token,email,username);
     }
 
+    public void changePassword(String password,String newPass,SuccessListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.updateMe(listener,mActivity,token,password,newPass);
+    }
+
 
 }

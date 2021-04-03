@@ -13,7 +13,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ibet.model.Model;
 import com.example.ibet.model.User.User;
@@ -29,6 +31,8 @@ public class EditUserFragment extends Fragment {
     EditText email;
     EditText username;
 
+    Button updateMe;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,9 +41,30 @@ public class EditUserFragment extends Fragment {
 
         email = view.findViewById(R.id.edituser_email_input);
         username = view.findViewById(R.id.edituser_username_input);
+        updateMe = view.findViewById(R.id.edituser_confirm_btn);
 
         setHasOptionsMenu(true);
         onInit();
+
+        updateMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String useremail=email.getText().toString();
+                String user_name = username.getText().toString();
+                Model.instance.updateMe(useremail, user_name, new Model.SuccessListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+                        if(result){
+                            Navigation.findNavController(view).navigate(R.id.action_editUserFragment_to_myProfileFragment);
+                        }
+                        else
+                        {
+                            Toast.makeText(getActivity(),"Something went wrong..",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
 
         return view;
     }

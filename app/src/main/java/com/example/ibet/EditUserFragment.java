@@ -34,7 +34,7 @@ public class EditUserFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_edit_user, container, false);
 
-        email = view.findViewById(R.id.edituser_email_input);
+        email = view.findViewById(R.id.edituser_username_input);
 
         setHasOptionsMenu(true);
         onInit();

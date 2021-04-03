@@ -7,35 +7,89 @@
     tools:context=".EditUserFragment">
 
     <EditText
-        android:id="@+id/edituser_pass_input"
+        android:id="@+id/edituser_password_input"
         android:layout_width="291dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/customborder"
         android:ems="10"
         android:hint="Password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edituser_confirm_btn" />
+
+    <Button
+        android:id="@+id/edituser_confirm_btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/customborder"
+        android:backgroundTint="#4CAF50"
+        android:text="Confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edituser_renewpass_input" />
+
+    <EditText
+        android:id="@+id/edituser_newpass_input"
+        android:layout_width="291dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/customborder"
+        android:ems="10"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edituser_password_input" />
+
+    <EditText
+        android:id="@+id/edituser_renewpass_input"
+        android:layout_width="291dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/customborder"
+        android:ems="10"
+        android:hint="Confirm New Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edituser_newpass_input" />
+
+    <EditText
+        android:id="@+id/edituser_email_input"
+        android:layout_width="291dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/customborder"
+        android:ems="10"
+        android:hint="Your Email"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edituser_email_input" />
+        app:layout_constraintTop_toBottomOf="@+id/edituser_username_input" />
 
     <Button
         android:id="@+id/edituser_confirm_btn"
-        android:layout_width="291dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/customborder"
         android:backgroundTint="#4CAF50"
         android:text="Confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edituser_pass_input" />
+        app:layout_constraintTop_toBottomOf="@+id/edituser_email_input" />
 
     <EditText
-        android:id="@+id/edituser_email_input"
+        android:id="@+id/edituser_username_input"
         android:layout_width="291dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/customborder"
         android:ems="10"
         android:hint="Your Username"
@@ -47,27 +101,28 @@
 
     <ImageView
         android:id="@+id/edituser_img2"
-        android:layout_width="100dp"
-        android:layout_height="82dp"
+        android:layout_width="80dp"
+        android:layout_height="55dp"
+        android:scaleType="fitStart"
         android:src="@drawable/info_title"
         app:layout_constraintStart_toEndOf="@+id/edituser_img1"
         app:layout_constraintTop_toTopOf="@+id/edituser_img1" />
 
     <ImageView
         android:id="@+id/edituser_img1"
-        android:layout_width="100dp"
-        android:layout_height="81dp"
+        android:layout_width="80dp"
+        android:layout_height="55dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="70dp"
         android:src="@drawable/edit_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/edituser_img3"
-        android:layout_width="90dp"
-        android:layout_height="139dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="60dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="88dp"
         android:scaleType="fitStart"
         android:src="@drawable/bbplayer"
         app:layout_constraintStart_toEndOf="@+id/edituser_img2"
@@ -75,14 +130,13 @@
 
     <ImageView
         android:id="@+id/imageView14"
-        android:layout_width="748dp"
-        android:layout_height="311dp"
-        android:scaleType="centerInside"
+        android:layout_width="634dp"
+        android:layout_height="292dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/edituser"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edituser_confirm_btn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/edituser_confirm_btn2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,8 +25,8 @@ public class Model {
 
     public Activity getActivity () {return this.mActivity;}
 
-    public void signUp(String email,String password,SuccessListener listener) {
-        server.signUp(email,password,listener,mActivity);
+    public void signUp(String email,String username,String password,SuccessListener listener) {
+        server.signUp(email,username,password,listener,mActivity);
     }
 
     public interface SuccessListener {

@@ -24,6 +24,7 @@ public class SignUpFragment extends Fragment {
     TextView signin;
 
     EditText email;
+    EditText username;
     EditText password;
     EditText repassword;
 
@@ -36,6 +37,7 @@ public class SignUpFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         email=view.findViewById(R.id.signup_email_input);
+        username = view.findViewById(R.id.signup_username_input);
         password=view.findViewById(R.id.signup_pass_input);
         repassword = view.findViewById(R.id.signup_repass_input);
         signup=view.findViewById(R.id.signup_continue_btn);
@@ -45,10 +47,11 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String useremail=email.getText().toString();
+                String user_name = username.getText().toString();
                 String userpassword=password.getText().toString();
                 String rpassword = repassword.getText().toString();
 
-                if (useremail.equals("") || userpassword.equals("")) {
+                if (useremail.equals("") || userpassword.equals("") || user_name.equals("")) {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
                 if(!isValidEmail(useremail)){
@@ -62,7 +65,7 @@ public class SignUpFragment extends Fragment {
                     Toast.makeText(getActivity(),"Password are not the same",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Model.instance.signUp(useremail, userpassword, new Model.SuccessListener() {
+                    Model.instance.signUp(useremail,user_name, userpassword, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {
                             if(result) {

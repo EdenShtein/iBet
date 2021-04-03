@@ -27,6 +27,7 @@ public class EditUserFragment extends Fragment {
     SharedPreferences.Editor editor;
 
     EditText email;
+    EditText username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +35,8 @@ public class EditUserFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_edit_user, container, false);
 
-        email = view.findViewById(R.id.edituser_username_input);
+        email = view.findViewById(R.id.edituser_email_input);
+        username = view.findViewById(R.id.edituser_username_input);
 
         setHasOptionsMenu(true);
         onInit();
@@ -68,6 +70,7 @@ public class EditUserFragment extends Fragment {
             @Override
             public void onComplete(User user) {
                 email.setText(user.getEmail());
+                username.setText(user.getUserName());
             }
         });
     }

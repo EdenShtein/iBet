@@ -33,13 +33,14 @@ public class Server {
 
     public String ip = "10.0.0.10";
 
-    public void signUp(String email, String password, Model.SuccessListener listener, Activity mActivity) {
+    public void signUp(String email,String username, String password, Model.SuccessListener listener, Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
         final String url = "https://ibet-app.herokuapp.com/api/users/signup";
 
         JSONObject jsonParam = new JSONObject();
         try {
             jsonParam.put("email", email);
+            jsonParam.put("userName", username);
             jsonParam.put("password", password);
             jsonParam.put("passwordConfirm", password);
         }catch (Exception e) {e.printStackTrace();}
@@ -290,7 +291,8 @@ public class Server {
                     if(status.equals("success")) {
                         JSONObject data = response.getJSONObject("data");
                         String email = data.getString("email");
-                        user = new User(email);
+                        String username = data.getString("userName");
+                        user = new User(email,username);
                         listener.onComplete(user);
                     }
                     else{

@@ -7,25 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".LeagueDetailsFragment">
 
-    <ImageView
-        android:id="@+id/league_details_background"
-        android:layout_width="418dp"
-        android:layout_height="277dp"
-        android:layout_marginTop="50dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/nbabackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
         android:id="@+id/league_details_container"
         android:layout_width="410dp"
         android:layout_height="349dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/league_details_background">
+        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
 
-    </FrameLayout>
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="444dp"
+        android:layout_height="231dp"
+        android:layout_marginTop="56dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/nbabackground2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

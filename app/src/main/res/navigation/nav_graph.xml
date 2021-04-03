@@ -130,6 +130,9 @@
         <action
             android:id="@+id/action_groupDetailsFragment_to_leagueDetailsFragment"
             app:destination="@id/leagueDetailsFragment" />
+        <action
+            android:id="@+id/action_groupDetailsFragment_to_teamDetailsFragment"
+            app:destination="@id/teamDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/leagueDetailsFragment"
@@ -138,6 +141,15 @@
         tools:layout="@layout/fragment_league_details" >
         <action
             android:id="@+id/action_leagueDetailsFragment_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamDetailsFragment"
+        android:name="com.example.ibet.TeamDetailsFragment"
+        android:label="fragment_team_details"
+        tools:layout="@layout/fragment_team_details" >
+        <action
+            android:id="@+id/action_teamDetailsFragment_to_groupDetailsFragment"
             app:destination="@id/groupDetailsFragment" />
     </fragment>
 </navigation>

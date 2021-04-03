@@ -1,11 +1,9 @@
 package com.example.ibet;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -14,31 +12,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class LeagueDetailsFragment extends Fragment {
+public class TeamDetailsFragment extends Fragment {
 
     View view;
-    TextView league;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_league_details, container, false);
+        view = inflater.inflate(R.layout.fragment_team_details, container, false);
         setHasOptionsMenu(true);
 
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        Fragment childFragment = new TeamsResultFragment();
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.league_details_container, childFragment).commit();
-    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -51,7 +39,7 @@ public class LeagueDetailsFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.back_btn:
                 if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_leagueDetailsFragment_to_groupDetailsFragment);
+                    Navigation.findNavController(view).navigate(R.id.action_teamDetailsFragment_to_groupDetailsFragment);
                 }
                 break;
             default:

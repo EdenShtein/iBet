@@ -332,7 +332,7 @@ public class Server {
         JSONObject jsonParam = new JSONObject();
         try {
             jsonParam.put("email", email);
-            jsonParam.put("username", username);
+            jsonParam.put("userName", username);
 
         }catch (Exception e) {e.printStackTrace();}
 

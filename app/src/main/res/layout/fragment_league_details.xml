@@ -7,38 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".LeagueDetailsFragment">
 
-    <FrameLayout
-        android:id="@+id/league_details_container"
-        android:layout_width="410dp"
-        android:layout_height="349dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/league_details_background">
-
-    </FrameLayout>
-
     <ImageView
         android:id="@+id/league_details_background"
-        android:layout_width="444dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="416dp"
+        android:layout_height="241dp"
+        android:layout_marginTop="48dp"
         android:scaleType="fitCenter"
         android:src="@drawable/nbabackground2"
-        app:layout_constraintBottom_toTopOf="@+id/leaguedetails_bu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/leaguedetails_bu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="396dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/league_details_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/league_details_rv"
+        android:layout_width="383dp"
+        android:layout_height="399dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/league_details_background" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_mainFeedFragment_to_createGroupFragment"
             app:destination="@id/createGroupFragment" />
+        <action
+            android:id="@+id/action_mainFeedFragment_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"

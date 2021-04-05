@@ -1,15 +1,39 @@
 package com.example.ibet.model.Team;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "team_table")
 public class Team {
 
+    @PrimaryKey()
+    @NonNull
+    @ColumnInfo(name = "team_id")
     String id;
+
+    @ColumnInfo(name = "team_name")
     String teamName;
+
+    @ColumnInfo(name = "team_wins")
     String wins;
+
+    @ColumnInfo(name = "team_remaining")
     String gamesRemaining;
+
+    @ColumnInfo(name = "team_losses")
     String losses;
 
+    @ColumnInfo(name = "team_eliminated")
     Boolean isEliminated;
 
+    @Ignore
+    private long lastUpdated;
+
+
+    @Ignore
     public Team(String teamName, String wins, String losses, Boolean isEliminated) {
         this.teamName = teamName;
         this.wins = wins;
@@ -17,20 +41,21 @@ public class Team {
         this.isEliminated = isEliminated;
     }
 
-    public Team(String teamName,String wins,String losses,String id,String gamesRemaining)
+    public Team(@NonNull String id,String teamName,String wins,String losses,String gamesRemaining)
     {
+        this.id = id;
         this.teamName = teamName;
         this.wins = wins;
         this.losses = losses;
-        this.id = id;
         this.gamesRemaining=gamesRemaining;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 

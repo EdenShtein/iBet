@@ -5,7 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,17 +19,27 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ibet.model.Group.Group;
+import com.example.ibet.model.Group.GroupAdapter;
+import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Model;
 import com.example.ibet.model.Team.Team;
+import com.example.ibet.model.Team.TeamAdapter;
+import com.example.ibet.model.Team.TeamViewModel;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class LeagueDetailsFragment extends Fragment {
 
     View view;
     TextView league;
 
-    Button b;
+    public RecyclerView teamsList_rv;
+    TeamAdapter teamAdapter;
+    private TeamViewModel teamViewModel;
+    List<Team> teamList = new LinkedList<Team>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,28 +48,35 @@ public class LeagueDetailsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_league_details, container, false);
         setHasOptionsMenu(true);
 
-        b = view.findViewById(R.id.leaguedetails_bu);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Model.instance.getTeamData(new Model.TeamDataListener() {
-                    @Override
-                    public void onComplete(ArrayList<Team> teamData) {
+        teamsList_rv = view.findViewById(R.id.league_details_rv);
+        teamsList_rv.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
+        teamsList_rv.setLayoutManager(layoutManager);
+        teamAdapter = new TeamAdapter();
 
-                    }
-                });
+        teamViewModel = ViewModelProviders.of(getActivity()).get(TeamViewModel.class);
+
+        Model.instance.getTeamData(new Model.TeamDataListener() {
+            @Override
+            public void onComplete(ArrayList<Team> teamData) {
+                teamList = teamData;
+                teamAdapter.setTeamsData(teamList);
+                teamsList_rv.setAdapter(teamAdapter);
+                for (Team team : teamList) {
+                    teamViewModel.insert(team);
+                }
             }
         });
 
         return view;
     }
 
-    @Override
+  /*  @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Fragment childFragment = new TeamsResultFragment();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.league_details_container, childFragment).commit();
-    }
+    }*/
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

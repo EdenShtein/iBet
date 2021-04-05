@@ -434,7 +434,7 @@ public class Server {
                             String losses = resultArray.getJSONObject(i).getString("losses");
                             String id = resultArray.getJSONObject(i).getString("_id");
                             String gamesRemaining = resultArray.getJSONObject(i).getString("remaning");
-                            Team t = new Team(teamName,wins,losses,id,gamesRemaining);
+                            Team t = new Team(id,teamName,wins,losses,gamesRemaining);
                             teamsData.add(t);
                         }
                         listener.onComplete(teamsData);

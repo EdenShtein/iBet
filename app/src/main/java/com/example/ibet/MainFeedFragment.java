@@ -79,6 +79,13 @@ public class MainFeedFragment extends Fragment {
             }
         });
 
+        groupAdapter.setOnItemClickListener(new GroupAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Group group, View view) {
+                Navigation.findNavController(view).navigate(R.id.action_mainFeedFragment_to_groupDetailsFragment);
+            }
+        });
+
         myDialog = new Dialog(view.getContext());
 
         return view;

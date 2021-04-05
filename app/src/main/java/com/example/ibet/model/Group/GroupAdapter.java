@@ -37,7 +37,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
     @NonNull
     @Override
     public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_container, parent, false);
         GroupHolder holder = new GroupHolder(view);
         return holder;
     }
@@ -69,9 +69,9 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
 
         public GroupHolder(@NonNull View itemView) {
             super(itemView);
-            groupImage = itemView.findViewById(R.id.listrow_group_image);
-            groupText = itemView.findViewById(R.id.listrow_group_text);
-            groupSubText = itemView.findViewById(R.id.listrow_group_sub_text);
+            groupImage = itemView.findViewById(R.id.container_group_image);
+            groupText = itemView.findViewById(R.id.container_group_text);
+            groupSubText = itemView.findViewById(R.id.container_group_sub_text);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

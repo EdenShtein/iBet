@@ -34,7 +34,6 @@ import java.util.List;
 public class LeagueDetailsFragment extends Fragment {
 
     View view;
-    TextView league;
 
     public RecyclerView teamsList_rv;
     TeamAdapter teamAdapter;
@@ -70,13 +69,6 @@ public class LeagueDetailsFragment extends Fragment {
 
         return view;
     }
-
-  /*  @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        Fragment childFragment = new TeamsResultFragment();
-        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.replace(R.id.league_details_container, childFragment).commit();
-    }*/
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

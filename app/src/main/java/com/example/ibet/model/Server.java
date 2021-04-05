@@ -414,4 +414,58 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void getTeamData(Model.TeamDataListener listener,Activity mActivity,String token) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://ibet-app.herokuapp.com/api/teams";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONArray resultArray = response.getJSONArray("data");
+                        ArrayList<Team> teamsData = new ArrayList<>(resultArray.length());
+                        for(int i=0;i<resultArray.length();i++)
+                        {
+                            String teamName = resultArray.getJSONObject(i).getString("teamName");
+                            String wins = resultArray.getJSONObject(i).getString("wins");
+                            String losses = resultArray.getJSONObject(i).getString("losses");
+                            String id = resultArray.getJSONObject(i).getString("_id");
+                            String gamesRemaining = resultArray.getJSONObject(i).getString("remaning");
+                            Team t = new Team(teamName,wins,losses,id,gamesRemaining);
+                            teamsData.add(t);
+                        }
+                        listener.onComplete(teamsData);
+
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.example.ibet;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,12 +15,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.ibet.model.Model;
+import com.example.ibet.model.Team.Team;
+
+import java.util.ArrayList;
 
 public class LeagueDetailsFragment extends Fragment {
 
     View view;
     TextView league;
+
+    Button b;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,6 +34,19 @@ public class LeagueDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_league_details, container, false);
         setHasOptionsMenu(true);
+
+        b = view.findViewById(R.id.leaguedetails_bu);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.instance.getTeamData(new Model.TeamDataListener() {
+                    @Override
+                    public void onComplete(ArrayList<Team> teamData) {
+
+                    }
+                });
+            }
+        });
 
         return view;
     }

@@ -2,9 +2,12 @@ package com.example.ibet.model.Team;
 
 public class Team {
 
+    String id;
     String teamName;
     String wins;
+    String gamesRemaining;
     String losses;
+
     Boolean isEliminated;
 
     public Team(String teamName, String wins, String losses, Boolean isEliminated) {
@@ -12,6 +15,31 @@ public class Team {
         this.wins = wins;
         this.losses = losses;
         this.isEliminated = isEliminated;
+    }
+
+    public Team(String teamName,String wins,String losses,String id,String gamesRemaining)
+    {
+        this.teamName = teamName;
+        this.wins = wins;
+        this.losses = losses;
+        this.id = id;
+        this.gamesRemaining=gamesRemaining;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getGamesRemaining() {
+        return gamesRemaining;
+    }
+
+    public void setGamesRemaining(String gamesRemaining) {
+        this.gamesRemaining = gamesRemaining;
     }
 
     public String getTeamName() {

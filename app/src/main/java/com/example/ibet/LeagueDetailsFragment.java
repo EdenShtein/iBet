@@ -67,6 +67,20 @@ public class LeagueDetailsFragment extends Fragment {
             }
         });
 
+        teamAdapter.setOnItemClickListener(new TeamAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Team team, View view) {
+                String teamName = team.getTeamName();
+                String teamWins = team.getWins();
+                String teamLoss = team.getLosses();
+                String teamRemaining = team.getGamesRemaining();
+                LeagueDetailsFragmentDirections
+                        .ActionLeagueDetailsFragmentToTeamDetailsFragment action = LeagueDetailsFragmentDirections
+                        .actionLeagueDetailsFragmentToTeamDetailsFragment(teamName,teamWins,teamLoss,teamRemaining);
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+
         return view;
     }
 

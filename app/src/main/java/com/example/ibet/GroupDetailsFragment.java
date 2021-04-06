@@ -43,7 +43,7 @@ public class GroupDetailsFragment extends Fragment {
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_teamDetailsFragment);
+
             }
         });
 

@@ -11,7 +11,7 @@
         android:id="@+id/league_details_background"
         android:layout_width="416dp"
         android:layout_height="241dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="42dp"
         android:scaleType="fitCenter"
         android:src="@drawable/nbabackground2"
         app:layout_constraintEnd_toEndOf="parent"

@@ -102,6 +102,12 @@ public class Model {
         server.createGroup(listener,mActivity,token,groupName,finalMatchWinner,total);
     }
 
+    public void getGroup(String id,GroupListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.getGroupData(listener,mActivity,token,id);
+    }
+
 
 
 

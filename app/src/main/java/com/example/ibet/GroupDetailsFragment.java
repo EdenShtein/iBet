@@ -16,12 +16,17 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ibet.model.Group.Group;
+import com.example.ibet.model.Model;
+
 
 public class GroupDetailsFragment extends Fragment {
 
     View view;
     TextView league;
     TableRow row;
+
+    TextView group_name;
 
     String group_id;
 
@@ -32,10 +37,14 @@ public class GroupDetailsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_group_details, container, false);
         setHasOptionsMenu(true);
 
-        group_id = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupID();
+
 
         league = view.findViewById(R.id.group_details_sub);
+        group_name= view.findViewById(R.id.group_details_title);
 
+
+
+        onInit();
         league.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,5 +87,15 @@ public class GroupDetailsFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void onInit(){
+        group_id = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupID();
+        Model.instance.getGroup(group_id, new Model.GroupListener() {
+            @Override
+            public void onComplete(boolean result, Group group) {
+                group_name.setText(group.getName());
+            }
+        });
     }
 }

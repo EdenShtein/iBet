@@ -47,6 +47,10 @@ public class Group {
         this.name = name;
         this.admin_id = admin_id;
     }
+    @Ignore
+    public Group(){
+
+    }
 
 
     @NonNull

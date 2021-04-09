@@ -8,17 +8,6 @@
     tools:context=".CreateGroupFragment">
 
     <NumberPicker
-        android:id="@+id/create_group_picker1"
-        android:layout_width="54dp"
-        android:layout_height="51dp"
-        android:layout_marginEnd="90dp"
-        android:backgroundTint="#202E7E"
-        android:theme="@style/NumberPickerTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        tools:ignore="MissingConstraints"></NumberPicker>
-
-    <NumberPicker
         android:id="@+id/create_group_picker2"
         android:layout_width="54dp"
         android:layout_height="52dp"
@@ -131,32 +120,15 @@
         app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="Half Time Winner"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/create_group_picker1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_group_league_dropdown" />
-
-    <TextView
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
         android:text="Match Winner"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/create_group_picker1"
-        app:layout_constraintHorizontal_bias="0.795"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/create_group_league_dropdown" />
 
     <TextView
         android:id="@+id/textView7"
@@ -164,11 +136,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
         android:text="Total Game Points"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/create_group_picker1"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 

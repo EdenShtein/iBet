@@ -30,7 +30,7 @@ public class CreateGroupFragment extends Fragment {
     Spinner leagueDropDown;
 
     NumberPicker fullTimePointsPicker;
-    NumberPicker halfTimePointsPicker;
+
     NumberPicker totalGamePointsPicker;
 
     int finalMatchWinner = 1;
@@ -49,13 +49,13 @@ public class CreateGroupFragment extends Fragment {
         groupName = view.findViewById(R.id.create_group_input_name);
         leagueDropDown = view.findViewById(R.id.create_group_league_dropdown);
         create = view.findViewById(R.id.create_group_create_btn);
-        halfTimePointsPicker = view.findViewById(R.id.create_group_picker1);
+
         fullTimePointsPicker = view.findViewById(R.id.create_group_picker2);
         totalGamePointsPicker = view.findViewById(R.id.create_group_picker3);
 
 
         setPointsPicker(fullTimePointsPicker, 1, 20, 1);
-        setPointsPicker(halfTimePointsPicker, 1, 20, 3);
+
         setPointsPicker(totalGamePointsPicker, 1, 20, 2);
 
         fullTimePointsPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -73,7 +73,7 @@ public class CreateGroupFragment extends Fragment {
         });
 
         //create a list of items for the spinner.
-        String[] leagues = new String[]{" ","NBA"};
+        String[] leagues = new String[]{"NBA"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, leagues);

@@ -65,9 +65,6 @@ public class MainFeedFragment extends Fragment {
 
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 
-        /*Group group = new Group("1","Group 1", "1234");
-        groupViewModel.delete(group);*/
-
         groupViewModel.getAllGroups().observe(getViewLifecycleOwner(), new Observer<List<Group>>() {
             @Override
             public void onChanged(List<Group> groups) {
@@ -91,7 +88,7 @@ public class MainFeedFragment extends Fragment {
             @Override
             public void onItemClick(Group group, View view) {
                 group_id = group.getId();
-                MainFeedFragmentDirections.ActionMainFeedFragmentToGroupDetailsFragment action = MainFeedFragmentDirections.actionMainFeedFragmentToGroupDetailsFragment(group_id);
+                MainFeedFragmentDirections.ActionMainFeedFragmentToGroupDetailsFragment action = MainFeedFragmentDirections.actionMainFeedFragmentToGroupDetailsFragment(group_id,group.getName());
                 Navigation.findNavController(view).navigate(action);
             }
         });

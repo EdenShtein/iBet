@@ -133,15 +133,15 @@
         <argument
             android:name="groupID"
             app:argType="string" />
+        <argument
+            android:name="groupName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/leagueDetailsFragment"
         android:name="com.example.ibet.LeagueDetailsFragment"
         android:label="fragment_league_details"
         tools:layout="@layout/fragment_league_details" >
-        <action
-            android:id="@+id/action_leagueDetailsFragment_to_groupDetailsFragment"
-            app:destination="@id/groupDetailsFragment" />
         <action
             android:id="@+id/action_leagueDetailsFragment_to_teamDetailsFragment"
             app:destination="@id/teamDetailsFragment" />
@@ -163,8 +163,5 @@
         <argument
             android:name="teamRemaining"
             app:argType="string" />
-        <action
-            android:id="@+id/action_teamDetailsFragment_to_leagueDetailsFragment"
-            app:destination="@id/leagueDetailsFragment" />
     </fragment>
 </navigation>

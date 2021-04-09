@@ -540,6 +540,7 @@ public class Server {
                 String group_id;
                 String group_name;
                 String admin_id;
+                String current_score;
                 try {
                     status = response.getString("status");
                     if(status.equals("success")) {
@@ -548,7 +549,13 @@ public class Server {
                         group_name = arr.getString("groupName");
                         admin_id = arr.getString("adminUser");
 
+                        JSONObject data = arr.getJSONObject("data");
+                        JSONArray userGroupBets = data.getJSONArray("userGroupBets");
+                        JSONObject score = userGroupBets.getJSONObject(0);
+                        current_score = score.getString("currentScore");
+
                         Group group = new Group(group_id,group_name,admin_id);
+                        group.setCurrent_score(current_score);
 
                         listener.onComplete(true,group);
 

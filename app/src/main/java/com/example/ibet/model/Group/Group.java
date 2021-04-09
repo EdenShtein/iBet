@@ -39,6 +39,9 @@ public class Group {
     @ColumnInfo(name = "group_players")
     private String group_players;
 
+    @ColumnInfo(name = "current_score")
+    private String current_score;
+
     @Ignore
     private long lastUpdated;
 
@@ -124,6 +127,14 @@ public class Group {
 
     public void setGroup_players(String group_players) {
         this.group_players = group_players;
+    }
+
+    public String getCurrent_score() {
+        return current_score;
+    }
+
+    public void setCurrent_score(String current_score) {
+        this.current_score = current_score;
     }
 
 }

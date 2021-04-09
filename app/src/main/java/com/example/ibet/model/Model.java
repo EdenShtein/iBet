@@ -54,9 +54,6 @@ public class Model {
         public void onComplete(ArrayList<Team> teamData);
     }
 
-    /*public void getAlgoResult(TeamDataListener listener) {
-        server.getAlgoResult(listener);
-    }*/
     public void getAlgoResults(TeamDataListener listener) {
         server.getAlgoResult(listener,mActivity);
     }
@@ -102,7 +99,7 @@ public class Model {
         server.createGroup(listener,mActivity,token,groupName,finalMatchWinner,total);
     }
 
-    public void getGroup(String id,GroupListener listener){
+    public void getGroupData(String id,GroupListener listener){
         pref = mActivity.getSharedPreferences("MyPref", 0);
         String token = pref.getString("token",null);
         server.getGroupData(listener,mActivity,token,id);

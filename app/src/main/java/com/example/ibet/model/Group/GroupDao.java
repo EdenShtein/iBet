@@ -23,4 +23,8 @@ public interface GroupDao {
 
     @Query("SELECT * FROM group_table ORDER BY group_id ASC")
     LiveData<List<Group>> getAllGroups();
+
+    /*@Query("SELECT * FROM group_table WHERE group_id =:id")
+    LiveData<Group> getGroupById(String id);
+*/
 }

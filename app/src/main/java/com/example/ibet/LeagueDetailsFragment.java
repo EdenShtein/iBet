@@ -95,7 +95,7 @@ public class LeagueDetailsFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.back_btn:
                 if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_leagueDetailsFragment_to_groupDetailsFragment);
+                    Navigation.findNavController(view).popBackStack();
                 }
                 break;
             default:

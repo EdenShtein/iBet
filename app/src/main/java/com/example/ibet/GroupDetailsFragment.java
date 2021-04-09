@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -14,10 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ibet.model.Group.Group;
+import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Model;
+
 
 
 public class GroupDetailsFragment extends Fragment {
@@ -27,7 +29,7 @@ public class GroupDetailsFragment extends Fragment {
     TableRow row;
 
     TextView group_name;
-
+    private GroupViewModel groupViewModel;
     String group_id;
 
     @Override
@@ -37,7 +39,7 @@ public class GroupDetailsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_group_details, container, false);
         setHasOptionsMenu(true);
 
-
+        groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 
         league = view.findViewById(R.id.group_details_sub);
         group_name= view.findViewById(R.id.group_details_title);
@@ -91,10 +93,11 @@ public class GroupDetailsFragment extends Fragment {
 
     public void onInit(){
         group_id = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupID();
-        Model.instance.getGroup(group_id, new Model.GroupListener() {
+        group_name.setText(GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupName());
+        Model.instance.getGroupData(group_id, new Model.GroupListener() {
             @Override
             public void onComplete(boolean result, Group group) {
-                group_name.setText(group.getName());
+
             }
         });
     }

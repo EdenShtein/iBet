@@ -20,6 +20,8 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.ibet.model.Model;
+
 
 public class CreateGroupFragment extends Fragment {
 
@@ -30,6 +32,9 @@ public class CreateGroupFragment extends Fragment {
     NumberPicker fullTimePointsPicker;
     NumberPicker halfTimePointsPicker;
     NumberPicker totalGamePointsPicker;
+
+    int finalMatchWinner = 1;
+    int total = 2;
 
     Button create;
 
@@ -44,9 +49,10 @@ public class CreateGroupFragment extends Fragment {
         groupName = view.findViewById(R.id.create_group_input_name);
         leagueDropDown = view.findViewById(R.id.create_group_league_dropdown);
         create = view.findViewById(R.id.create_group_create_btn);
-        fullTimePointsPicker = view.findViewById(R.id.create_group_picker1);
-        halfTimePointsPicker = view.findViewById(R.id.create_group_picker2);
+        halfTimePointsPicker = view.findViewById(R.id.create_group_picker1);
+        fullTimePointsPicker = view.findViewById(R.id.create_group_picker2);
         totalGamePointsPicker = view.findViewById(R.id.create_group_picker3);
+
 
         setPointsPicker(fullTimePointsPicker, 1, 20, 1);
         setPointsPicker(halfTimePointsPicker, 1, 20, 3);
@@ -55,7 +61,14 @@ public class CreateGroupFragment extends Fragment {
         fullTimePointsPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                Log.d("picker1",String.valueOf(newVal));
+                finalMatchWinner = newVal;
+            }
+        });
+
+        totalGamePointsPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                total = newVal;
             }
         });
 
@@ -73,7 +86,21 @@ public class CreateGroupFragment extends Fragment {
                 if (groupName.getText().equals(" ") || groupName.getText().length()<2){
                     Toast.makeText(getActivity(), "Please Enter a valid group name!", Toast.LENGTH_SHORT).show();
                 }
-                Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_groupDetailsFragment);
+                String name = groupName.getText().toString();
+                Model.instance.createGroup(name, finalMatchWinner, total, new Model.SuccessListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+                        if(result)
+                        {
+                            Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_groupDetailsFragment);
+                        }
+                        else
+                        {
+                            Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
         });
 

@@ -468,7 +468,7 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void createGroup(Model.SuccessListener listener,Activity mActivity,String token,String groupName,int finalMatchWinner,int total) {
+    public void createGroup(Model.IdListener listener,Activity mActivity,String token,String groupName,int finalMatchWinner,int total) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
         final String url = "http://ibet-app.herokuapp.com/api/groups";
 
@@ -486,10 +486,15 @@ public class Server {
             @Override
             public void onResponse(JSONObject response) {
                 String status;
+                String id;
                 try {
                     status = response.getString("status");
-                    if(status.equals("success")) { listener.onComplete(true); }
-                    else { listener.onComplete(false); }
+                    JSONArray arr = response.getJSONArray("group");
+                    id = arr.getString(2);
+                    if(status.equals("success")) {
+                        listener.onComplete(true,id);
+                    }
+                    else { listener.onComplete(false,id); }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -87,9 +87,9 @@ public class CreateGroupFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please Enter a valid group name!", Toast.LENGTH_SHORT).show();
                 }
                 String name = groupName.getText().toString();
-                Model.instance.createGroup(name, finalMatchWinner, total, new Model.SuccessListener() {
+                Model.instance.createGroup(name, finalMatchWinner, total, new Model.IdListener() {
                     @Override
-                    public void onComplete(boolean result) {
+                    public void onComplete(boolean result,String id) {
                         if(result)
                         {
                             Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_groupDetailsFragment);

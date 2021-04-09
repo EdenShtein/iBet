@@ -88,11 +88,17 @@ public class Model {
         server.getTeamData(listener,mActivity,token);
     }
 
-    public void createGroup(String groupName,int finalMatchWinner,int total,SuccessListener listener){
+    public interface IdListener{
+        public void onComplete(boolean result,String id);
+    }
+
+    public void createGroup(String groupName,int finalMatchWinner,int total,IdListener listener){
         pref = mActivity.getSharedPreferences("MyPref", 0);
         String token = pref.getString("token",null);
         server.createGroup(listener,mActivity,token,groupName,finalMatchWinner,total);
     }
+
+
 
 
 

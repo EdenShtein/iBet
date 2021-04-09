@@ -42,6 +42,7 @@ public class MainFeedFragment extends Fragment {
    private GroupViewModel groupViewModel;
    LiveData<List<Group>> groupList;
    Dialog myDialog;
+   String group_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,7 +90,9 @@ public class MainFeedFragment extends Fragment {
         groupAdapter.setOnItemClickListener(new GroupAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Group group, View view) {
-                Navigation.findNavController(view).navigate(R.id.action_mainFeedFragment_to_groupDetailsFragment);
+                group_id = group.getId();
+                MainFeedFragmentDirections.ActionMainFeedFragmentToGroupDetailsFragment action = MainFeedFragmentDirections.actionMainFeedFragmentToGroupDetailsFragment(group_id);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

@@ -23,12 +23,16 @@ public class GroupDetailsFragment extends Fragment {
     TextView league;
     TableRow row;
 
+    String group_id;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_group_details, container, false);
         setHasOptionsMenu(true);
+
+        group_id = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupID();
 
         league = view.findViewById(R.id.group_details_sub);
 

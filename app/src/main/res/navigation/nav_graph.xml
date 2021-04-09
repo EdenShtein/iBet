@@ -130,6 +130,9 @@
         <action
             android:id="@+id/action_groupDetailsFragment_to_leagueDetailsFragment"
             app:destination="@id/leagueDetailsFragment" />
+        <argument
+            android:name="groupID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/leagueDetailsFragment"

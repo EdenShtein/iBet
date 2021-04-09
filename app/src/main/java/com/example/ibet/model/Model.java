@@ -88,6 +88,12 @@ public class Model {
         server.getTeamData(listener,mActivity,token);
     }
 
+    public void createGroup(String groupName,int finalMatchWinner,int total,SuccessListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.createGroup(listener,mActivity,token,groupName,finalMatchWinner,total);
+    }
+
 
 
 }

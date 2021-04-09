@@ -70,9 +70,6 @@
         <action
             android:id="@+id/action_createGroupFragment_to_mainFeedFragment"
             app:destination="@id/mainFeedFragment" />
-        <action
-            android:id="@+id/action_createGroupFragment_to_groupDetailsFragment"
-            app:destination="@id/groupDetailsFragment" />
     </fragment>
     <activity
         android:id="@+id/splash_Screen"

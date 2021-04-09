@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.User.User;
 
@@ -468,7 +469,7 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void createGroup(Model.IdListener listener,Activity mActivity,String token,String groupName,int finalMatchWinner,int total) {
+    public void createGroup(Model.GroupListener listener,Activity mActivity,String token,String groupName,int finalMatchWinner,int total) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
         final String url = "http://ibet-app.herokuapp.com/api/groups";
 
@@ -486,15 +487,23 @@ public class Server {
             @Override
             public void onResponse(JSONObject response) {
                 String status;
-                String id;
+                String group_id;
+                String group_name;
+                String admin_id;
+
                 try {
                     status = response.getString("status");
-                    JSONArray arr = response.getJSONArray("group");
-                    id = arr.getString(2);
+                    JSONObject arr = response.getJSONObject("group");
+                    group_id = arr.getString("_id");
+                    group_name = arr.getString("groupName");
+                    admin_id = arr.getString("adminUser");
+
+                    Group group = new Group(group_id,group_name,admin_id);
+
                     if(status.equals("success")) {
-                        listener.onComplete(true,id);
+                        listener.onComplete(true,group);
                     }
-                    else { listener.onComplete(false,id); }
+                    else { listener.onComplete(false,group); }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

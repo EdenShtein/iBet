@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -20,6 +21,8 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.ibet.model.Group.Group;
+import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Model;
 
 
@@ -30,13 +33,14 @@ public class CreateGroupFragment extends Fragment {
     Spinner leagueDropDown;
 
     NumberPicker fullTimePointsPicker;
-
     NumberPicker totalGamePointsPicker;
 
     int finalMatchWinner = 1;
     int total = 2;
 
     Button create;
+
+    private GroupViewModel groupViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +59,9 @@ public class CreateGroupFragment extends Fragment {
 
 
         setPointsPicker(fullTimePointsPicker, 1, 20, 1);
-
         setPointsPicker(totalGamePointsPicker, 1, 20, 2);
+
+        groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 
         fullTimePointsPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -87,12 +92,13 @@ public class CreateGroupFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please Enter a valid group name!", Toast.LENGTH_SHORT).show();
                 }
                 String name = groupName.getText().toString();
-                Model.instance.createGroup(name, finalMatchWinner, total, new Model.IdListener() {
+                Model.instance.createGroup(name, finalMatchWinner, total, new Model.GroupListener() {
                     @Override
-                    public void onComplete(boolean result,String id) {
+                    public void onComplete(boolean result, Group group) {
                         if(result)
                         {
-                            Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_groupDetailsFragment);
+                            groupViewModel.insert(group);
+                            Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_mainFeedFragment);
                         }
                         else
                         {

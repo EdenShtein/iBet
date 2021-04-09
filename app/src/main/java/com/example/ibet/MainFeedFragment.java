@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +40,7 @@ public class MainFeedFragment extends Fragment {
    Button createGroup;
    GroupAdapter groupAdapter;
    private GroupViewModel groupViewModel;
-   List<Group> groupList = new LinkedList<Group>();
+   LiveData<List<Group>> groupList;
    Dialog myDialog;
 
     @Override
@@ -62,11 +64,16 @@ public class MainFeedFragment extends Fragment {
 
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 
-        Group group = new Group("1","Group 1", "1234");
-        groupList.add(group);
-        groupViewModel.insert(group);
-        groupAdapter.setGroupsData(groupList);
-        groupsList_rv.setAdapter(groupAdapter);
+        /*Group group = new Group("1","Group 1", "1234");
+        groupViewModel.delete(group);*/
+
+        groupViewModel.getAllGroups().observe(getViewLifecycleOwner(), new Observer<List<Group>>() {
+            @Override
+            public void onChanged(List<Group> groups) {
+                groupAdapter.setGroupsData(groups);
+                groupsList_rv.setAdapter(groupAdapter);
+            }
+        });
 
         createGroup = view.findViewById(R.id.mainfeed_create_group);
 

@@ -3,6 +3,7 @@ package com.example.ibet.model;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.User.User;
 
@@ -49,7 +50,6 @@ public class Model {
         server.restPassword(token,password,listener,mActivity);
     }
 
-
     public interface TeamDataListener{
         public void onComplete(ArrayList<Team> teamData);
     }
@@ -92,7 +92,11 @@ public class Model {
         public void onComplete(boolean result,String id);
     }
 
-    public void createGroup(String groupName,int finalMatchWinner,int total,IdListener listener){
+    public interface GroupListener{
+        public void onComplete(boolean result, Group group);
+    }
+
+    public void createGroup(String groupName,int finalMatchWinner,int total,GroupListener listener){
         pref = mActivity.getSharedPreferences("MyPref", 0);
         String token = pref.getString("token",null);
         server.createGroup(listener,mActivity,token,groupName,finalMatchWinner,total);

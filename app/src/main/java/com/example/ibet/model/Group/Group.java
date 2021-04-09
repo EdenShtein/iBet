@@ -16,7 +16,7 @@ public class Group {
     @PrimaryKey()
     @NonNull
     @ColumnInfo(name = "group_id")
-    private String id = UUID.randomUUID().toString();
+    private String id ;
 
     @ColumnInfo(name = "group_name")
     private String name;
@@ -24,8 +24,8 @@ public class Group {
     @ColumnInfo(name = "group_logo")
     private String groupLogo;
 
-    @ColumnInfo(name = "group_pass")
-    private String password;
+    @ColumnInfo(name = "group_admin")
+    private String admin_id;
 
     @ColumnInfo(name = "league_id")
     private String leagueId;
@@ -42,10 +42,10 @@ public class Group {
     @Ignore
     private long lastUpdated;
 
-    public Group(@NonNull String id, String name, String password) {
+    public Group(@NonNull String id, String name, String admin_id) {
         this.id = id;
         this.name = name;
-        this.password = password;
+        this.admin_id = admin_id;
     }
 
 
@@ -74,12 +74,12 @@ public class Group {
         this.groupLogo = groupLogo;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAdmin_id() {
+        return admin_id;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAdmin_id(String admin_id) {
+        this.admin_id = admin_id;
     }
 
     public String getLeagueId() {

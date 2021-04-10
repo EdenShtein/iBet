@@ -588,4 +588,49 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void shareGroup(Model.GroupListener listener,Activity mActivity,String token,Group group) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        String id = group.getId();
+        final String url = "http://ibet-app.herokuapp.com/api/groups/share/"+id;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                String shareCode;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        shareCode = response.getString("groupToken");
+                        group.setShareCode(shareCode);
+                        listener.onComplete(true,group);
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
 }

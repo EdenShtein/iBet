@@ -105,6 +105,12 @@ public class Model {
         server.getGroupData(listener,mActivity,token,id);
     }
 
+    public void shareCode(Group group,GroupListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.shareGroup(listener,mActivity,token,group);
+    }
+
 
 
 

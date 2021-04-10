@@ -87,8 +87,7 @@ public class MainFeedFragment extends Fragment {
         groupAdapter.setOnItemClickListener(new GroupAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Group group, View view) {
-                group_id = group.getId();
-                MainFeedFragmentDirections.ActionMainFeedFragmentToGroupDetailsFragment action = MainFeedFragmentDirections.actionMainFeedFragmentToGroupDetailsFragment(group_id,group.getName());
+                MainFeedFragmentDirections.ActionMainFeedFragmentToGroupDetailsFragment action = MainFeedFragmentDirections.actionMainFeedFragmentToGroupDetailsFragment(group.getId(),group.getName());
                 Navigation.findNavController(view).navigate(action);
             }
         });

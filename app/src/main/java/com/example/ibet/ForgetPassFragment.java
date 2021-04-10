@@ -2,6 +2,7 @@ package com.example.ibet;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -38,7 +39,7 @@ public class ForgetPassFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_forget_pass, container, false);
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         cancel = view.findViewById(R.id.forgetpass_cancel_btn);
         email = view.findViewById(R.id.forgot_email_input);
         reset = view.findViewById(R.id.forgetpass_reset_btn);

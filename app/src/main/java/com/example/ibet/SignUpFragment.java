@@ -2,6 +2,7 @@ package com.example.ibet;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -35,6 +36,7 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         email=view.findViewById(R.id.signup_email_input);
         username = view.findViewById(R.id.signup_username_input);

@@ -3,6 +3,7 @@ package com.example.ibet;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -37,6 +38,7 @@ public class TeamsResultFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_teams_result, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         table = view.findViewById(R.id.table);
         pb=view.findViewById(R.id.teamsresults_pb);

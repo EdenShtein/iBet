@@ -3,6 +3,7 @@ package com.example.ibet;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
@@ -39,6 +40,7 @@ public class GroupDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_group_details, container, false);
         setHasOptionsMenu(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 

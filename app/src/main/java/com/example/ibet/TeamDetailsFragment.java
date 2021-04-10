@@ -3,6 +3,7 @@ package com.example.ibet;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -28,6 +29,7 @@ public class TeamDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_team_details, container, false);
         setHasOptionsMenu(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         team_name = view.findViewById(R.id.team_details_title);
         team_win = view.findViewById(R.id.team_details_win_input);

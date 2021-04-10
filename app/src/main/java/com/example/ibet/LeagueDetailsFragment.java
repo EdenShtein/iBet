@@ -3,6 +3,7 @@ package com.example.ibet;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
@@ -46,7 +47,7 @@ public class LeagueDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_league_details, container, false);
         setHasOptionsMenu(true);
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         teamsList_rv = view.findViewById(R.id.league_details_rv);
         teamsList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);

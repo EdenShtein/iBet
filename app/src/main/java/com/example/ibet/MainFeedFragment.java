@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -54,6 +55,7 @@ public class MainFeedFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_main_feed, container, false);
         pref = getActivity().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         View decorView = getActivity().getWindow().getDecorView(); // Show the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;

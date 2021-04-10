@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:hapticFeedbackEnabled="false"
-    tools:context=".MainFeedFragment">
+    tools:context=".MainFeedFragment"
+    >
 
     <Button
         android:id="@+id/mainfeed_create_group"

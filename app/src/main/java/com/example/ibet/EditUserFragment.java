@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -42,7 +43,7 @@ public class EditUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_edit_user, container, false);
-
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         email = view.findViewById(R.id.edituser_email_input);
         username = view.findViewById(R.id.edituser_username_input);
         updateMe = view.findViewById(R.id.edituser_confirm_btn);

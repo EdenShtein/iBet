@@ -3,6 +3,7 @@ package com.example.ibet;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -36,6 +37,9 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
 
         signUp = view.findViewById(R.id.signin_signup_btn);
         email=view.findViewById(R.id.login_email_input);

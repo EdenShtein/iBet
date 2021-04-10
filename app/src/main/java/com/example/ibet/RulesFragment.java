@@ -3,6 +3,7 @@ package com.example.ibet;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -37,6 +38,7 @@ public class RulesFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_rules, container, false);
         setHasOptionsMenu(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         textView1 = view.findViewById(R.id.rules_text1);
         textView2 = view.findViewById(R.id.rules_text2);

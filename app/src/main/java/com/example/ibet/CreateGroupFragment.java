@@ -89,25 +89,23 @@ public class CreateGroupFragment extends Fragment {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (groupName.getText().equals(" ") || groupName.getText().length()<2){
+                if (groupName.getText().equals(" ") || groupName.getText().length() < 2) {
                     Toast.makeText(getActivity(), "Please Enter a valid group name!", Toast.LENGTH_SHORT).show();
-                }
-                String name = groupName.getText().toString();
-                Model.instance.createGroup(name, finalMatchWinner, total, new Model.GroupListener() {
-                    @Override
-                    public void onComplete(boolean result, Group group) {
-                        if(result)
-                        {
-                            groupViewModel.insert(group);
-                            Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_mainFeedFragment);
+                } else {
+                    String name = groupName.getText().toString();
+                    Model.instance.createGroup(name, finalMatchWinner, total, new Model.GroupListener() {
+                        @Override
+                        public void onComplete(boolean result, Group group) {
+                            if (result) {
+                                groupViewModel.insert(group);
+                                Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_mainFeedFragment);
+                            } else {
+                                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else
-                        {
-                            Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    });
 
+                }
             }
         });
 

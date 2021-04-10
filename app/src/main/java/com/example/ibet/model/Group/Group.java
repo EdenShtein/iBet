@@ -42,6 +42,10 @@ public class Group {
     @ColumnInfo(name = "current_score")
     public static String current_score;
 
+    @ColumnInfo(name = "share_code")
+    private String shareCode;
+
+
     @Ignore
     private long lastUpdated;
 
@@ -135,6 +139,14 @@ public class Group {
 
     public void setCurrent_score(String current_score) {
         this.current_score = current_score;
+    }
+
+    public String getShareCode() {
+        return shareCode;
+    }
+
+    public void setShareCode(String shareCode) {
+        this.shareCode = shareCode;
     }
 
 }

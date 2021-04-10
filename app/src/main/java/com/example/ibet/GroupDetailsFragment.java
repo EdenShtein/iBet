@@ -31,6 +31,7 @@ public class GroupDetailsFragment extends Fragment {
     TextView group_name;
     private GroupViewModel groupViewModel;
     String group_id;
+    Group currentGroup;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,9 +80,14 @@ public class GroupDetailsFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_mainFeedFragment);
                 }
                 break;
-            case R.id.menu_invite:
+            case R.id.group_invite:
                 if(view != null) {
+                    Model.instance.shareCode(currentGroup, new Model.GroupListener() {
+                        @Override
+                        public void onComplete(boolean result, Group group) {
 
+                        }
+                    });
                 }
                 break;
             default:
@@ -97,7 +103,7 @@ public class GroupDetailsFragment extends Fragment {
         Model.instance.getGroupData(group_id, new Model.GroupListener() {
             @Override
             public void onComplete(boolean result, Group group) {
-
+                currentGroup = group;
             }
         });
     }

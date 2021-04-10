@@ -111,6 +111,12 @@ public class Model {
         server.shareGroup(listener,mActivity,token,group);
     }
 
+    public void joinGroup(String groupToken,SuccessListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.joinGroup(listener,mActivity,token,groupToken);
+    }
+
 
 
 

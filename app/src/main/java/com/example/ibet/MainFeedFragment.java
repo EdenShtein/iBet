@@ -20,12 +20,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupAdapter;
 import com.example.ibet.model.Group.GroupViewModel;
+import com.example.ibet.model.Model;
 
 import java.nio.file.attribute.GroupPrincipal;
 import java.util.LinkedList;
@@ -98,9 +101,12 @@ public class MainFeedFragment extends Fragment {
     }
 
     public void ShowPopup(View v){
+
+        EditText groupToken;
         ImageView closeBtn;
         Button confirmBtn;
         myDialog.setContentView(R.layout.fragment_invitation_pop_up);
+        groupToken = myDialog.findViewById(R.id.dialog_edittext);
         closeBtn = myDialog.findViewById(R.id.pop_close_btn);
         confirmBtn = (Button) myDialog.findViewById(R.id.pop_confirm_btn);
 
@@ -114,7 +120,19 @@ public class MainFeedFragment extends Fragment {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myDialog.dismiss();
+                String token = groupToken.getText().toString();
+                Model.instance.joinGroup(token, new Model.SuccessListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+                        if(result)
+                        {
+                            Toast.makeText(getActivity(),"New Group has been added",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+
+                        }
+                    }
+                });
             }
         });
         myDialog.show();

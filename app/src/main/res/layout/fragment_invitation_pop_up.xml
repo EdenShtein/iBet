@@ -20,7 +20,7 @@
         tools:context=".InvitationPopUpFragment">
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/dialog_edittext"
             android:layout_width="252dp"
             android:layout_height="43dp"
             android:layout_marginStart="32dp"
@@ -59,7 +59,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/dialog_edittext" />
 
         <ImageView
             android:id="@+id/pop_close_btn"

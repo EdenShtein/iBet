@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/back_btn"
-        android:icon="@android:drawable/ic_menu_revert"
+        android:icon="@drawable/backbtn"
         android:title="back_btn"
         app:showAsAction="always" />
 </menu>

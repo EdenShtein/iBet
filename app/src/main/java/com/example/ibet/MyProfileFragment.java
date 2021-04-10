@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupAdapter;
 import com.example.ibet.model.Group.GroupViewModel;
+import com.example.ibet.model.Model;
+import com.example.ibet.model.User.User;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class MyProfileFragment extends Fragment {
     GroupAdapter groupAdapter;
     GroupViewModel groupViewModel;
     List<Group> groupList = new LinkedList<Group>();
+    String username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +44,14 @@ public class MyProfileFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_my_profile, container, false);
         setHasOptionsMenu(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
+            @Override
+            public void onComplete(User user) {
+                username = user.getUserName();
+                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(username);
+            }
+        });
+
 
         groupsList_rv = view.findViewById(R.id.myprofile_history_rv);
         groupsList_rv.setHasFixedSize(true);

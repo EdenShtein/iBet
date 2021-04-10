@@ -5,17 +5,17 @@
 
     <item
         android:id="@+id/profile_edit"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/pencil"
         android:title="profile_edit"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_rules"
-        android:icon="@drawable/rules_btn"
+        android:icon="@drawable/paper"
         android:title="Rules"
         app:showAsAction="always"></item>
     <item
         android:id="@+id/back_btn"
-        android:icon="@android:drawable/ic_menu_revert"
+        android:icon="@drawable/backbtn"
         android:title="profile_back"
         app:showAsAction="always" />
 </menu>

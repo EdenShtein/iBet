@@ -10,7 +10,7 @@
         app:showAsAction="always"></item>
     <item
         android:id="@+id/group_back"
-        android:icon="@android:drawable/ic_menu_revert"
+        android:icon="@drawable/backbtn"
         android:title="Back"
         app:showAsAction="always" />
 </menu>

@@ -103,6 +103,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/customborder"
         android:ems="10"
@@ -115,8 +116,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="163dp"
-        android:layout_height="104dp"
+        android:layout_width="132dp"
+        android:layout_height="76dp"
         android:layout_marginTop="250dp"
         android:elevation="5px"
         android:scaleType="centerCrop"
@@ -128,8 +129,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="83dp"
-        android:layout_height="136dp"
+        android:layout_width="69dp"
+        android:layout_height="97dp"
         android:layout_marginStart="16dp"
         android:elevation="5px"
         android:scaleType="fitStart"
@@ -141,7 +142,6 @@
         android:id="@+id/signup_background"
         android:layout_width="448dp"
         android:layout_height="292dp"
-        android:layout_marginTop="40dp"
         android:src="@drawable/background6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"

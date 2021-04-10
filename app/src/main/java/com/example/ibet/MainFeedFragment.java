@@ -56,6 +56,7 @@ public class MainFeedFragment extends Fragment {
         pref = getActivity().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("iBet");
 
         View decorView = getActivity().getWindow().getDecorView(); // Show the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;

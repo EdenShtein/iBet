@@ -553,7 +553,7 @@ public class Server {
                         JSONArray userGroupBets = data.getJSONArray("userGroupBets");
                         JSONObject score = userGroupBets.getJSONObject(0);
                         current_score = score.getString("currentScore");
-
+                        /*do*/
                         Group group = new Group(group_id,group_name,admin_id);
                         group.setCurrent_score(current_score);
 

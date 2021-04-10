@@ -127,9 +127,10 @@ public class MainFeedFragment extends Fragment {
                         if(result)
                         {
                             Toast.makeText(getActivity(),"New Group has been added",Toast.LENGTH_SHORT).show();
+                            myDialog.dismiss();
                         }
                         else{
-
+                            Toast.makeText(getActivity(),"Failed",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

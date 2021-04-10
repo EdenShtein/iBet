@@ -40,7 +40,7 @@ public class Group {
     private String group_players;
 
     @ColumnInfo(name = "current_score")
-    private String current_score;
+    public static String current_score;
 
     @Ignore
     private long lastUpdated;

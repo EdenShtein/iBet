@@ -48,11 +48,11 @@ public class MyProfileFragment extends Fragment {
 
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 
-        Group group = new Group("2","Group 2", "1234");
-        groupList.add(group);
-        groupViewModel.insert(group);
-        groupAdapter.setGroupsData(groupList);
-        groupsList_rv.setAdapter(groupAdapter);
+        //Group group = new Group("2","Group 2", "1234");
+        //groupList.add(group);
+
+        /*groupAdapter.setGroupsData(groupList);
+        groupsList_rv.setAdapter(groupAdapter);*/
 
         return view;
     }

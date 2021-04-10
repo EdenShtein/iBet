@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="197dp"
-        android:layout_height="159dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/customborder"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,27 +23,26 @@
 
         <ImageView
             android:id="@+id/container_group_image"
-            android:layout_width="68dp"
-            android:layout_height="63dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/container_group_text"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_width="54dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.504"
+            app:layout_constraintTop_toBottomOf="@+id/container_group_text"
             app:srcCompat="@drawable/blueball" />
 
         <TextView
             android:id="@+id/container_group_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="sans-serif-smallcaps"
             android:text="TextView"
             android:textColor="#202E7E"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.867"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,14 +50,23 @@
             android:id="@+id/container_group_sub_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:text="TextView"
             android:textColor="#202E7E"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.72"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/container_group_text"
-            app:layout_constraintVertical_bias="0.157" />
+            app:layout_constraintStart_toEndOf="@+id/container_group_image"
+            app:layout_constraintTop_toBottomOf="@+id/container_group_points" />
+
+        <TextView
+            android:id="@+id/container_group_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:text="Points:"
+            android:textColor="#202E7E"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/container_group_image"
+            app:layout_constraintTop_toBottomOf="@+id/container_group_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

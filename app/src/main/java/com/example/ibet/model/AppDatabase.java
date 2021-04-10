@@ -15,7 +15,7 @@ import com.example.ibet.model.Group.GroupDao;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.Team.TeamDao;
 
-@Database(entities = {Group.class, Team.class}, version = 5, exportSchema = false)
+@Database(entities = {Group.class, Team.class}, version = 6, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;

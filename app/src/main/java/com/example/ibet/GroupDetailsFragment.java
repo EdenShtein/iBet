@@ -1,5 +1,6 @@
 package com.example.ibet;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -87,7 +88,13 @@ public class GroupDetailsFragment extends Fragment {
                     Model.instance.shareCode(currentGroup, new Model.GroupListener() {
                         @Override
                         public void onComplete(boolean result, Group group) {
+                            Intent sendIntent = new Intent();
+                            sendIntent.setAction(Intent.ACTION_SEND);
+                            sendIntent.putExtra(Intent.EXTRA_TEXT, group.getShareCode());
+                            sendIntent.setType("text/plain");
 
+                            Intent shareIntent = Intent.createChooser(sendIntent, null);
+                            startActivity(shareIntent);
                         }
                     });
                 }

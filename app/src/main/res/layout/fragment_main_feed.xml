@@ -6,19 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:hapticFeedbackEnabled="false"
-    tools:context=".MainFeedFragment"
-    >
+    tools:context=".MainFeedFragment">
 
     <Button
         android:id="@+id/mainfeed_create_group"
         android:layout_width="304dp"
         android:layout_height="45dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="404dp"
+        android:layout_marginStart="40dp"
         android:background="@drawable/customborder"
         android:text="Create New Group"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/mainfeed_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mainfeed_background"
+        app:layout_constraintVertical_bias="0.841" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainfeed_groupslist_rv"
@@ -27,13 +27,13 @@
         android:layout_marginStart="75dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="41dp"
         android:elevation="5px"
         app:layout_constraintBottom_toTopOf="@+id/mainfeed_create_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mainfeed_background" />
+        app:layout_constraintTop_toTopOf="@+id/mainfeed_background"
+        app:layout_constraintVertical_bias="0.846" />
 
     <ImageView
         android:id="@+id/mainfeed_background"
@@ -50,15 +50,16 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_bar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="248dp"
         android:background="@color/design_default_color_primary"
         app:layout_constraintBottom_toBottomOf="@+id/mainfeed_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainfeed_create_group"
-        app:layout_constraintVertical_bias="0.813"
-        app:menu="@menu/nav_menu"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/nav_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

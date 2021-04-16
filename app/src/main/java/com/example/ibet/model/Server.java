@@ -740,4 +740,48 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void placeBet(Model.SuccessListener listener,Activity mActivity,String token,String groupId,String finalMatchWinner,String totalPoints,String gameId) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://ibet-app.herokuapp.com/api/groups/"+groupId+"/newbet";
+
+        JSONObject jsonParam = new JSONObject();
+        try {
+            jsonParam.put("finalMatchWinner",finalMatchWinner);
+            jsonParam.put("totalPoints",totalPoints);
+            jsonParam.put("gameId",gameId);
+        }catch (Exception e) {e.printStackTrace();}
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonParam, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) { listener.onComplete(true); }
+                    else { listener.onComplete(false); }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("Error1", error.getMessage());
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
 }

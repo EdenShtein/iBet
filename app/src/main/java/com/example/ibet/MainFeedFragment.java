@@ -30,6 +30,7 @@ import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupAdapter;
 import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Model;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.nio.file.attribute.GroupPrincipal;
 import java.util.LinkedList;
@@ -48,6 +49,8 @@ public class MainFeedFragment extends Fragment {
    Dialog myDialog;
    String group_id;
 
+   BottomNavigationView bottomNav;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,6 +65,9 @@ public class MainFeedFragment extends Fragment {
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         decorView.setSystemUiVisibility(uiOptions);
         setHasOptionsMenu(true);
+
+        bottomNav = view.findViewById(R.id.bottom_navigation_bar);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         groupsList_rv = view.findViewById(R.id.mainfeed_groupslist_rv);
         groupsList_rv.setHasFixedSize(true);
@@ -178,5 +184,21 @@ public class MainFeedFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_my_profile:
+                    if (view != null) {
+                        Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
+                    }
+                    break;
+                default:
+
+            }
+            return true;
+        }
+    };
 }
 

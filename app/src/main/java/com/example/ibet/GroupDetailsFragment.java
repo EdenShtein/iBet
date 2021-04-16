@@ -76,7 +76,8 @@ public class GroupDetailsFragment extends Fragment {
         upcoming_matches.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_groupDetails_to_upcomingMatches);
+                GroupDetailsFragmentDirections.ActionGroupDetailsToUpcomingMatches action = GroupDetailsFragmentDirections.actionGroupDetailsToUpcomingMatches(group_id);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

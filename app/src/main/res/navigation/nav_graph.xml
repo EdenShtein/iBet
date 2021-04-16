@@ -171,5 +171,9 @@
         android:id="@+id/upcomingMatchesFragment"
         android:name="com.example.ibet.UpcomingMatchesFragment"
         android:label="fragment_upcoming_matches"
-        tools:layout="@layout/fragment_upcoming_matches" />
+        tools:layout="@layout/fragment_upcoming_matches" >
+        <argument
+            android:name="groupId"
+            app:argType="string" />
+    </fragment>
 </navigation>

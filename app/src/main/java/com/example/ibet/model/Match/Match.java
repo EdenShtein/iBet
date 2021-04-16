@@ -12,7 +12,6 @@ import java.util.Date;
 @Entity(tableName = "match_table")
 public class Match {
 
-
     @PrimaryKey()
     @NonNull
     @ColumnInfo(name = "match_id")
@@ -28,14 +27,15 @@ public class Match {
     String date;
 
     @Ignore
-    private boolean expanded;
+    public boolean isBetted;
+
 
     public Match(@NonNull String id, String home, String away, String date) {
         this.id = id;
         this.home = home;
         this.away = away;
         this.date = date;
-        this.expanded = false;
+        this.isBetted = false;
     }
 
     @NonNull
@@ -71,11 +71,12 @@ public class Match {
         this.date = date;
     }
 
-    public boolean isExpanded() {
-        return expanded;
+    public boolean isBetted() {
+        return isBetted;
     }
 
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
+    public void setBetted(boolean betted) {
+        isBetted = betted;
     }
+
 }

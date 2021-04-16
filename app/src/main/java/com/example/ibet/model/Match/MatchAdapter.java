@@ -47,8 +47,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         holder.bindData(currentMatch,position);
         holder.itemView.setTag(currentMatch);
 
-        boolean isExpanded = matchesData.get(position).isExpanded();
-        holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -67,7 +65,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         TextView matchAway;
         TextView matchDate;
         ImageView matchImage;
-        ConstraintLayout expandableLayout;
         int position;
 
         public MatchHolder(@NonNull View itemView) {
@@ -77,7 +74,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             matchHome = itemView.findViewById(R.id.upcoming_home_title);
             matchAway = itemView.findViewById(R.id.upcoming_away_title);
             matchDate = itemView.findViewById(R.id.upcoming_match_date);
-            expandableLayout = itemView.findViewById(R.id.expandable_layout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,9 +82,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(matchesData.get(position), v);
                     }
-                    Match match = matchesData.get(getAdapterPosition());
-                    match.setExpanded(!match.isExpanded());
-                    notifyItemChanged(getAdapterPosition());
+
                 }
             });
         }

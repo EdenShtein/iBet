@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ibet.model.Group.Group;
+import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.User.User;
 
@@ -27,6 +28,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -659,6 +661,60 @@ public class Server {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Error1", error.getMessage());
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void getUpComingGames(Model.MatchListener listener,Activity mActivity,String token) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://ibet-app.herokuapp.com/api/upcommingGames";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONObject result = response.getJSONObject("result");
+                        JSONArray resultArray = result.getJSONArray("games");
+                        ArrayList<Match> matches = new ArrayList<>(resultArray.length());
+                        for(int i=0;i<resultArray.length();i++)
+                        {
+                            String gameId = resultArray.getJSONObject(i).getString("gameId");
+                            String hTeam = resultArray.getJSONObject(i).getString("hTeam");
+                            String vTeam = resultArray.getJSONObject(i).getString("vTeam");
+                            String date = resultArray.getJSONObject(i).getString("date");
+                            Match match = new Match(gameId,hTeam,vTeam,date);
+                            matches.add(match);
+                        }
+                        listener.onComplete(matches);
+
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         })
         {

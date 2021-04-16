@@ -15,13 +15,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupViewModel;
+import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Model;
 
+import java.util.ArrayList;
 
 
 public class GroupDetailsFragment extends Fragment {
@@ -29,6 +32,8 @@ public class GroupDetailsFragment extends Fragment {
     View view;
     TextView league;
     TableRow row;
+
+    Button button;
 
     TextView group_name;
     private GroupViewModel groupViewModel;
@@ -47,6 +52,7 @@ public class GroupDetailsFragment extends Fragment {
 
         league = view.findViewById(R.id.group_details_sub);
         group_name= view.findViewById(R.id.group_details_title);
+        button= view.findViewById(R.id.group_details_upcoming);
 
 
 
@@ -65,6 +71,20 @@ public class GroupDetailsFragment extends Fragment {
 
             }
         });
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.instance.getUpComingMatches(new Model.MatchListener() {
+                    @Override
+                    public void onComplete(ArrayList<Match> upComingMatches) {
+
+                    }
+                });
+            }
+        });
+
 
         return view;
     }

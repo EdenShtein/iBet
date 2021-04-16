@@ -27,6 +27,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -697,7 +701,12 @@ public class Server {
                             String hTeam = resultArray.getJSONObject(i).getString("hTeam");
                             String vTeam = resultArray.getJSONObject(i).getString("vTeam");
                             String date = resultArray.getJSONObject(i).getString("date");
-                            Match match = new Match(gameId,hTeam,vTeam,date);
+
+                            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+                            Date fdate = fmt.parse(date);
+                            SimpleDateFormat fmtOut = new SimpleDateFormat("dd-MM-yyyy");
+
+                            Match match = new Match(gameId,hTeam,vTeam,fmtOut.format(fdate));
                             matches.add(match);
                         }
                         listener.onComplete(matches);
@@ -706,7 +715,7 @@ public class Server {
                     else{
 
                     }
-                } catch (JSONException e) {
+                } catch (JSONException | ParseException e) {
                     e.printStackTrace();
                 }
 

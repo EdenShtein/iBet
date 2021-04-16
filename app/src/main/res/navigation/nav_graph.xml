@@ -136,6 +136,9 @@
         <argument
             android:name="groupName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_groupDetails_to_upcomingMatches"
+            app:destination="@id/upcomingMatchesFragment" />
     </fragment>
     <fragment
         android:id="@+id/leagueDetailsFragment"
@@ -164,4 +167,9 @@
             android:name="teamRemaining"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/upcomingMatchesFragment"
+        android:name="com.example.ibet.UpcomingMatchesFragment"
+        android:label="fragment_upcoming_matches"
+        tools:layout="@layout/fragment_upcoming_matches" />
 </navigation>

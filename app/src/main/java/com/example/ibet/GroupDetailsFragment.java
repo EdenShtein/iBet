@@ -33,7 +33,7 @@ public class GroupDetailsFragment extends Fragment {
     TextView league;
     TableRow row;
 
-    Button button;
+    Button upcoming_matches;
 
     TextView group_name;
     private GroupViewModel groupViewModel;
@@ -52,7 +52,7 @@ public class GroupDetailsFragment extends Fragment {
 
         league = view.findViewById(R.id.group_details_sub);
         group_name= view.findViewById(R.id.group_details_title);
-        button= view.findViewById(R.id.group_details_upcoming);
+        upcoming_matches= view.findViewById(R.id.group_details_upcoming);
 
 
 
@@ -73,15 +73,10 @@ public class GroupDetailsFragment extends Fragment {
         });
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        upcoming_matches.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Model.instance.getUpComingMatches(new Model.MatchListener() {
-                    @Override
-                    public void onComplete(ArrayList<Match> upComingMatches) {
-
-                    }
-                });
+                Navigation.findNavController(view).navigate(R.id.action_groupDetails_to_upcomingMatches);
             }
         });
 

@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupDao;
+import com.example.ibet.model.Match.Match;
+import com.example.ibet.model.Match.MatchDao;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.Team.TeamDao;
 
@@ -20,6 +22,9 @@ public class AppRepository {
     private TeamDao teamDao;
     private LiveData<List<Team>> teams;
 
+    private MatchDao matchDao;
+    private LiveData<List<Match>> matches;
+
     public AppRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
         groupDao = database.groupDao();
@@ -28,6 +33,8 @@ public class AppRepository {
         teamDao = database.teamDao();
         teams = teamDao.getAllTeams();
 
+        matchDao = database.matchDao();
+        matches = matchDao.getAllMatches();
     }
 
     //-----------------Groups-------------------///
@@ -154,6 +161,70 @@ public class AppRepository {
         @Override
         protected Void doInBackground(Team... teams) {
             teamDao.delete(teams[0]);
+            return null;
+        }
+    }
+
+    //-----------------Matches-------------------///
+
+    public void insert(Match match)
+    {
+        new InsertMatchAsyncTask(matchDao).execute(match);
+    }
+
+    public void update(Match match)
+    {
+        new UpdateMatchAsyncTask(matchDao).execute(match);
+    }
+
+    public void delete(Match match)
+    {
+        new DeleteMatchAsyncTask(matchDao).execute(match);
+    }
+
+    public LiveData<List<Match>> getAllMatches()
+    {
+        return matches;
+    }
+
+    private static class InsertMatchAsyncTask extends AsyncTask<Match, Void, Void> {
+        private MatchDao matchDao;
+        private InsertMatchAsyncTask(MatchDao matchDao)
+        {
+            this.matchDao = matchDao;
+        }
+
+        @Override
+        protected Void doInBackground(Match... matches) {
+            matchDao.Insert(matches[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateMatchAsyncTask extends AsyncTask<Match, Void, Void> {
+        private MatchDao matchDao;
+        private UpdateMatchAsyncTask(MatchDao matchDao)
+        {
+            this.matchDao = matchDao;
+        }
+
+        @Override
+        protected Void doInBackground(Match... matches) {
+            matchDao.Update(matches[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteMatchAsyncTask extends AsyncTask<Match, Void, Void> {
+        private MatchDao matchDao;
+        private DeleteMatchAsyncTask(MatchDao matchDao)
+        {
+            this.matchDao = matchDao;
+        }
+
+        @Override
+        protected Void doInBackground(Match... matches) {
+            matchDao.delete(matches[0]);
             return null;
         }
     }

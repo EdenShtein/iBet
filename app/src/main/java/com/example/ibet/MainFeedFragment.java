@@ -163,21 +163,21 @@ public class MainFeedFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_login);
                 }
                 break;
-            case R.id.menu_my_profile:
-                if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
-               }
-                break;
+//            case R.id.menu_my_profile:
+//                if(view != null) {
+//                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
+//               }
+//                break;
             case R.id.menu_teams_result:
                 if(view != null) {
                     Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_teamsResult);
                 }
                 break;
-            case R.id.menu_invite:
-                if(view != null) {
-                    ShowPopup(view);
-                }
-                break;
+//            case R.id.menu_invite:
+//                if(view != null) {
+//                    ShowPopup(view);
+//                }
+//                break;
             default:
 
         }
@@ -192,6 +192,11 @@ public class MainFeedFragment extends Fragment {
                 case R.id.nav_my_profile:
                     if (view != null) {
                         Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
+                    }
+                    break;
+                case R.id.nav_join:
+                    if (view != null) {
+                        ShowPopup(view);
                     }
                     break;
                 default:

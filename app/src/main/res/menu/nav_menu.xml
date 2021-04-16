@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_main_feed"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Main Feed"
+        ></item>
+
+    <item
+        android:id="@+id/nav_my_profile"
+        android:icon="@drawable/profile_img"
+        android:title="My Profile"
+         />
+
+    <item
+        android:id="@+id/nav_join"
+        android:icon="@drawable/invite_btn"
+        android:title="Join Group"
+        ></item>
+</menu>

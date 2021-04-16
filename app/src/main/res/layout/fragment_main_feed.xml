@@ -14,7 +14,7 @@
         android:layout_width="304dp"
         android:layout_height="45dp"
         android:layout_marginEnd="52dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="404dp"
         android:background="@drawable/customborder"
         android:text="Create New Group"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,16 +25,15 @@
         android:layout_width="269dp"
         android:layout_height="189dp"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="41dp"
         android:elevation="5px"
         app:layout_constraintBottom_toTopOf="@+id/mainfeed_create_group"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/mainfeed_background" />
 
     <ImageView
         android:id="@+id/mainfeed_background"
@@ -44,9 +43,22 @@
         android:src="@drawable/background2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="248dp"
+        android:background="@color/design_default_color_primary"
+        app:layout_constraintBottom_toBottomOf="@+id/mainfeed_background"
+        app:layout_constraintTop_toBottomOf="@+id/mainfeed_create_group"
+        app:layout_constraintVertical_bias="0.813"
+        app:menu="@menu/nav_menu"
+        tools:layout_editor_absoluteX="0dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.ibet.model.Match;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.text.SimpleDateFormat;
@@ -26,12 +27,15 @@ public class Match {
     @ColumnInfo(name = "match_date")
     String date;
 
+    @Ignore
+    private boolean expanded;
 
     public Match(@NonNull String id, String home, String away, String date) {
         this.id = id;
         this.home = home;
         this.away = away;
         this.date = date;
+        this.expanded = false;
     }
 
     @NonNull
@@ -65,5 +69,13 @@ public class Match {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 }

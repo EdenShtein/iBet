@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ibet.R;
 import java.util.LinkedList;
@@ -45,6 +46,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         Match currentMatch = matchesData.get(position);
         holder.bindData(currentMatch,position);
         holder.itemView.setTag(currentMatch);
+
+        boolean isExpanded = matchesData.get(position).isExpanded();
+        holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -58,19 +62,22 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
 
     //---------------MatchHolder----------------//
 
-    public static class MatchHolder extends RecyclerView.ViewHolder{
+    public class MatchHolder extends RecyclerView.ViewHolder{
         TextView matchHome;
         TextView matchAway;
         TextView matchDate;
         ImageView matchImage;
+        ConstraintLayout expandableLayout;
         int position;
 
         public MatchHolder(@NonNull View itemView) {
+
             super(itemView);
             matchImage = itemView.findViewById(R.id.upcoming_img);
             matchHome = itemView.findViewById(R.id.upcoming_home_title);
             matchAway = itemView.findViewById(R.id.upcoming_away_title);
             matchDate = itemView.findViewById(R.id.upcoming_match_date);
+            expandableLayout = itemView.findViewById(R.id.expandable_layout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -79,6 +86,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
                     if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(matchesData.get(position), v);
                     }
+                    Match match = matchesData.get(getAdapterPosition());
+                    match.setExpanded(!match.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
                 }
             });
         }

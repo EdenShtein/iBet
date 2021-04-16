@@ -7,9 +7,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Match.MatchAdapter;
@@ -31,6 +34,15 @@ public class UpcomingMatchesFragment extends Fragment {
     MatchAdapter matchAdapter;
     private MatchViewModel matchViewModel;
     List<Match> matchList = new ArrayList<Match>();
+
+    Button confirmBtn;
+    EditText winningTeam;
+    EditText totalScore;
+
+    String groupId;
+    String winning;
+    String score;
+    String gameId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +69,31 @@ public class UpcomingMatchesFragment extends Fragment {
                 }
             }
         });
+
+
+       /* matchAdapter.setOnItemClickListener(new MatchAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Match match, View view) {
+                winningTeam = view.findViewById(R.id.upcoming_winner_input);
+                totalScore = view.findViewById(R.id.upcoming_score_input);
+                confirmBtn = view.findViewById(R.id.upcoming_confirm_btn);
+                confirmBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        winning = winningTeam.getText().toString();
+                        score = totalScore.getText().toString();
+                        Log.d("TAG",winning);
+                        Log.d("TAG",score);
+                *//*Model.instance.placeBet(groupId, winning, score, gameId, new Model.SuccessListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+
+                    }
+                });*//*
+                    }
+                });
+            }
+        });*/
 
         return view;
     }

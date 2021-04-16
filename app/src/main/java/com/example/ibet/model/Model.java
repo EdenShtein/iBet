@@ -128,6 +128,13 @@ public class Model {
         server.getUpComingGames(listener,mActivity,token);
     }
 
+    public void placeBet(String groupId,String finalMatchWinner,String totalPoints,String gameId,SuccessListener listener)
+    {
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.placeBet(listener,mActivity,token,groupId,finalMatchWinner,totalPoints,gameId);
+    }
+
 
 
 

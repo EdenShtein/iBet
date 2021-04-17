@@ -9,6 +9,7 @@ import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.User.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Model {
 
@@ -62,6 +63,11 @@ public class Model {
     public interface UserDetailsListener{
         public void onComplete(User user);
     }
+
+    public interface UserListListener{
+        public void onComplete(List<String> users);
+    }
+
     public void getCurrentUserDetails(UserDetailsListener listener){
         pref = mActivity.getSharedPreferences("MyPref", 0);
         String token = pref.getString("token",null);
@@ -135,7 +141,11 @@ public class Model {
         server.placeBet(listener,mActivity,token,groupId,finalMatchWinner,totalPoints,gameId);
     }
 
-
+    public void getGroupUsers(String id, UserListListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.getGroupUsers(listener,mActivity,token,id);
+    }
 
 
 

@@ -11,6 +11,8 @@ import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Match.MatchDao;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.Team.TeamDao;
+import com.example.ibet.model.User.User;
+import com.example.ibet.model.User.UserDao;
 
 import java.util.List;
 
@@ -25,6 +27,9 @@ public class AppRepository {
     private MatchDao matchDao;
     private LiveData<List<Match>> matches;
 
+    private UserDao userDao;
+    private LiveData<List<User>> users;
+
     public AppRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
         groupDao = database.groupDao();
@@ -35,6 +40,9 @@ public class AppRepository {
 
         matchDao = database.matchDao();
         matches = matchDao.getAllMatches();
+
+        userDao = database.userDao();
+        users = userDao.getAllUsers();
     }
 
     //-----------------Groups-------------------///
@@ -225,6 +233,70 @@ public class AppRepository {
         @Override
         protected Void doInBackground(Match... matches) {
             matchDao.delete(matches[0]);
+            return null;
+        }
+    }
+
+    //-----------------Users-------------------///
+
+    public void insert(User user)
+    {
+        new InsertUserAsyncTask(userDao).execute(user);
+    }
+
+    public void update(User user)
+    {
+        new UpdateUserAsyncTask(userDao).execute(user);
+    }
+
+    public void delete(User user)
+    {
+        new DeleteUserAsyncTask(userDao).execute(user);
+    }
+
+    public LiveData<List<User>> getAllUsers()
+    {
+        return users;
+    }
+
+    private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
+        private UserDao userDao;
+        private InsertUserAsyncTask(UserDao userDao)
+        {
+            this.userDao = userDao;
+        }
+
+        @Override
+        protected Void doInBackground(User... users) {
+            userDao.Insert(users[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateUserAsyncTask extends AsyncTask<User, Void, Void> {
+        private UserDao userDao;
+        private UpdateUserAsyncTask(UserDao userDao)
+        {
+            this.userDao = userDao;
+        }
+
+        @Override
+        protected Void doInBackground(User... users) {
+            userDao.Update(users[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteUserAsyncTask extends AsyncTask<User, Void, Void> {
+        private UserDao userDao;
+        private DeleteUserAsyncTask(UserDao userDao)
+        {
+            this.userDao = userDao;
+        }
+
+        @Override
+        protected Void doInBackground(User... users) {
+            userDao.delete(users[0]);
             return null;
         }
     }

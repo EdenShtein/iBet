@@ -34,6 +34,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class Server {
@@ -547,6 +549,7 @@ public class Server {
                 String group_name;
                 String admin_id;
                 String current_score;
+
                 try {
                     status = response.getString("status");
                     if(status.equals("success")) {
@@ -768,6 +771,57 @@ public class Server {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Error1", error.getMessage());
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void getGroupUsers(Model.UserListListener listener,Activity mActivity,String token,String id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://ibet-app.herokuapp.com/api/groups/"+id;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                List<String> usersID = new LinkedList<String>();
+
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONObject arr = response.getJSONObject("group");
+                        JSONArray users = arr.getJSONArray("users");
+                        for (int i=0;i< users.length(); i++){
+                            String id = (String) users.get(i);
+                            usersID.add(id);
+                        }
+
+                        listener.onComplete(usersID);
+
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         })
         {

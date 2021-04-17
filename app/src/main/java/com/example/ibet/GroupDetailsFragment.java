@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,23 +24,33 @@ import android.widget.TextView;
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Match.Match;
+import com.example.ibet.model.Match.MatchAdapter;
+import com.example.ibet.model.Match.MatchViewModel;
 import com.example.ibet.model.Model;
+import com.example.ibet.model.User.User;
+import com.example.ibet.model.User.UserAdapter;
+import com.example.ibet.model.User.UserViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class GroupDetailsFragment extends Fragment {
 
     View view;
     TextView league;
-    TableRow row;
-
     Button upcoming_matches;
 
     TextView group_name;
-    private GroupViewModel groupViewModel;
+
     String group_id;
     Group currentGroup;
+
+    public RecyclerView usersList_rv;
+    UserAdapter userAdapter;
+    private GroupViewModel groupViewModel;
+    List<User> usersList = new ArrayList<User>();
+    private UserViewModel userViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,30 +60,42 @@ public class GroupDetailsFragment extends Fragment {
         setHasOptionsMenu(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
+        usersList_rv = view.findViewById(R.id.group_details_rv);
+        usersList_rv.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
+        usersList_rv.setLayoutManager(layoutManager);
+        userAdapter = new UserAdapter();
+
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
+        userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
 
         league = view.findViewById(R.id.group_details_sub);
         group_name= view.findViewById(R.id.group_details_title);
         upcoming_matches= view.findViewById(R.id.group_details_upcoming);
 
-
-
         onInit();
+
+        Model.instance.getGroupUsers(group_id,new Model.UserListListener() {
+            @Override
+            public void onComplete(List<String> users) {
+                for (String id : users){
+                    User user = new User(id);
+                    usersList.add(user);
+                }
+                userAdapter.setUsersData(usersList);
+                usersList_rv.setAdapter(userAdapter);
+                for (User user : usersList) {
+                    userViewModel.insert(user);
+                }
+            }
+        });
+
         league.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_leagueDetailsFragment);
             }
         });
-
-        row = view.findViewById(R.id.group_details_table_second);
-        row.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
 
         upcoming_matches.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,8 +16,10 @@ import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Match.MatchDao;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.Team.TeamDao;
+import com.example.ibet.model.User.User;
+import com.example.ibet.model.User.UserDao;
 
-@Database(entities = {Group.class, Team.class, Match.class}, version = 7, exportSchema = false)
+@Database(entities = {Group.class, Team.class, Match.class, User.class}, version = 8, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
@@ -25,6 +27,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract GroupDao groupDao();
     public abstract TeamDao teamDao();
     public abstract MatchDao matchDao();
+    public abstract UserDao userDao();
 
     public static synchronized AppDatabase getInstance(Context context) {
         if(instance == null) {
@@ -50,11 +53,13 @@ public abstract class AppDatabase extends RoomDatabase {
         private GroupDao groupDao;
         private TeamDao teamDao;
         private MatchDao matchDao;
+        private UserDao userDao;
 
         private PopulateDbAsyncTask(AppDatabase database) {
             groupDao = database.groupDao();
             teamDao = database.teamDao();
             matchDao = database.matchDao();
+            userDao = database.userDao();
         }
 
         @Override

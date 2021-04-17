@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_profile_main_feed"
+        android:icon="@drawable/main_feed"
+        android:title="Main Feed"
+        ></item>
+
+    <item
+        android:id="@+id/nav_profile_rules"
+        android:icon="@drawable/rules_icon"
+        android:title="Rules"
+        />
+
+    <item
+        android:id="@+id/nav_profile_edit"
+        android:icon="@drawable/edit_user_icon"
+        android:title="Edit User"
+        ></item>
+</menu>

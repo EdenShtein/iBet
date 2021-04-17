@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,18 +76,11 @@ public class GroupDetailsFragment extends Fragment {
 
         onInit();
 
-        Model.instance.getGroupUsers(group_id,new Model.UserListListener() {
+        userViewModel.getAllUsers().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
             @Override
-            public void onComplete(List<String> users) {
-                for (String id : users){
-                    User user = new User(id);
-                    usersList.add(user);
-                }
-                userAdapter.setUsersData(usersList);
+            public void onChanged(List<User> users) {
+                userAdapter.setUsersData(users);
                 usersList_rv.setAdapter(userAdapter);
-                for (User user : usersList) {
-                    userViewModel.insert(user);
-                }
             }
         });
 
@@ -153,6 +147,19 @@ public class GroupDetailsFragment extends Fragment {
             @Override
             public void onComplete(boolean result, Group group) {
                 currentGroup = group;
+            }
+        });
+
+        Model.instance.getGroupUsers(group_id,new Model.UserListListener() {
+            @Override
+            public void onComplete(List<String> users) {
+                for (String id : users){
+                    User user = new User(id);
+                    usersList.add(user);
+                }
+                for (User user : usersList) {
+                    userViewModel.insert(user);
+                }
             }
         });
     }

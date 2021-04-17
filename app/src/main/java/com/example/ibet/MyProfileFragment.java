@@ -22,6 +22,7 @@ import com.example.ibet.model.Group.GroupAdapter;
 import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Model;
 import com.example.ibet.model.User.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +37,8 @@ public class MyProfileFragment extends Fragment {
     List<Group> groupList = new LinkedList<Group>();
     String username;
 
+    BottomNavigationView bottomNav;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class MyProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_my_profile, container, false);
         setHasOptionsMenu(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
             @Override
             public void onComplete(User user) {
@@ -52,6 +55,8 @@ public class MyProfileFragment extends Fragment {
             }
         });
 
+        bottomNav = view.findViewById(R.id.bottom_navigation_bar);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         groupsList_rv = view.findViewById(R.id.myprofile_history_rv);
         groupsList_rv.setHasFixedSize(true);
@@ -72,32 +77,58 @@ public class MyProfileFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.profile_menu,menu);
+        //inflater.inflate(R.menu.profile_menu,menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_rules:
-                if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_rulesFragment);
-                }
-                break;
-            case R.id.back_btn:
-                if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_mainFeedFragment);
-                }
-                break;
-            case R.id.profile_edit:
-                if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_editUserFragment);
-                }
-                break;
-            default:
-
-        }
+//        switch (item.getItemId()) {
+//            case R.id.menu_rules:
+//                if(view != null) {
+//                    Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_rulesFragment);
+//                }
+//                break;
+//            case R.id.back_btn:
+//                if(view != null) {
+//                    Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_mainFeedFragment);
+//                }
+//                break;
+//            case R.id.profile_edit:
+//                if(view != null) {
+//                    Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_editUserFragment);
+//                }
+//                break;
+//            default:
+//
+//        }
 
         return super.onOptionsItemSelected(item);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_profile_main_feed:
+                    if (view != null) {
+                        Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_mainFeedFragment);
+                    }
+                    break;
+                case R.id.nav_profile_rules:
+                    if (view != null) {
+                        Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_rulesFragment);
+                    }
+                    break;
+                case R.id.nav_profile_edit:
+                    if (view != null) {
+                        Navigation.findNavController(view).navigate(R.id.action_myProfileFragment_to_editUserFragment);
+                    }
+                    break;
+                default:
+
+            }
+            return true;
+        }
+    };
 }

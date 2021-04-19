@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_mainFeedFragment_to_groupDetailsFragment"
             app:destination="@id/groupDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_dashboard"
+            app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"
@@ -175,5 +178,20 @@
         <argument
             android:name="groupId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.ibet.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_mainFeed"
+            app:destination="@id/mainFeedFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_login"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_teamsResult"
+            app:destination="@id/teamsResultFragment" />
     </fragment>
 </navigation>

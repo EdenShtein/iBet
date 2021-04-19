@@ -3,13 +3,18 @@ package com.example.ibet;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,6 +43,7 @@ public class TeamsResultFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_teams_result, container, false);
+        setHasOptionsMenu(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         table = view.findViewById(R.id.table);
@@ -118,5 +124,26 @@ public class TeamsResultFragment extends Fragment {
 //                });
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.back_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.back_btn:
+                if(view != null) {
+                    Navigation.findNavController(view).popBackStack();
+                }
+                break;
+            default:
+
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 }

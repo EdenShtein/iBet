@@ -1,6 +1,7 @@
 package com.example.ibet;
 
 import android.app.Dialog;
+import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -58,13 +59,13 @@ public class MainFeedFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_main_feed, container, false);
         pref = getActivity().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("iBet");
 
         View decorView = getActivity().getWindow().getDecorView(); // Show the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         decorView.setSystemUiVisibility(uiOptions);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
 
         bottomNav = view.findViewById(R.id.bottom_navigation_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -148,42 +149,42 @@ public class MainFeedFragment extends Fragment {
         myDialog.show();
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.main_menu,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_sign_out:
-                if(view != null) {
-                    pref.edit().remove("token").commit();
-                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_login);
-                }
-                break;
-//            case R.id.menu_my_profile:
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        inflater.inflate(R.menu.main_menu,menu);
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.menu_sign_out:
 //                if(view != null) {
-//                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
-//               }
-//                break;
-            case R.id.menu_teams_result:
-                if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_teamsResult);
-                }
-                break;
-//            case R.id.menu_invite:
-//                if(view != null) {
-//                    ShowPopup(view);
+//                    pref.edit().remove("token").commit();
+//                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_login);
 //                }
 //                break;
-            default:
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+////            case R.id.menu_my_profile:
+////                if(view != null) {
+////                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
+////               }
+////                break;
+//            case R.id.menu_teams_result:
+//                if(view != null) {
+//                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_teamsResult);
+//                }
+//                break;
+////            case R.id.menu_invite:
+////                if(view != null) {
+////                    ShowPopup(view);
+////                }
+////                break;
+//            default:
+//
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -199,6 +200,16 @@ public class MainFeedFragment extends Fragment {
                         ShowPopup(view);
                     }
                     break;
+                case R.id.nav_main_feed:
+                    if(view!=null){
+                    }
+                    break;
+                case R.id.nav_dashboard:
+                    if(view!=null){
+                        Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_dashboard);
+                    }
+                    break;
+
                 default:
 
             }

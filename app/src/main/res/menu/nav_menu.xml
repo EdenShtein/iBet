@@ -13,8 +13,14 @@
          />
 
     <item
-        android:id="@+id/nav_join"
-        android:icon="@drawable/group_invite"
-        android:title="Join Group"
+    android:id="@+id/nav_join"
+    android:icon="@drawable/group_invite"
+    android:title="Join Group"
+    ></item>
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/dashboard_icon"
+        android:title="Dashboard"
         ></item>
 </menu>

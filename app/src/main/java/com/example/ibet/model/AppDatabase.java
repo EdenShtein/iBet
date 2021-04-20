@@ -64,7 +64,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            groupDao.Insert(new Group("1", "First Group", "1234"));
+
             return null;
         }
     }

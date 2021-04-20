@@ -78,6 +78,9 @@ public class MainFeedFragment extends Fragment {
 
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 
+        /*Group group = new Group("1","First Group","1234");
+        groupViewModel.delete(group);*/
+
         groupViewModel.getAllGroups().observe(getViewLifecycleOwner(), new Observer<List<Group>>() {
             @Override
             public void onChanged(List<Group> groups) {

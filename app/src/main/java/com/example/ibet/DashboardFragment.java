@@ -1,9 +1,11 @@
 package com.example.ibet;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -27,6 +29,8 @@ public class DashboardFragment extends Fragment {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
+    AlertDialog.Builder alertBuilder;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +43,7 @@ public class DashboardFragment extends Fragment {
 
         signout =view.findViewById(R.id.dash_signout);
         teamsResult =view.findViewById(R.id.dash_team_results);
+        alertBuilder = new AlertDialog.Builder(getActivity());
 
         pref = getActivity().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -46,9 +51,26 @@ public class DashboardFragment extends Fragment {
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pref.edit().remove("token").commit();
-                Navigation.findNavController(view).navigate(R.id.action_dashboard_to_login);
+                alertBuilder.setMessage("Are You Sure You Want To Sign Out?")
+                        .setCancelable(false)
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                pref.edit().remove("token").commit();
+                                Navigation.findNavController(view).navigate(R.id.action_dashboard_to_login);
+                            }
+                        });
+                AlertDialog alert = alertBuilder.create();
+                alert.setTitle("Signout");
+                alert.show();
             }
+
         });
 
         teamsResult.setOnClickListener(new View.OnClickListener() {

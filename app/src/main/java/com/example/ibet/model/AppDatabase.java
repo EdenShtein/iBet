@@ -19,7 +19,7 @@ import com.example.ibet.model.Team.TeamDao;
 import com.example.ibet.model.User.User;
 import com.example.ibet.model.User.UserDao;
 
-@Database(entities = {Group.class, Team.class, Match.class, User.class}, version = 8, exportSchema = false)
+@Database(entities = {Group.class, Team.class, Match.class, User.class}, version = 9, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;

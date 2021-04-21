@@ -124,7 +124,7 @@ public class RulesFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.back_btn:
                 if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_rulesFragment_to_myProfile);
+                    Navigation.findNavController(view).popBackStack();
                 }
                 break;
             default:

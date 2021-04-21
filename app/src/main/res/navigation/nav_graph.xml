@@ -193,5 +193,8 @@
         <action
             android:id="@+id/action_dashboard_to_teamsResult"
             app:destination="@id/teamsResultFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_rules"
+            app:destination="@id/rulesFragment" />
     </fragment>
 </navigation>

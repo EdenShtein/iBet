@@ -42,7 +42,7 @@
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:letterSpacing="0.025"
-        android:text="Dash Board"
+        android:text="Dashboard"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -144,7 +144,7 @@
                     android:gravity="center"
                     android:text="Team Results"
                     android:textAllCaps="true"
-                    android:textColor="@color/teal_200"
+                    android:textColor="@color/teal_700"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -278,7 +278,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/helpCard"
+            android:id="@+id/nav_rules"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:layout_margin="8dp"
@@ -295,12 +295,11 @@
 
                 <ImageView
                     android:id="@+id/image_view23"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="100dp"
+                    android:layout_height="84dp"
+                    android:src="@drawable/rules_icon"
                     app:layout_constraintBottom_toTopOf="@+id/textView23"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -309,7 +308,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="HELP"
+                    android:text="RULES"
                     android:textAllCaps="true"
                     android:textColor="@color/teal_700"
                     android:textSize="14sp"
@@ -325,7 +324,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/settingsCard"
+            android:id="@+id/nav_back"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:layout_margin="8dp"
@@ -342,12 +341,11 @@
 
                 <ImageView
                     android:id="@+id/image_view"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="126dp"
+                    android:layout_height="58dp"
+                    android:src="@drawable/backbtn"
                     app:layout_constraintBottom_toTopOf="@+id/textView4"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -356,14 +354,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="SETTINGS"
+                    android:text="Back To Main Feed"
                     android:textAllCaps="true"
                     android:textColor="@color/teal_700"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_view" />
 

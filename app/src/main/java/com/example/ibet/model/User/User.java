@@ -35,9 +35,21 @@ public class User {
     }
 
     @Ignore
+    public User(String id, String email,String username) {
+        this.id = id;
+        this.email = email;
+        this.userName = username;
+    }
+
+    @Ignore
     public User(String email,String username) {
         this.email = email;
         this.userName = username;
+    }
+
+    @Ignore
+    public User() {
+
     }
 
     @Ignore

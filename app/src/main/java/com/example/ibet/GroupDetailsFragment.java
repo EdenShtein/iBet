@@ -154,7 +154,8 @@ public class GroupDetailsFragment extends Fragment {
             @Override
             public void onComplete(List<String> users) {
                 for (String id : users){
-                    User user = new User(id);
+                    String userId = id;
+                    User user = new User(userId);
                     usersList.add(user);
                 }
                 for (User user : usersList) {

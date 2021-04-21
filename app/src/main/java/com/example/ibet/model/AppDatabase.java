@@ -18,11 +18,13 @@ import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.Team.TeamDao;
 import com.example.ibet.model.User.User;
 import com.example.ibet.model.User.UserDao;
+import com.example.ibet.model.User.UserLog;
 
-@Database(entities = {Group.class, Team.class, Match.class, User.class}, version = 8, exportSchema = false)
+@Database(entities = {Group.class, Team.class, Match.class, User.class, UserLog.class}, version = 10, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
+    public abstract UniversalDao getAllDao();
 
     public abstract GroupDao groupDao();
     public abstract TeamDao teamDao();

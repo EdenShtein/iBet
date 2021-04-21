@@ -85,7 +85,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         }
 
         public void bindData(User user, int position){
-            userName.setText(user.getId());
+            userName.setText(user.getUserName());
             userRank.setText(user.getRank());
             userScore.setText(user.getScore());
 

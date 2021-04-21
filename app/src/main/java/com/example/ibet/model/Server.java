@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -13,9 +16,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ibet.model.Group.Group;
+import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.User.User;
+import com.example.ibet.model.User.UserViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,7 +65,16 @@ public class Server {
                 String status;
                 try {
                     status = response.getString("status");
-                    if(status.equals("success")) { listener.onComplete(true); }
+                    if(status.equals("success")) {
+                        JSONObject data = response.getJSONObject("data");
+                        JSONObject user_obj = data.getJSONObject("user");
+                        String user_id = user_obj.getString("_id");
+                        User user = new User(email,username);
+                        user.setId(user_id);
+                        UserViewModel userViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(UserViewModel.class);
+                        userViewModel.insert(user);
+                        listener.onComplete(true);
+                    }
                     else { listener.onComplete(false); }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -95,6 +109,13 @@ public class Server {
                     status = response.getString("status");
                     token = response.getString("token");
                     if(status.equals("success")) {
+                        AppRepository appRepository = new AppRepository(mActivity.getApplication());
+                        JSONObject data = response.getJSONObject("data");
+                        JSONObject user_obj = data.getJSONObject("user");
+                        String user_id = user_obj.getString("_id");
+                        String user_name = user_obj.getString("userName");
+                        User user = new User(user_id,email,user_name);
+                        appRepository.insert(user);
                         listener.onComplete(true,token);
                     }
                     else { listener.onComplete(false,token); }
@@ -549,6 +570,8 @@ public class Server {
                 String group_name;
                 String admin_id;
                 String current_score;
+                String user_name;
+                String user_id;
 
                 try {
                     status = response.getString("status");
@@ -560,11 +583,21 @@ public class Server {
 
                         JSONObject data = arr.getJSONObject("data");
                         JSONArray userGroupBets = data.getJSONArray("userGroupBets");
-                        JSONObject score = userGroupBets.getJSONObject(0);
-                        current_score = score.getString("currentScore");
+                        for (int i=0; i<userGroupBets.length(); i++){
+                            JSONObject user = userGroupBets.getJSONObject(i);
+                            current_score = user.getString("currentScore");
+                            user_name = user.getString("userName");
+                            user_id = user.getString("user");
+                            User new_user = new User();
+                            new_user.setId(user_id);
+                            new_user.setUserName(user_name);
+                            new_user.setScore(current_score);
+                        }
+
+
                         /*do*/
                         Group group = new Group(group_id,group_name,admin_id);
-                        group.setCurrent_score(current_score);
+                        //group.setCurrent_score(current_score);
 
                         listener.onComplete(true,group);
 

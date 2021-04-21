@@ -18,6 +18,8 @@ import java.util.List;
 
 public class AppRepository {
 
+    private UniversalDao universalDao;
+
     private GroupDao groupDao;
     private LiveData<List<Group>> groups;
 
@@ -32,6 +34,8 @@ public class AppRepository {
 
     public AppRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
+        universalDao = database.getAllDao();
+
         groupDao = database.groupDao();
         groups = groupDao.getAllGroups();
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -16,15 +17,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 
 public class DashboardFragment extends Fragment {
 
     View view;
 
-    Button signout;
-    Button teamsResult;
+    CardView signout;
+    CardView teamsResult;
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;

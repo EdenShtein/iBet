@@ -730,22 +730,33 @@ public class Server {
                     if(status.equals("success")) {
                         JSONObject result = response.getJSONObject("result");
                         JSONArray resultArray = result.getJSONArray("games");
-                        ArrayList<Match> matches = new ArrayList<>(resultArray.length());
+                        ArrayList<Match> finishedMatches = new ArrayList<>(resultArray.length());
+                        ArrayList<Match> thisWeekMatches = new ArrayList<>(resultArray.length());
+                        ArrayList<Match> notYetMatches = new ArrayList<>(resultArray.length());
                         for(int i=0;i<resultArray.length();i++)
                         {
                             String gameId = resultArray.getJSONObject(i).getString("gameId");
                             String hTeam = resultArray.getJSONObject(i).getString("hTeam");
                             String vTeam = resultArray.getJSONObject(i).getString("vTeam");
                             String date = resultArray.getJSONObject(i).getString("date");
+                            String gameStatus = resultArray.getJSONObject(i).getString("status");
 
                             SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
                             Date fdate = fmt.parse(date);
                             SimpleDateFormat fmtOut = new SimpleDateFormat("dd-MM-yyyy");
 
-                            Match match = new Match(gameId,hTeam,vTeam,fmtOut.format(fdate));
-                            matches.add(match);
+                            Match match = new Match(gameId,hTeam,vTeam,fmtOut.format(fdate),gameStatus);
+                            if(match.getStatus().equals("Finished")){
+                                finishedMatches.add(match);
+                            }
+                            if(match.getStatus().equals("ThisWeek")){
+                                thisWeekMatches.add(match);
+                            }
+                            else{
+                                notYetMatches.add(match);
+                            }
                         }
-                        listener.onComplete(matches);
+                        listener.onComplete(finishedMatches,thisWeekMatches,notYetMatches);
 
                     }
                     else{

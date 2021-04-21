@@ -125,7 +125,9 @@ public class Model {
     }
 
     public interface MatchListener{
-        public void onComplete(ArrayList<Match> upComingMatches);
+        public void onComplete(ArrayList<Match> finishedMatches,
+                               ArrayList<Match> thisWeekMatches,
+                               ArrayList<Match> noYetMatches);
     }
 
     public void getUpComingMatches(MatchListener listener){

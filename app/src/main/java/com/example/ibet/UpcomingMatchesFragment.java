@@ -68,8 +68,10 @@ public class UpcomingMatchesFragment extends Fragment {
 
         Model.instance.getUpComingMatches(new Model.MatchListener() {
             @Override
-            public void onComplete(ArrayList<Match> upComingMatches) {
-                matchList = upComingMatches;
+            public void onComplete(ArrayList<Match> finishedMatches,
+                                   ArrayList<Match> thisWeekMatches,
+                                   ArrayList<Match> noYetMatches) {
+                matchList = finishedMatches;
                 matchAdapter.setMatchesData(matchList);
                 matchesList_rv.setAdapter(matchAdapter);
                 for (Match match : matchList) {

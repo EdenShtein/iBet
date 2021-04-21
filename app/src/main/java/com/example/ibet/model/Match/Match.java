@@ -29,13 +29,17 @@ public class Match {
     @Ignore
     public boolean isBetted;
 
+    @ColumnInfo(name = "match_finished")
+    String status;
 
-    public Match(@NonNull String id, String home, String away, String date) {
+
+    public Match(@NonNull String id, String home, String away, String date,String status) {
         this.id = id;
         this.home = home;
         this.away = away;
         this.date = date;
         this.isBetted = false;
+        this.status = status;
     }
 
     @NonNull
@@ -79,4 +83,11 @@ public class Match {
         isBetted = betted;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

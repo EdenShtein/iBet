@@ -104,7 +104,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         }
 
         public void bindData(Match match, int position){
-            /*if (match.getStatus().equals("Finished")){
+            if (match.getStatus().equals("Finished") || match.getStatus().equals("NotYet")){
                 winnerInput.setEnabled(false);
                 winnerInput.setVisibility(View.INVISIBLE);
                 scoreInput.setEnabled(false);
@@ -113,7 +113,17 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
                 confirmBtn.setVisibility(View.INVISIBLE);
                 winnerTitle.setVisibility(View.INVISIBLE);
                 scoreTitle.setVisibility(View.INVISIBLE);
-            }*/
+            }
+            else{
+                winnerInput.setEnabled(true);
+                winnerInput.setVisibility(View.VISIBLE);
+                scoreInput.setEnabled(true);
+                scoreInput.setVisibility(View.VISIBLE);
+                confirmBtn.setEnabled(true);
+                confirmBtn.setVisibility(View.VISIBLE);
+                winnerTitle.setVisibility(View.VISIBLE);
+                scoreTitle.setVisibility(View.VISIBLE);
+            }
             matchHome.setText(match.getHome());
             matchAway.setText(match.getAway());
             matchDate.setText(match.getDate());

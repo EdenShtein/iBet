@@ -93,6 +93,8 @@ public class UpcomingMatchesFragment extends Fragment {
             }
         });
 
+
+
         matchAdapter.setOnItemClickListener(new MatchAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Match match, View view) {

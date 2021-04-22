@@ -19,6 +19,7 @@ import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Team.Team;
+import com.example.ibet.model.Team.TeamViewModel;
 import com.example.ibet.model.User.User;
 import com.example.ibet.model.User.UserViewModel;
 
@@ -372,7 +373,8 @@ public class Server {
                 String status;
                 try {
                     status = response.getString("status");
-                    if(status.equals("success")) { listener.onComplete(true); }
+                    if(status.equals("success")) {
+                        listener.onComplete(true); }
                     else { listener.onComplete(false); }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -464,8 +466,11 @@ public class Server {
                             String losses = resultArray.getJSONObject(i).getString("losses");
                             String id = resultArray.getJSONObject(i).getString("_id");
                             String gamesRemaining = resultArray.getJSONObject(i).getString("remaning");
-                            Team t = new Team(id,teamName,wins,losses,gamesRemaining);
-                            teamsData.add(t);
+                            Team team = new Team(id,teamName,wins,losses,gamesRemaining);
+                            teamsData.add(team);
+
+                            TeamViewModel teamViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(TeamViewModel.class);
+                            teamViewModel.insert(team);
                         }
                         listener.onComplete(teamsData);
 
@@ -530,6 +535,8 @@ public class Server {
                     Group group = new Group(group_id,group_name,admin_id);
 
                     if(status.equals("success")) {
+                        GroupViewModel groupViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(GroupViewModel.class);
+                        groupViewModel.insert(group);
                         listener.onComplete(true,group);
                     }
                     else { listener.onComplete(false,group); }
@@ -598,7 +605,8 @@ public class Server {
                         /*do*/
                         Group group = new Group(group_id,group_name,admin_id);
                         //group.setCurrent_score(current_score);
-
+                        GroupViewModel groupViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(GroupViewModel.class);
+                        groupViewModel.update(group);
                         listener.onComplete(true,group);
 
                     }
@@ -645,6 +653,8 @@ public class Server {
                     if(status.equals("success")) {
                         shareCode = response.getString("groupToken");
                         group.setShareCode(shareCode);
+                        GroupViewModel groupViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(GroupViewModel.class);
+                        groupViewModel.update(group);
                         listener.onComplete(true,group);
                     }
                     else{

@@ -752,7 +752,7 @@ public class Server {
                             if(match.getStatus().equals("ThisWeek")){
                                 thisWeekMatches.add(match);
                             }
-                            else{
+                            if(match.getStatus().equals("NotYet")){
                                 notYetMatches.add(match);
                             }
                         }

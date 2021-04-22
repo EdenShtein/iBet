@@ -24,12 +24,8 @@ import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Match.MatchAdapter;
 import com.example.ibet.model.Match.MatchViewModel;
 import com.example.ibet.model.Model;
-import com.example.ibet.model.Team.Team;
-import com.example.ibet.model.Team.TeamAdapter;
-import com.example.ibet.model.Team.TeamViewModel;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class UpcomingMatchesFragment extends Fragment {
@@ -37,9 +33,13 @@ public class UpcomingMatchesFragment extends Fragment {
     View view;
 
     public RecyclerView matchesList_rv;
+
     MatchAdapter matchAdapter;
+
+
     private MatchViewModel matchViewModel;
-    List<Match> matchList = new ArrayList<Match>();
+
+    List<Match> MatchList = new ArrayList<Match>();
 
     Button confirmBtn;
     EditText winningTeam;
@@ -60,6 +60,7 @@ public class UpcomingMatchesFragment extends Fragment {
         matchesList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         matchesList_rv.setLayoutManager(layoutManager);
+
         matchAdapter = new MatchAdapter();
 
         matchViewModel = ViewModelProviders.of(getActivity()).get(MatchViewModel.class);
@@ -70,11 +71,15 @@ public class UpcomingMatchesFragment extends Fragment {
             @Override
             public void onComplete(ArrayList<Match> finishedMatches,
                                    ArrayList<Match> thisWeekMatches,
-                                   ArrayList<Match> noYetMatches) {
-                matchList = finishedMatches;
-                matchAdapter.setMatchesData(matchList);
+                                   ArrayList<Match> notYetMatches) {
+                MatchList.addAll(finishedMatches);
+                int pos = finishedMatches.size();
+                MatchList.addAll(thisWeekMatches);
+                MatchList.addAll(notYetMatches);
+                matchAdapter.setMatchesData(MatchList);
                 matchesList_rv.setAdapter(matchAdapter);
-                for (Match match : matchList) {
+                matchesList_rv.scrollToPosition(pos);
+                for (Match match : MatchList) {
                     matchViewModel.insert(match);
                 }
             }

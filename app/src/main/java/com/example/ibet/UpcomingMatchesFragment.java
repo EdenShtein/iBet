@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ibet.model.Match.Match;
@@ -49,6 +50,8 @@ public class UpcomingMatchesFragment extends Fragment {
     String winning;
     String score;
 
+    ProgressBar pb;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,17 +69,21 @@ public class UpcomingMatchesFragment extends Fragment {
 
         groupId = UpcomingMatchesFragmentArgs.fromBundle(getArguments()).getGroupId();
 
+        pb=view.findViewById(R.id.upcoming_pb);
+        pb.setVisibility(View.VISIBLE);
+
         Model.instance.getUpComingMatches(new Model.MatchListener() {
             @Override
             public void onComplete(ArrayList<Match> finishedMatches,
                                    ArrayList<Match> thisWeekMatches,
                                    ArrayList<Match> noYetMatches) {
-                matchList = finishedMatches;
+                matchList = thisWeekMatches;
                 matchAdapter.setMatchesData(matchList);
                 matchesList_rv.setAdapter(matchAdapter);
                 for (Match match : matchList) {
                     matchViewModel.insert(match);
                 }
+                pb.setVisibility(View.INVISIBLE);
             }
         });
 

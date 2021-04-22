@@ -32,14 +32,22 @@ public class Match {
     @ColumnInfo(name = "match_finished")
     String status;
 
+    @ColumnInfo(name = "match_hScore")
+    int hScore;
 
-    public Match(@NonNull String id, String home, String away, String date,String status) {
+    @ColumnInfo(name = "match_vScore")
+    int vScore;
+
+
+    public Match(@NonNull String id, String home, String away, String date,String status,int hScore,int vScore) {
         this.id = id;
         this.home = home;
         this.away = away;
         this.date = date;
         this.isBetted = false;
         this.status = status;
+        this.hScore = hScore;
+        this.vScore = vScore;
     }
 
     @NonNull
@@ -89,5 +97,21 @@ public class Match {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int gethScore() {
+        return hScore;
+    }
+
+    public void sethScore(int hScore) {
+        this.hScore = hScore;
+    }
+
+    public int getvScore() {
+        return vScore;
+    }
+
+    public void setvScore(int vScore) {
+        this.vScore = vScore;
     }
 }

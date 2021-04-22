@@ -8,6 +8,50 @@
     android:background="@drawable/customborder"
     android:backgroundTint="#CE080D25">
 
+    <TextView
+        android:id="@+id/upcoming_home_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:elevation="2dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upcoming_away_title" />
+
+    <TextView
+        android:id="@+id/upcoming_dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:elevation="2dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="--"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/upcoming_away_score"
+        app:layout_constraintStart_toEndOf="@+id/upcoming_home_score"
+        app:layout_constraintTop_toBottomOf="@+id/upcoming_away_title" />
+
+    <TextView
+        android:id="@+id/upcoming_away_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:elevation="2dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/upcoming_home_score" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/expandable_layout"
         android:layout_width="0dp"
@@ -88,6 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:elevation="2dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
         android:textColor="#FFFFFF"
@@ -102,6 +147,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:elevation="2dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
         android:textColor="#FFFFFF"
@@ -115,6 +161,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:elevation="2dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
         android:textColor="#FFFFFF"
@@ -125,11 +172,13 @@
 
     <ImageView
         android:id="@+id/upcoming_img"
-        android:layout_width="77dp"
-        android:layout_height="68dp"
+        android:layout_width="221dp"
+        android:layout_height="215dp"
+        android:elevation="1dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upcoming_away_title"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/basketball" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

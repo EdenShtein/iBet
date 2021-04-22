@@ -41,7 +41,7 @@ public class UpcomingMatchesFragment extends Fragment {
     MatchAdapter matchAdapter;
     private MatchViewModel matchViewModel;
 
-    List<Match> MatchList = new ArrayList<Match>();
+    List<Match> MatchList = new ArrayList<>();
 
     Button confirmBtn;
     EditText winningTeam;

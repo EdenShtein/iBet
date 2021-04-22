@@ -748,6 +748,7 @@ public class Server {
                             SimpleDateFormat fmtOut = new SimpleDateFormat("dd-MM-yyyy");
 
                             Match match = new Match(gameId,hTeam,vTeam,fmtOut.format(fdate),gameStatus,hScore,vScore);
+
                             if(match.getStatus().equals("Finished")){
                                 finishedMatches.add(match);
                             }

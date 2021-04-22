@@ -149,6 +149,16 @@ public class Model {
         server.getGroupUsers(listener,mActivity,token,id);
     }
 
+    public interface GroupIdsListener{
+        public void onComplete(ArrayList<String> groupIds);
+    }
+
+    public void getUsersGroup(GroupIdsListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.getUsersGroup(listener,mActivity,token);
+    }
+
 
 
 }

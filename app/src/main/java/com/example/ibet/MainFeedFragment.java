@@ -34,6 +34,7 @@ import com.example.ibet.model.Model;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.nio.file.attribute.GroupPrincipal;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,9 +47,11 @@ public class MainFeedFragment extends Fragment {
    Button createGroup;
    GroupAdapter groupAdapter;
    private GroupViewModel groupViewModel;
-   LiveData<List<Group>> groupList;
+   //LiveData<List<Group>> groupList;
    Dialog myDialog;
    String group_id;
+
+   ArrayList<Group> groupList;
 
    BottomNavigationView bottomNav;
 
@@ -67,6 +70,8 @@ public class MainFeedFragment extends Fragment {
         decorView.setSystemUiVisibility(uiOptions);
         //setHasOptionsMenu(true);
 
+        groupList = new ArrayList<>();
+
         bottomNav = view.findViewById(R.id.bottom_navigation_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -81,10 +86,27 @@ public class MainFeedFragment extends Fragment {
         /*Group group = new Group("1","First Group","1234");
         groupViewModel.delete(group);*/
 
+        Model.instance.getUsersGroup(new Model.GroupIdsListener() {
+            @Override
+            public void onComplete(ArrayList<String> groupIds) {
+                for(String id: groupIds){
+                    Model.instance.getGroupData(id, new Model.GroupListener() {
+                        @Override
+                        public void onComplete(boolean result, Group group) {
+                            if(result){
+                                groupList.add(group);}
+                        }
+                    });
+                }
+            }
+        });
+
+
         groupViewModel.getAllGroups().observe(getViewLifecycleOwner(), new Observer<List<Group>>() {
             @Override
             public void onChanged(List<Group> groups) {
-                groupAdapter.setGroupsData(groups);
+                groupList.addAll(groups);
+                groupAdapter.setGroupsData(groupList);
                 groupsList_rv.setAdapter(groupAdapter);
             }
         });
@@ -109,6 +131,7 @@ public class MainFeedFragment extends Fragment {
         });
 
         myDialog = new Dialog(view.getContext());
+
 
         return view;
     }

@@ -895,4 +895,55 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void getUsersGroup(Model.GroupIdsListener listener,Activity mActivity,String token) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://ibet-app.herokuapp.com/api/users/me";
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONObject data = response.getJSONObject("data");
+                        JSONArray arr = data.getJSONArray("groups");
+                        ArrayList <String> ids = new ArrayList<>();
+                        for(int i=0;i<arr.length();i++){
+                            String id = (String) arr.get(i);
+                            ids.add(id);
+                        }
+                        listener.onComplete(ids);
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("Error1", error.getMessage());
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
 }

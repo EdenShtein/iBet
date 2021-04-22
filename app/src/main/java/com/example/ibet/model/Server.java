@@ -740,16 +740,18 @@ public class Server {
                             String vTeam = resultArray.getJSONObject(i).getString("vTeam");
                             String date = resultArray.getJSONObject(i).getString("date");
                             String gameStatus = resultArray.getJSONObject(i).getString("status");
+                            int hScore = resultArray.getJSONObject(i).getInt("hScore");
+                            int vScore = resultArray.getJSONObject(i).getInt("vScore");
 
                             SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
                             Date fdate = fmt.parse(date);
                             SimpleDateFormat fmtOut = new SimpleDateFormat("dd-MM-yyyy");
 
-                            Match match = new Match(gameId,hTeam,vTeam,fmtOut.format(fdate),gameStatus);
+                            Match match = new Match(gameId,hTeam,vTeam,fmtOut.format(fdate),gameStatus,hScore,vScore);
                             if(match.getStatus().equals("Finished")){
                                 finishedMatches.add(match);
                             }
-                            if(match.getStatus().equals("ThisWeek")){
+                            else if(match.getStatus().equals("ThisWeek")){
                                 thisWeekMatches.add(match);
                             }
                             if(match.getStatus().equals("NotYet")){

@@ -18,14 +18,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Match.MatchAdapter;
 import com.example.ibet.model.Match.MatchViewModel;
 import com.example.ibet.model.Model;
+import com.example.ibet.model.Team.Team;
+import com.example.ibet.model.Team.TeamAdapter;
+import com.example.ibet.model.Team.TeamViewModel;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class UpcomingMatchesFragment extends Fragment {
@@ -33,10 +38,7 @@ public class UpcomingMatchesFragment extends Fragment {
     View view;
 
     public RecyclerView matchesList_rv;
-
     MatchAdapter matchAdapter;
-
-
     private MatchViewModel matchViewModel;
 
     List<Match> MatchList = new ArrayList<Match>();
@@ -48,6 +50,8 @@ public class UpcomingMatchesFragment extends Fragment {
     String groupId;
     String winning;
     String score;
+
+    ProgressBar pb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +71,9 @@ public class UpcomingMatchesFragment extends Fragment {
 
         groupId = UpcomingMatchesFragmentArgs.fromBundle(getArguments()).getGroupId();
 
+        pb=view.findViewById(R.id.upcoming_pb);
+        pb.setVisibility(View.VISIBLE);
+
         Model.instance.getUpComingMatches(new Model.MatchListener() {
             @Override
             public void onComplete(ArrayList<Match> finishedMatches,
@@ -82,6 +89,7 @@ public class UpcomingMatchesFragment extends Fragment {
                 for (Match match : MatchList) {
                     matchViewModel.insert(match);
                 }
+                pb.setVisibility(View.INVISIBLE);
             }
         });
 

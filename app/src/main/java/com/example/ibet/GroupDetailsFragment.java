@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -53,6 +54,8 @@ public class GroupDetailsFragment extends Fragment {
     List<User> usersList = new ArrayList<User>();
     private UserViewModel userViewModel;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,6 +69,8 @@ public class GroupDetailsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         usersList_rv.setLayoutManager(layoutManager);
         userAdapter = new UserAdapter();
+
+
 
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
         userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);

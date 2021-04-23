@@ -12,9 +12,9 @@ public class UserViewModel extends AndroidViewModel {
     private AppRepository repository;
     private LiveData<List<User>> usersList;
 
-    public UserViewModel(@NonNull Application application) {
+    public UserViewModel(@NonNull Application application, User user) {
         super(application);
-        repository = new AppRepository(application);
+        repository = new AppRepository(application, user);
         usersList =repository.getAllUsers();
     }
 

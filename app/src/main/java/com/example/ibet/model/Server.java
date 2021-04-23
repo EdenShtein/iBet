@@ -23,6 +23,8 @@ import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.Team.TeamViewModel;
 import com.example.ibet.model.User.User;
+import com.example.ibet.model.User.UserDao;
+import com.example.ibet.model.User.UserLog;
 import com.example.ibet.model.User.UserViewModel;
 
 import org.json.JSONArray;
@@ -113,13 +115,24 @@ public class Server {
                     status = response.getString("status");
                     token = response.getString("token");
                     if(status.equals("success")) {
-                        AppRepository appRepository = new AppRepository(mActivity.getApplication());
+
                         JSONObject data = response.getJSONObject("data");
                         JSONObject user_obj = data.getJSONObject("user");
                         String user_id = user_obj.getString("_id");
                         String user_name = user_obj.getString("userName");
                         User user = new User(user_id,email,user_name);
+
+                        //UserViewModel userViewModel = ViewModelProvider(this, new ViewModelFactory(mActivity.getApplication(), "UserViewModel", user)).get(UserViewModel.class);
+                        //UserViewModel userViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(UserViewModel.class);
+                        AppRepository appRepository = new AppRepository(mActivity.getApplication(),user);
+                        appRepository.currentUser = user;
                         appRepository.insert(user);
+                        //userViewModel.insert(user);
+
+                        /*AppDatabase appDatabase = AppDatabase.getInstance(mActivity,user);
+                        UserOnlyDao uoDao = appDatabase.getUserOnlyDao();
+                        uoDao.insertUserLog(new UserLog(user,"UOLogged in was Good"));*/
+
                         listener.onComplete(true,token);
                     }
                     else { listener.onComplete(false,token); }
@@ -610,8 +623,8 @@ public class Server {
                         /*do*/
                         Group group = new Group(group_id,group_name,admin_id);
                         //group.setCurrent_score(current_score);
-                        GroupViewModel groupViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(GroupViewModel.class);
-                        groupViewModel.update(group);
+                        //GroupViewModel groupViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(GroupViewModel.class);
+                        //groupViewModel.update(group);
                         listener.onComplete(true,group);
 
                     }

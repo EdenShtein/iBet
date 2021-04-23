@@ -85,7 +85,6 @@ public class LoginFragment extends Fragment {
                                 } else {
                                     editor.putString("token",token).apply();
                                 }
-
                                 editor.commit();
                                 Navigation.findNavController(view).navigate(R.id.action_login_to_mainFreed);
                                 Toast.makeText(getActivity(), "Welcome to iBet", Toast.LENGTH_SHORT).show();

@@ -20,24 +20,44 @@ import com.example.ibet.model.User.User;
 import com.example.ibet.model.User.UserDao;
 import com.example.ibet.model.User.UserLog;
 
-@Database(entities = {Group.class, Team.class, Match.class, User.class, UserLog.class}, version = 15, exportSchema = false)
+@Database(entities = {Group.class, Team.class, Match.class, User.class, UserLog.class}, version = 18, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
-    public abstract UniversalDao getAllDao();
+    abstract UserOnlyDao getUserOnlyDao();
+
+    private static volatile User currentUser;
 
     public abstract GroupDao groupDao();
     public abstract TeamDao teamDao();
     public abstract MatchDao matchDao();
     public abstract UserDao userDao();
 
-    public static synchronized AppDatabase getInstance(Context context) {
-        if(instance == null) {
+    public static synchronized AppDatabase getInstance(Context context, User user) {
+        if (user == null) {
+            throw  new RuntimeException("Attempt to open Invalid - CANNOT continue");
+        }
+        if ( currentUser == null || (currentUser.getId() != user.getId())) {
+            if (instance != null) {
+                if (instance.isOpen()) {
+                    instance.close();
+                }
+                instance = null;
+            }
+        }
+        if (instance == null) {
+            instance = Room.databaseBuilder(context,AppDatabase.class,user.getUserName()+ "_log")
+                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
+                    .addCallback(roomCallBack)
+                    .build();
+        }
+       /* if(instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     AppDatabase.class, "app_database").fallbackToDestructiveMigration()
                     .addCallback(roomCallBack)
                     .build();
-        }
+        }*/
 
         return instance;
     }

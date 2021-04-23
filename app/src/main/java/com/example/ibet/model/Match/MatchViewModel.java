@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import com.example.ibet.model.AppRepository;
+import com.example.ibet.model.User.User;
 
 import java.util.List;
 
@@ -12,6 +13,11 @@ public class MatchViewModel extends AndroidViewModel {
     private AppRepository repository;
     private LiveData<List<Match>> matchesList;
 
+    /*public MatchViewModel(@NonNull Application application, User user) {
+        super(application);
+        repository = new AppRepository(application, user);
+        matchesList =repository.getAllMatches();
+    }*/
     public MatchViewModel(@NonNull Application application) {
         super(application);
         repository = new AppRepository(application);

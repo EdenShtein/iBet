@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,9 @@ import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupAdapter;
 import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Model;
+import com.example.ibet.model.User.User;
+import com.example.ibet.model.User.UserViewModel;
+import com.example.ibet.model.ViewModelFactory;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.nio.file.attribute.GroupPrincipal;
@@ -65,9 +69,9 @@ public class MainFeedFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("iBet");
 
-        View decorView = getActivity().getWindow().getDecorView(); // Show the status bar.
+        /*View decorView = getActivity().getWindow().getDecorView(); // Show the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(uiOptions);
+        decorView.setSystemUiVisibility(uiOptions);*/
         //setHasOptionsMenu(true);
 
         groupList = new ArrayList<>();
@@ -81,8 +85,10 @@ public class MainFeedFragment extends Fragment {
         groupsList_rv.setLayoutManager(layoutManager);
         groupAdapter = new GroupAdapter();
 
-        groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
+        User user = new User();
 
+        //GroupViewModel groupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
+        //groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
         /*Group group = new Group("1","First Group","1234");
         groupViewModel.delete(group);*/
 

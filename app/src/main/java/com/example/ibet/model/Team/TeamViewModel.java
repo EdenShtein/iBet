@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.ibet.model.AppRepository;
+import com.example.ibet.model.User.User;
 
 import java.util.List;
 
@@ -15,6 +16,11 @@ public class TeamViewModel extends AndroidViewModel {
     private AppRepository repository;
     private LiveData<List<Team>> teamsList;
 
+    /*public TeamViewModel(@NonNull Application application, User user) {
+        super(application);
+        repository = new AppRepository(application, user);
+        teamsList =repository.getAllTeams();
+    }*/
     public TeamViewModel(@NonNull Application application) {
         super(application);
         repository = new AppRepository(application);

@@ -18,7 +18,7 @@ import java.util.List;
 
 public class AppRepository {
 
-    private UniversalDao universalDao;
+    private UserOnlyDao userOnlyDao;
 
     private GroupDao groupDao;
     private LiveData<List<Group>> groups;
@@ -32,9 +32,31 @@ public class AppRepository {
     private UserDao userDao;
     private LiveData<List<User>> users;
 
+    User currentUser = new User();
+
+    public AppRepository(Application application,User user) {
+
+        AppDatabase database = AppDatabase.getInstance(application,user);
+
+        userOnlyDao = database.getUserOnlyDao();
+
+        groupDao = database.groupDao();
+        groups = groupDao.getAllGroups();
+
+        teamDao = database.teamDao();
+        teams = teamDao.getAllTeams();
+
+        matchDao = database.matchDao();
+        matches = matchDao.getAllMatches();
+
+        userDao = database.userDao();
+        users = userDao.getAllUsers();
+    }
     public AppRepository(Application application) {
-        AppDatabase database = AppDatabase.getInstance(application);
-        universalDao = database.getAllDao();
+
+        AppDatabase database = AppDatabase.getInstance(application,currentUser);
+
+        userOnlyDao = database.getUserOnlyDao();
 
         groupDao = database.groupDao();
         groups = groupDao.getAllGroups();

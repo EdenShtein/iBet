@@ -74,8 +74,8 @@ public class GroupDetailsFragment extends Fragment {
         usersList_rv.setLayoutManager(layoutManager);
         userAdapter = new UserAdapter();
 
-        groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
-        userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
+        //groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
+        //userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
 
         group_name= view.findViewById(R.id.group_details_title);
         //upcoming_matches= view.findViewById(R.id.group_details_upcoming);

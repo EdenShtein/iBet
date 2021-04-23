@@ -109,33 +109,6 @@
         </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/group_details_upcoming"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/customborder"
-        android:text="Upcoming Matches"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group_details_rv" />
-
-    <Button
-        android:id="@+id/group_details_statistics"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/customborder"
-        android:text="Statistics"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group_details_upcoming" />
-
     <ImageView
         android:id="@+id/group_details_background"
         android:layout_width="wrap_content"
@@ -157,5 +130,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group_details_table" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="411dp"
+        android:layout_height="70dp"
+        android:background="?attr/colorButtonNormal"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="@+id/group_details_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/group_details_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/nav_group_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

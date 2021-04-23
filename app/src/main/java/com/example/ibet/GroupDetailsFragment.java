@@ -32,6 +32,7 @@ import com.example.ibet.model.Model;
 import com.example.ibet.model.User.User;
 import com.example.ibet.model.User.UserAdapter;
 import com.example.ibet.model.User.UserViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class GroupDetailsFragment extends Fragment {
 
     View view;
     TextView league;
-    Button upcoming_matches;
+    //Button upcoming_matches;
 
     TextView group_name;
 
@@ -54,6 +55,8 @@ public class GroupDetailsFragment extends Fragment {
     List<User> usersList = new ArrayList<User>();
     private UserViewModel userViewModel;
 
+    BottomNavigationView bottomNav;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,6 +64,9 @@ public class GroupDetailsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_group_details, container, false);
         setHasOptionsMenu(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+
+        bottomNav = view.findViewById(R.id.bottom_navigation_bar);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         usersList_rv = view.findViewById(R.id.group_details_rv);
         usersList_rv.setHasFixedSize(true);
@@ -73,7 +79,7 @@ public class GroupDetailsFragment extends Fragment {
 
         league = view.findViewById(R.id.group_details_sub);
         group_name= view.findViewById(R.id.group_details_title);
-        upcoming_matches= view.findViewById(R.id.group_details_upcoming);
+        //upcoming_matches= view.findViewById(R.id.group_details_upcoming);
 
         onInit();
 
@@ -91,13 +97,13 @@ public class GroupDetailsFragment extends Fragment {
             }
         });
 
-        upcoming_matches.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GroupDetailsFragmentDirections.ActionGroupDetailsToUpcomingMatches action = GroupDetailsFragmentDirections.actionGroupDetailsToUpcomingMatches(group_id);
-                Navigation.findNavController(view).navigate(action);
-            }
-        });
+//        upcoming_matches.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                GroupDetailsFragmentDirections.ActionGroupDetailsToUpcomingMatches action = GroupDetailsFragmentDirections.actionGroupDetailsToUpcomingMatches(group_id);
+//                Navigation.findNavController(view).navigate(action);
+//            }
+//        });
 
 
         return view;
@@ -112,11 +118,11 @@ public class GroupDetailsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.group_back:
-                if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_mainFeedFragment);
-                }
-                break;
+//            case R.id.group_back:
+//                if(view != null) {
+//                    Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_mainFeedFragment);
+//                }
+//                break;
             case R.id.group_invite:
                 if(view != null) {
                     Model.instance.shareCode(currentGroup, new Model.GroupListener() {
@@ -159,4 +165,37 @@ public class GroupDetailsFragment extends Fragment {
             }
         });
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.nav_group_main_feed:
+                    if (view != null) {
+                        Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_mainFeedFragment);
+                    }
+                    break;
+                case R.id.nav_group_bet:
+                    if (view != null) {
+                        GroupDetailsFragmentDirections.ActionGroupDetailsToUpcomingMatches action = GroupDetailsFragmentDirections.actionGroupDetailsToUpcomingMatches(group_id);
+                        Navigation.findNavController(view).navigate(action);
+                    }
+                    break;
+                case R.id.nav_group_league:
+                    if(view!=null){
+                        Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_leagueDetailsFragment);
+                    }
+                    break;
+                case R.id.nav_group_statistic:
+                    if(view!=null){
+
+                    }
+                    break;
+
+                default:
+
+            }
+            return true;
+        }
+    };
 }

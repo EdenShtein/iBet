@@ -94,7 +94,10 @@ public class MainFeedFragment extends Fragment {
                         @Override
                         public void onComplete(boolean result, Group group) {
                             if(result){
-                                groupList.add(group);}
+                                groupList.add(group);
+                                groupAdapter.setGroupsData(groupList);
+                                groupsList_rv.setAdapter(groupAdapter);
+                            }
                         }
                     });
                 }
@@ -102,14 +105,14 @@ public class MainFeedFragment extends Fragment {
         });
 
 
-        groupViewModel.getAllGroups().observe(getViewLifecycleOwner(), new Observer<List<Group>>() {
+        /*groupViewModel.getAllGroups().observe(getViewLifecycleOwner(), new Observer<List<Group>>() {
             @Override
             public void onChanged(List<Group> groups) {
                 groupList.addAll(groups);
                 groupAdapter.setGroupsData(groupList);
                 groupsList_rv.setAdapter(groupAdapter);
             }
-        });
+        });*/
 
         createGroup = view.findViewById(R.id.mainfeed_create_group);
 

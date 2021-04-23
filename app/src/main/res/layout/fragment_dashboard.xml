@@ -43,7 +43,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center_horizontal"
         android:letterSpacing="0.025"
-        android:text="Dashboard"
+        android:text="iBet"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"

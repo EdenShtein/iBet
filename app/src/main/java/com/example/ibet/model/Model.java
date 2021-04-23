@@ -65,7 +65,7 @@ public class Model {
     }
 
     public interface UserListListener{
-        public void onComplete(List<String> users);
+        public void onComplete(List<User> users);
     }
 
     public void getCurrentUserDetails(UserDetailsListener listener){

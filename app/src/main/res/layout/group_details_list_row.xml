@@ -31,12 +31,13 @@
         android:id="@+id/group_listrow_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="45dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/group_listrow_username"
         app:layout_constraintTop_toTopOf="@+id/group_listrow_username" />
 
@@ -44,7 +45,7 @@
         android:id="@+id/group_listrow_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
+        android:layout_marginStart="65dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
         android:textColor="#FFFFFF"

@@ -1,9 +1,11 @@
 package com.example.ibet.model;
 
 import android.app.Activity;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -38,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -849,22 +852,35 @@ public class Server {
         final String url = "http://ibet-app.herokuapp.com/api/groups/"+id;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onResponse(JSONObject response) {
                 String status;
-                List<String> usersID = new LinkedList<String>();
+                List<User> usersList = new LinkedList<>();
 
                 try {
                     status = response.getString("status");
                     if(status.equals("success")) {
                         JSONObject arr = response.getJSONObject("group");
-                        JSONArray users = arr.getJSONArray("users");
-                        for (int i=0;i< users.length(); i++){
-                            String id = (String) users.get(i);
-                            usersID.add(id);
+                        JSONObject data = arr.getJSONObject("data");
+                        JSONArray userBets = data.getJSONArray("userGroupBets");
+                        for (int i = 0; i < userBets.length(); i++){
+                            JSONObject userObj = userBets.getJSONObject(i);
+                            User user = new User();
+                            user.setId(userObj.getString("user"));
+                            user.setUserName(userObj.getString("userName"));
+                            user.setScore(userObj.getString("currentScore"));
+                            usersList.add(user);
                         }
-
-                        listener.onComplete(usersID);
+                        usersList.sort(new Comparator<User>() {
+                            @Override
+                            public int compare(User o1, User o2) {
+                                int a = Integer.parseInt(o1.getScore());
+                                int b = Integer.parseInt(o2.getScore());
+                                return a-b;
+                            }
+                        });
+                        listener.onComplete(usersList);
 
                     }
                     else{

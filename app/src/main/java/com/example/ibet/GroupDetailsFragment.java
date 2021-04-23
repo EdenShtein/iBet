@@ -54,8 +54,6 @@ public class GroupDetailsFragment extends Fragment {
     List<User> usersList = new ArrayList<User>();
     private UserViewModel userViewModel;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,8 +68,6 @@ public class GroupDetailsFragment extends Fragment {
         usersList_rv.setLayoutManager(layoutManager);
         userAdapter = new UserAdapter();
 
-
-
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
         userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
 
@@ -81,13 +77,12 @@ public class GroupDetailsFragment extends Fragment {
 
         onInit();
 
-        userViewModel.getAllUsers().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
+        /*userViewModel.getAllUsers().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {
-                userAdapter.setUsersData(users);
-                usersList_rv.setAdapter(userAdapter);
+
             }
-        });
+        });*/
 
         league.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,15 +152,10 @@ public class GroupDetailsFragment extends Fragment {
 
         Model.instance.getGroupUsers(group_id,new Model.UserListListener() {
             @Override
-            public void onComplete(List<String> users) {
-                for (String id : users){
-                    String userId = id;
-                    User user = new User(userId);
-                    usersList.add(user);
-                }
-                for (User user : usersList) {
-                    userViewModel.insert(user);
-                }
+            public void onComplete(List<User> users) {
+                usersList = users;
+                userAdapter.setUsersData(usersList);
+                usersList_rv.setAdapter(userAdapter);
             }
         });
     }

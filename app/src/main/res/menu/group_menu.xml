@@ -12,5 +12,6 @@
         android:id="@+id/group_back"
         android:icon="@drawable/backbtn"
         android:title="Back"
+        android:visible="false"
         app:showAsAction="always" />
 </menu>

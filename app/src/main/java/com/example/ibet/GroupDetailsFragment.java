@@ -41,7 +41,7 @@ import java.util.List;
 public class GroupDetailsFragment extends Fragment {
 
     View view;
-    TextView league;
+
     //Button upcoming_matches;
 
     TextView group_name;
@@ -77,7 +77,6 @@ public class GroupDetailsFragment extends Fragment {
         groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
         userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
 
-        league = view.findViewById(R.id.group_details_sub);
         group_name= view.findViewById(R.id.group_details_title);
         //upcoming_matches= view.findViewById(R.id.group_details_upcoming);
 
@@ -90,12 +89,6 @@ public class GroupDetailsFragment extends Fragment {
             }
         });*/
 
-        league.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_leagueDetailsFragment);
-            }
-        });
 
 //        upcoming_matches.setOnClickListener(new View.OnClickListener() {
 //            @Override

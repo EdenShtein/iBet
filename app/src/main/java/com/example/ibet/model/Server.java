@@ -451,7 +451,7 @@ public class Server {
 
     public void getTeamData(Model.TeamDataListener listener,Activity mActivity,String token) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://ibet-app.herokuapp.com/api/teams";
+        final String url = "http://ibet-app.herokuapp.com/api/league";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -461,21 +461,23 @@ public class Server {
                     status = response.getString("status");
                     if(status.equals("success")) {
                         JSONArray resultArray = response.getJSONArray("data");
-                        ArrayList<Team> teamsData = new ArrayList<>(resultArray.length());
-                        for(int i=0;i<resultArray.length();i++)
+                        JSONObject data = resultArray.getJSONObject(0);
+                        JSONArray teamsData = data.getJSONArray("teams");
+                        ArrayList<Team> teamsList = new ArrayList<>();
+                        for(int i=0;i<teamsData.length();i++)
                         {
-                            String teamName = resultArray.getJSONObject(i).getString("teamName");
-                            String wins = resultArray.getJSONObject(i).getString("wins");
-                            String losses = resultArray.getJSONObject(i).getString("losses");
-                            String id = resultArray.getJSONObject(i).getString("_id");
-                            String gamesRemaining = resultArray.getJSONObject(i).getString("remaning");
+                            String teamName = teamsData.getJSONObject(i).getString("teamName");
+                            String wins = teamsData.getJSONObject(i).getString("wins");
+                            String losses = teamsData.getJSONObject(i).getString("losses");
+                            String id = teamsData.getJSONObject(i).getString("_id");
+                            String gamesRemaining = teamsData.getJSONObject(i).getString("remaning");
                             Team team = new Team(id,teamName,wins,losses,gamesRemaining);
-                            teamsData.add(team);
+                            teamsList.add(team);
 
                             TeamViewModel teamViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(TeamViewModel.class);
                             teamViewModel.insert(team);
                         }
-                        listener.onComplete(teamsData);
+                        listener.onComplete(teamsList);
 
                     }
                     else{

@@ -77,8 +77,8 @@ public class Server {
                         String user_id = user_obj.getString("_id");
                         User user = new User(email,username);
                         user.setId(user_id);
-                        UserViewModel userViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(UserViewModel.class);
-                        userViewModel.insert(user);
+//                        UserViewModel userViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(UserViewModel.class);
+//                        userViewModel.insert(user);
                         listener.onComplete(true);
                     }
                     else { listener.onComplete(false); }
@@ -484,7 +484,9 @@ public class Server {
                             String losses = teamsData.getJSONObject(i).getString("losses");
                             String id = teamsData.getJSONObject(i).getString("_id");
                             String gamesRemaining = teamsData.getJSONObject(i).getString("remaning");
+                            String url = teamsData.getJSONObject(i).getString("logo");
                             Team team = new Team(id,teamName,wins,losses,gamesRemaining);
+                            team.setUrl(url);
                             teamsList.add(team);
 
                             TeamViewModel teamViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(TeamViewModel.class);
@@ -594,7 +596,7 @@ public class Server {
                 String group_id;
                 String group_name;
                 String admin_id;
-                String current_score;
+                String current_score ="0";
                 String user_name;
                 String user_id;
 
@@ -622,6 +624,8 @@ public class Server {
 
                         /*do*/
                         Group group = new Group(group_id,group_name,admin_id);
+                       // try{
+                        //group.setCurrent_score(current_score);}catch (Exception e){}
                         //group.setCurrent_score(current_score);
                         //GroupViewModel groupViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(GroupViewModel.class);
                         //groupViewModel.update(group);

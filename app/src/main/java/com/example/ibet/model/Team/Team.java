@@ -29,6 +29,9 @@ public class Team {
     @ColumnInfo(name = "team_eliminated")
     Boolean isEliminated;
 
+    @ColumnInfo(name = "team_url")
+    String url;
+
     @Ignore
     private long lastUpdated;
 
@@ -97,5 +100,13 @@ public class Team {
 
     public void setEliminated(Boolean eliminated) {
         isEliminated = eliminated;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

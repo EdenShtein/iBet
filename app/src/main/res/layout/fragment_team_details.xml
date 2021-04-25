@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="Team Name"
         android:textColor="#000000"
         android:textSize="30sp"

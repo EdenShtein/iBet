@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupViewModel;
+import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Model;
 
 

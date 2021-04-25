@@ -54,7 +54,7 @@ public class LeagueDetailsFragment extends Fragment {
         teamsList_rv.setLayoutManager(layoutManager);
         teamAdapter = new TeamAdapter();
 
-        teamViewModel = ViewModelProviders.of(getActivity()).get(TeamViewModel.class);
+        //teamViewModel = ViewModelProviders.of(getActivity()).get(TeamViewModel.class);
 
         Model.instance.getTeamData(new Model.TeamDataListener() {
             @Override
@@ -62,9 +62,9 @@ public class LeagueDetailsFragment extends Fragment {
                 teamList = teamData;
                 teamAdapter.setTeamsData(teamList);
                 teamsList_rv.setAdapter(teamAdapter);
-                for (Team team : teamList) {
+                /*for (Team team : teamList) {
                     teamViewModel.insert(team);
-                }
+                }*/
             }
         });
 
@@ -75,9 +75,10 @@ public class LeagueDetailsFragment extends Fragment {
                 String teamWins = team.getWins();
                 String teamLoss = team.getLosses();
                 String teamRemaining = team.getGamesRemaining();
+                String teamImageUrl = team.getUrl();
                 LeagueDetailsFragmentDirections
                         .ActionLeagueDetailsFragmentToTeamDetailsFragment action = LeagueDetailsFragmentDirections
-                        .actionLeagueDetailsFragmentToTeamDetailsFragment(teamName,teamWins,teamLoss,teamRemaining);
+                        .actionLeagueDetailsFragmentToTeamDetailsFragment(teamName,teamWins,teamLoss,teamRemaining,teamImageUrl);
                 Navigation.findNavController(view).navigate(action);
             }
         });

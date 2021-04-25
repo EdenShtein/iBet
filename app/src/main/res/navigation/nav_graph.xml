@@ -169,6 +169,9 @@
         <argument
             android:name="teamRemaining"
             app:argType="string" />
+        <argument
+            android:name="teamLogo"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/upcomingMatchesFragment"

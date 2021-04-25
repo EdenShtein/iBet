@@ -33,7 +33,6 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         return null;
     }
 
-
    /* @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (mParam == "UserViewModel")

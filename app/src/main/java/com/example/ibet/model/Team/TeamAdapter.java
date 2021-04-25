@@ -96,11 +96,9 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder>  {
             teamWins.setText(team.getWins());
             teamLosses.setText(team.getLosses());
             teamRemaining.setText(team.getGamesRemaining());
-
-            //teamImage.setImageResource(R.drawable.brplayer);
-           /* if (team.getGroupLogo() != null) {
-                Picasso.get().load(team.getGroupLogo()).placeholder(R.drawable.brplayer).into(groupImage);
-            }*/
+            if (team.getUrl() != null) {
+                Picasso.get().load(team.getUrl()).placeholder(R.drawable.brplayer).into(teamImage);
+            }
 
             this.position = position;
         }

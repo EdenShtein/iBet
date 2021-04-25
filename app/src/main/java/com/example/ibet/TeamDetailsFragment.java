@@ -13,7 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class TeamDetailsFragment extends Fragment {
 
@@ -22,6 +25,8 @@ public class TeamDetailsFragment extends Fragment {
     TextView team_win;
     TextView team_loss;
     TextView team_remaining;
+    String teamLogoUrl;
+    ImageView teamLogo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,11 +40,17 @@ public class TeamDetailsFragment extends Fragment {
         team_win = view.findViewById(R.id.team_details_win_input);
         team_loss = view.findViewById(R.id.team_details_loss_input);
         team_remaining = view.findViewById(R.id.team_details_remaining_input);
+        teamLogo = view.findViewById(R.id.team_details_img);
 
         team_name.setText(TeamDetailsFragmentArgs.fromBundle(getArguments()).getTeamName());
         team_win.setText(TeamDetailsFragmentArgs.fromBundle(getArguments()).getTeamWins());
         team_loss.setText(TeamDetailsFragmentArgs.fromBundle(getArguments()).getTeamLoss());
         team_remaining.setText(TeamDetailsFragmentArgs.fromBundle(getArguments()).getTeamRemaining());
+        teamLogoUrl = TeamDetailsFragmentArgs.fromBundle(getArguments()).getTeamLogo();
+
+        if (teamLogoUrl != null) {
+            Picasso.get().load(teamLogoUrl).placeholder(R.drawable.brplayer).into(teamLogo);
+        }
 
         return view;
     }

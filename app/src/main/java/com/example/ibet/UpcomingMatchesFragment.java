@@ -67,7 +67,7 @@ public class UpcomingMatchesFragment extends Fragment {
 
         matchAdapter = new MatchAdapter();
 
-        matchViewModel = ViewModelProviders.of(getActivity()).get(MatchViewModel.class);
+        //matchViewModel = ViewModelProviders.of(getActivity()).get(MatchViewModel.class);
 
         groupId = UpcomingMatchesFragmentArgs.fromBundle(getArguments()).getGroupId();
 
@@ -86,9 +86,9 @@ public class UpcomingMatchesFragment extends Fragment {
                 matchAdapter.setMatchesData(MatchList);
                 matchesList_rv.setAdapter(matchAdapter);
                 matchesList_rv.scrollToPosition(pos);
-                for (Match match : MatchList) {
+                /*for (Match match : MatchList) {
                     matchViewModel.insert(match);
-                }
+                }*/
                 pb.setVisibility(View.INVISIBLE);
             }
         });

@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ibet.R;
+import com.example.ibet.model.Model;
+
 import java.util.LinkedList;
 import java.util.List;
 

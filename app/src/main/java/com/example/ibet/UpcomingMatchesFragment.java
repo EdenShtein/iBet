@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.ibet.model.Bets.Bet;
 import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Match.MatchAdapter;
 import com.example.ibet.model.Match.MatchViewModel;
@@ -130,6 +131,13 @@ public class UpcomingMatchesFragment extends Fragment {
                         });
                     }
                 });
+            }
+        });
+
+        Model.instance.getGroupBets(groupId, new Model.BetListener() {
+            @Override
+            public void onComplete(ArrayList<Bet> betsLists) {
+
             }
         });
 

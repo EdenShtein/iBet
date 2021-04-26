@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.ibet.model.Bets.Bet;
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupViewModel;
 import com.example.ibet.model.Match.Match;
@@ -965,6 +966,60 @@ public class Server {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Error1", error.getMessage());
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void getGroupBets(Model.BetListener listener,Activity mActivity,String token,String id) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://ibet-app.herokuapp.com/api/groups/"+id;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                ArrayList<Bet> betList = new ArrayList<Bet>();
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONObject arr = response.getJSONObject("group");
+                        JSONObject data = arr.getJSONObject("data");
+                        JSONArray userGroupBets = data.getJSONArray("userGroupBets");
+                        JSONObject user = userGroupBets.getJSONObject(0);
+                        JSONArray userBets = user.getJSONArray("userBets");
+                        for(int i=0;i<userBets.length();i++){
+                            Bet bet = new Bet(userBets.getJSONObject(i).getString("finalMatchWinner"),
+                                    userBets.getJSONObject(i).getString("totalPoints") ,
+                                    userBets.getJSONObject(i).getString("gameId"));
+                            betList.add(bet);
+                        }
+                        listener.onComplete(betList);
+
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         })
         {

@@ -3,6 +3,7 @@ package com.example.ibet.model;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+import com.example.ibet.model.Bets.Bet;
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Team.Team;
@@ -158,6 +159,18 @@ public class Model {
         String token = pref.getString("token",null);
         server.getUsersGroup(listener,mActivity,token);
     }
+
+    public interface BetListener{
+        public void onComplete(ArrayList<Bet> betsLists);
+    }
+
+    public void getGroupBets(String groudId,BetListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.getGroupBets(listener,mActivity,token,groudId);
+    }
+
+
 
 
 

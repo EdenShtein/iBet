@@ -68,6 +68,10 @@ public class UpcomingMatchesFragment extends Fragment {
 
         matchAdapter = new MatchAdapter();
 
+        winningTeam = view.findViewById(R.id.upcoming_winner_input);
+        totalScore = view.findViewById(R.id.upcoming_score_input);
+        confirmBtn = view.findViewById(R.id.upcoming_confirm_btn);
+
         //matchViewModel = ViewModelProviders.of(getActivity()).get(MatchViewModel.class);
 
         groupId = UpcomingMatchesFragmentArgs.fromBundle(getArguments()).getGroupId();
@@ -90,18 +94,36 @@ public class UpcomingMatchesFragment extends Fragment {
                 /*for (Match match : MatchList) {
                     matchViewModel.insert(match);
                 }*/
+
                 pb.setVisibility(View.INVISIBLE);
             }
         });
 
-
+//        Model.instance.getGroupBets(groupId, new Model.BetListener() {
+//            @Override
+//            public void onComplete(ArrayList<Bet> betsLists) {
+//                String betGameId;
+//                String winner;
+//                String totalScore;
+//                for(int i=0;i<betsLists.size();i++){
+//                    betGameId = betsLists.get(i).getGameId();
+//                    winner = betsLists.get(i).getWinner();
+//                    totalScore = betsLists.get(i).getTotalScore();
+//                    for(int j=0;j<thisWeekMatches.size();j++){
+//                        if(betGameId.equals(thisWeekMatches.get(j).getId())){
+//                            winningTeam.setText(winner);
+//                        }
+//                        else{
+//                            winningTeam.setText("0");
+//                        }
+//                    }
+//                }
+//            }
+//        });
 
         matchAdapter.setOnItemClickListener(new MatchAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Match match, View view) {
-                winningTeam = view.findViewById(R.id.upcoming_winner_input);
-                totalScore = view.findViewById(R.id.upcoming_score_input);
-                confirmBtn = view.findViewById(R.id.upcoming_confirm_btn);
                 if (match.isBetted()){
                     confirmBtn.setVisibility(View.INVISIBLE);
                     confirmBtn.setEnabled(false);
@@ -134,12 +156,7 @@ public class UpcomingMatchesFragment extends Fragment {
             }
         });
 
-        Model.instance.getGroupBets(groupId, new Model.BetListener() {
-            @Override
-            public void onComplete(ArrayList<Bet> betsLists) {
 
-            }
-        });
 
         return view;
     }

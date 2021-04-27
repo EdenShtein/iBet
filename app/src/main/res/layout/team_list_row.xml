@@ -12,10 +12,11 @@
         android:id="@+id/frameLayout"
         android:layout_width="77dp"
         android:layout_height="79dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/customborder"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/team_list_row_subtitle"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -38,9 +39,23 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/team_list_row_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="#"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

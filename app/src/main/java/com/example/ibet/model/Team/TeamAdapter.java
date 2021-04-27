@@ -65,6 +65,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder>  {
     public static class TeamHolder extends RecyclerView.ViewHolder{
 
         TextView teamText;
+        TextView teamRank;
         TextView teamWins;
         TextView teamLosses;
         TextView teamRemaining;
@@ -78,6 +79,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder>  {
             teamWins = itemView.findViewById(R.id.team_list_row_w_input);
             teamLosses = itemView.findViewById(R.id.team_list_row_l_input);
             teamRemaining = itemView.findViewById(R.id.team_list_row_r_input);
+            teamRank = itemView.findViewById(R.id.team_list_row_subtitle);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,6 +95,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder>  {
         public void bindData(Team team, int position){
 
             teamText.setText(team.getTeamName());
+            teamRank.setText(String.valueOf(position + 1));
             teamWins.setText(team.getWins());
             teamLosses.setText(team.getLosses());
             teamRemaining.setText(team.getGamesRemaining());

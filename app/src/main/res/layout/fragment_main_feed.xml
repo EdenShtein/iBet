@@ -2,38 +2,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_feed"
+    android:id="@+id/mainfeed_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:hapticFeedbackEnabled="false"
     tools:context=".MainFeedFragment">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/mainfeed_refresh_layout"
+        android:layout_width="346dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="380dp"
+        android:elevation="2px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainfeed_groupslist_rv"
+            android:layout_width="339dp"
+            android:layout_height="283dp"
+            android:elevation="5px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     <Button
         android:id="@+id/mainfeed_create_group"
         android:layout_width="304dp"
         android:layout_height="45dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/customborder"
         android:text="Create New Group"
-        app:layout_constraintBottom_toBottomOf="@+id/mainfeed_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mainfeed_background"
-        app:layout_constraintVertical_bias="0.841" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mainfeed_groupslist_rv"
-        android:layout_width="269dp"
-        android:layout_height="189dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="50dp"
-        android:elevation="5px"
-        app:layout_constraintBottom_toTopOf="@+id/mainfeed_create_group"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mainfeed_background"
-        app:layout_constraintVertical_bias="0.846" />
+        app:layout_constraintTop_toBottomOf="@+id/mainfeed_refresh_layout" />
 
     <ImageView
         android:id="@+id/mainfeed_background"
@@ -52,11 +57,12 @@
         android:id="@+id/bottom_navigation_bar"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="20dp"
         android:background="?attr/colorButtonNormal"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="@+id/mainfeed_background"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainfeed_create_group"
         app:layout_constraintVertical_bias="1.0"

@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -54,8 +55,9 @@ public class MainFeedFragment extends Fragment {
    //LiveData<List<Group>> groupList;
    Dialog myDialog;
    String group_id;
+    SwipeRefreshLayout swipeRefreshLayout;
 
-   ArrayList<Group> groupList;
+    ArrayList<Group> groupList;
 
    BottomNavigationView bottomNav;
 
@@ -107,6 +109,37 @@ public class MainFeedFragment extends Fragment {
                         }
                     });
                 }
+            }
+        });
+
+        swipeRefreshLayout = view.findViewById(R.id.mainfeed_refresh_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.design_default_color_primary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                ArrayList<Group> refreshedList = new ArrayList<>();
+                Model.instance.getUsersGroup(new Model.GroupIdsListener() {
+                    @Override
+                    public void onComplete(ArrayList<String> groupIds) {
+                        for(String id: groupIds){
+                            Model.instance.getGroupData(id, new Model.GroupListener() {
+                                @Override
+                                public void onComplete(boolean result, Group group) {
+                                    if(result){
+                                        refreshedList.add(group);
+                                        groupAdapter.setGroupsData(refreshedList);
+                                        groupsList_rv.setAdapter(groupAdapter);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 

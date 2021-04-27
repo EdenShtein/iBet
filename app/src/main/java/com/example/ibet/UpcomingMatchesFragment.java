@@ -54,6 +54,8 @@ public class UpcomingMatchesFragment extends Fragment {
 
     ProgressBar pb;
 
+    ArrayList<Bet> bets;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,12 +70,22 @@ public class UpcomingMatchesFragment extends Fragment {
 
         matchAdapter = new MatchAdapter();
 
+        bets = new ArrayList<>();
+
         //matchViewModel = ViewModelProviders.of(getActivity()).get(MatchViewModel.class);
 
         groupId = UpcomingMatchesFragmentArgs.fromBundle(getArguments()).getGroupId();
 
         pb=view.findViewById(R.id.upcoming_pb);
         pb.setVisibility(View.VISIBLE);
+
+        Model.instance.getGroupBets(groupId, new Model.BetListener() {
+            @Override
+            public void onComplete(ArrayList<Bet> betsLists) {
+                bets = betsLists;
+            }
+        });
+
 
         Model.instance.getUpComingMatches(new Model.MatchListener() {
             @Override
@@ -82,7 +94,34 @@ public class UpcomingMatchesFragment extends Fragment {
                                    ArrayList<Match> notYetMatches) {
                 MatchList.addAll(finishedMatches);
                 int pos = finishedMatches.size();
-                MatchList.addAll(thisWeekMatches);
+
+
+                ArrayList<Match> updatedThisWeekMatches= new ArrayList<>();
+               // if(bets.size()==0){
+                    for(int k=0;k<thisWeekMatches.size();k++){
+                        Match match = thisWeekMatches.get(k);
+                        match.setUserBet(new Bet("0","0",match.getId()));
+                        updatedThisWeekMatches.add(match);
+                    }
+//                }
+//                else {
+                    for (int i = 0; i < thisWeekMatches.size(); i++) {
+                        Match match = thisWeekMatches.get(i);
+                        for (int j = 0; j < bets.size(); j++) {
+                            if (bets.get(j).getGameId().equals(match.getId())) {
+                                match.setUserBet(bets.get(j));
+                                break;
+                            } else {
+                                match.setUserBet(new Bet("0", "0", match.getId()));
+                            }
+                        }
+                        updatedThisWeekMatches.add(match);
+                    }
+               // }
+
+
+
+                MatchList.addAll(updatedThisWeekMatches);
                 MatchList.addAll(notYetMatches);
                 matchAdapter.setMatchesData(MatchList);
                 matchesList_rv.setAdapter(matchAdapter);
@@ -92,30 +131,12 @@ public class UpcomingMatchesFragment extends Fragment {
                 }*/
 
                 pb.setVisibility(View.INVISIBLE);
+
+
             }
         });
 
-//        Model.instance.getGroupBets(groupId, new Model.BetListener() {
-//            @Override
-//            public void onComplete(ArrayList<Bet> betsLists) {
-//                String betGameId;
-//                String winner;
-//                String totalScore;
-//                for(int i=0;i<betsLists.size();i++){
-//                    betGameId = betsLists.get(i).getGameId();
-//                    winner = betsLists.get(i).getWinner();
-//                    totalScore = betsLists.get(i).getTotalScore();
-//                    for(int j=0;j<thisWeekMatches.size();j++){
-//                        if(betGameId.equals(thisWeekMatches.get(j).getId())){
-//                            winningTeam.setText(winner);
-//                        }
-//                        else{
-//                            winningTeam.setText("0");
-//                        }
-//                    }
-//                }
-//            }
-//        });
+
 
         matchAdapter.setOnItemClickListener(new MatchAdapter.OnItemClickListener() {
             @Override

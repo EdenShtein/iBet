@@ -120,8 +120,10 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             else{
                 winnerInput.setEnabled(true);
                 winnerInput.setVisibility(View.VISIBLE);
+                winnerInput.setText(match.getUserBet().getWinner());
                 scoreInput.setEnabled(true);
                 scoreInput.setVisibility(View.VISIBLE);
+                scoreInput.setText(match.getUserBet().getTotalScore());
                 confirmBtn.setEnabled(true);
                 confirmBtn.setVisibility(View.VISIBLE);
                 winnerTitle.setVisibility(View.VISIBLE);

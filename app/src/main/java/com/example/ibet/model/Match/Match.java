@@ -6,6 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.ibet.model.Bets.Bet;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -43,6 +45,9 @@ public class Match {
 
     @Ignore
     String awayImageUrl;
+
+    @Ignore
+    Bet userBet;
 
     public Match(@NonNull String id, String home, String away, String date,String status,int hScore,int vScore) {
         this.id = id;
@@ -140,5 +145,21 @@ public class Match {
 
     public String getAwayImageUrl() {
         return awayImageUrl;
+    }
+
+    public void setHomeImageUrl(String homeImageUrl) {
+        this.homeImageUrl = homeImageUrl;
+    }
+
+    public void setAwayImageUrl(String awayImageUrl) {
+        this.awayImageUrl = awayImageUrl;
+    }
+
+    public Bet getUserBet() {
+        return userBet;
+    }
+
+    public void setUserBet(Bet userBet) {
+        this.userBet = userBet;
     }
 }

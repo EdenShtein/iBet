@@ -15,6 +15,7 @@
         android:background="@drawable/customborder"
         android:backgroundTint="#DF000000"
         android:elevation="5px"
+        android:fontFamily="sans-serif-smallcaps"
         android:text="Group Name"
         android:textColor="#FFFFFF"
         android:textSize="36sp"

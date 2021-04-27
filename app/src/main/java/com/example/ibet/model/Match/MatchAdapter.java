@@ -8,10 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ibet.R;
-import com.example.ibet.model.Model;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -70,7 +69,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         TextView matchDate;
         TextView HomeScore;
         TextView AwayScore;
-        ImageView matchImage;
+        ImageView homeImage;
+        ImageView awayImage;
         EditText winnerInput;
         EditText scoreInput;
         TextView winnerTitle;
@@ -81,7 +81,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         public MatchHolder(@NonNull View itemView) {
 
             super(itemView);
-            matchImage = itemView.findViewById(R.id.upcoming_img);
+            homeImage = itemView.findViewById(R.id.upcoming_home_img);
+            awayImage = itemView.findViewById(R.id.upcoming_away_img);
             matchHome = itemView.findViewById(R.id.upcoming_home_title);
             matchAway = itemView.findViewById(R.id.upcoming_away_title);
             matchDate = itemView.findViewById(R.id.upcoming_match_date);
@@ -131,10 +132,16 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             matchDate.setText(match.getDate());
             HomeScore.setText(String.valueOf(match.gethScore()));
             AwayScore.setText(String.valueOf(match.getvScore()));
-            matchImage.setImageResource(R.drawable.brplayer);
-           /* if (group.getGroupLogo() != null) {
-                Picasso.get().load(group.getGroupLogo()).placeholder(R.drawable.brplayer).into(groupImage);
-            }*/
+
+            String homeUrl = match.getHomeImageUrl();
+            String awayUrl = match.getAwayImageUrl();
+
+            if (homeUrl != null) {
+                Picasso.get().load(homeUrl).placeholder(R.drawable.brplayer).into(homeImage);
+            }
+            if (awayUrl != null) {
+                Picasso.get().load(awayUrl).placeholder(R.drawable.brplayer).into(awayImage);
+            }
 
             this.position = position;
         }

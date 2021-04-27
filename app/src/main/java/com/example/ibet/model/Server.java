@@ -769,18 +769,24 @@ public class Server {
                         for(int i=0;i<resultArray.length();i++)
                         {
                             String gameId = resultArray.getJSONObject(i).getString("gameId");
-                            String hTeam = resultArray.getJSONObject(i).getString("hTeam");
-                            String vTeam = resultArray.getJSONObject(i).getString("vTeam");
+                            JSONObject hTeam = resultArray.getJSONObject(i).getJSONObject("hTeam");
+                            String hTeamName = hTeam.getString("teamName");
+                            String homeImageUrl = hTeam.getString("logo");
+                            JSONObject vTeam = resultArray.getJSONObject(i).getJSONObject("vTeam");
+                            String vTeamName = vTeam.getString("teamName");
+                            String awayImageUrl = vTeam.getString("logo");
                             String date = resultArray.getJSONObject(i).getString("date");
                             String gameStatus = resultArray.getJSONObject(i).getString("status");
                             int hScore = resultArray.getJSONObject(i).getInt("hScore");
                             int vScore = resultArray.getJSONObject(i).getInt("vScore");
 
+
+
                             SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
                             Date fdate = fmt.parse(date);
                             SimpleDateFormat fmtOut = new SimpleDateFormat("dd-MM-yyyy");
 
-                            Match match = new Match(gameId,hTeam,vTeam,fmtOut.format(fdate),gameStatus,hScore,vScore);
+                            Match match = new Match(gameId,hTeamName,vTeamName,fmtOut.format(fdate),gameStatus,hScore,vScore, homeImageUrl, awayImageUrl);
 
                             if(match.getStatus().equals("Finished")){
                                 finishedMatches.add(match);

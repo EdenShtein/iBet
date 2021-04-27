@@ -38,6 +38,11 @@ public class Match {
     @ColumnInfo(name = "match_vScore")
     int vScore;
 
+    @Ignore
+    String homeImageUrl;
+
+    @Ignore
+    String awayImageUrl;
 
     public Match(@NonNull String id, String home, String away, String date,String status,int hScore,int vScore) {
         this.id = id;
@@ -48,6 +53,20 @@ public class Match {
         this.status = status;
         this.hScore = hScore;
         this.vScore = vScore;
+    }
+
+    @Ignore
+    public Match(@NonNull String id, String home, String away, String date,String status,int hScore,int vScore, String homeImage, String awayImage) {
+        this.id = id;
+        this.home = home;
+        this.away = away;
+        this.date = date;
+        this.isBetted = false;
+        this.status = status;
+        this.hScore = hScore;
+        this.vScore = vScore;
+        this.homeImageUrl = homeImage;
+        this.awayImageUrl = awayImage;
     }
 
     @NonNull
@@ -113,5 +132,13 @@ public class Match {
 
     public void setvScore(int vScore) {
         this.vScore = vScore;
+    }
+
+    public String getHomeImageUrl() {
+        return homeImageUrl;
+    }
+
+    public String getAwayImageUrl() {
+        return awayImageUrl;
     }
 }

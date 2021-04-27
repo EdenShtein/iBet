@@ -68,10 +68,6 @@ public class UpcomingMatchesFragment extends Fragment {
 
         matchAdapter = new MatchAdapter();
 
-        winningTeam = view.findViewById(R.id.upcoming_winner_input);
-        totalScore = view.findViewById(R.id.upcoming_score_input);
-        confirmBtn = view.findViewById(R.id.upcoming_confirm_btn);
-
         //matchViewModel = ViewModelProviders.of(getActivity()).get(MatchViewModel.class);
 
         groupId = UpcomingMatchesFragmentArgs.fromBundle(getArguments()).getGroupId();
@@ -124,6 +120,11 @@ public class UpcomingMatchesFragment extends Fragment {
         matchAdapter.setOnItemClickListener(new MatchAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Match match, View view) {
+
+                winningTeam = view.findViewById(R.id.upcoming_winner_input);
+                totalScore = view.findViewById(R.id.upcoming_score_input);
+                confirmBtn = view.findViewById(R.id.upcoming_confirm_btn);
+
                 if (match.isBetted()){
                     confirmBtn.setVisibility(View.INVISIBLE);
                     confirmBtn.setEnabled(false);

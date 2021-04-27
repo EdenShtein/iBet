@@ -157,22 +157,26 @@ public class UpcomingMatchesFragment extends Fragment {
                     public void onClick(View v) {
                         winning = winningTeam.getText().toString();
                         score = totalScore.getText().toString();
-                        Log.d("TAG",winning);
-                        Log.d("TAG",score);
+                        if (winning.isEmpty() || score.isEmpty() || winning.charAt(0)>= '3' || winning.charAt(0) <= '0'){
+                            Toast.makeText(getActivity(), "Please Enter Winner 1 or 2 and score above 0", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Log.d("TAG",winning);
+                            Log.d("TAG",score);
 
-                        Model.instance.placeBet(groupId, winning, score, match.getId(), new Model.SuccessListener() {
-                            @Override
-                            public void onComplete(boolean result) {
-                                if (result){
-                                    Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
-                                    confirmBtn.setVisibility(View.INVISIBLE);
-                                    confirmBtn.setEnabled(false);
-                                    winningTeam.setEnabled(false);
-                                    totalScore.setEnabled(false);
-                                    match.setBetted(true);
+                            Model.instance.placeBet(groupId, winning, score, match.getId(), new Model.SuccessListener() {
+                                @Override
+                                public void onComplete(boolean result) {
+                                    if (result){
+                                        Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+                                        confirmBtn.setVisibility(View.INVISIBLE);
+                                        confirmBtn.setEnabled(false);
+                                        winningTeam.setEnabled(false);
+                                        totalScore.setEnabled(false);
+                                        match.setBetted(true);
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
                 });
             }

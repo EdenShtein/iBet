@@ -6,6 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.ibet.model.User.User;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -45,6 +47,9 @@ public class Group {
     @ColumnInfo(name = "share_code")
     private String shareCode;
 
+    @Ignore
+    User currentUser;
+
 
     @Ignore
     private long lastUpdated;
@@ -57,6 +62,13 @@ public class Group {
     @Ignore
     public Group(){
 
+    }
+    @Ignore
+    public Group(@NonNull String id, String name, String admin_id, User user) {
+        this.id = id;
+        this.name = name;
+        this.admin_id = admin_id;
+        this.currentUser = user;
     }
 
 
@@ -147,6 +159,14 @@ public class Group {
 
     public void setShareCode(String shareCode) {
         this.shareCode = shareCode;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
 }

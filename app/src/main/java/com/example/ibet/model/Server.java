@@ -600,6 +600,7 @@ public class Server {
                 String current_score ="0";
                 String user_name;
                 String user_id;
+                User new_user = new User();
 
                 try {
                     status = response.getString("status");
@@ -616,15 +617,13 @@ public class Server {
                             current_score = user.getString("currentScore");
                             user_name = user.getString("userName");
                             user_id = user.getString("user");
-                            User new_user = new User();
                             new_user.setId(user_id);
                             new_user.setUserName(user_name);
                             new_user.setScore(current_score);
                         }
 
-
                         /*do*/
-                        Group group = new Group(group_id,group_name,admin_id);
+                        Group group = new Group(group_id,group_name,admin_id,new_user);
                        // try{
                         //group.setCurrent_score(current_score);}catch (Exception e){}
                         //group.setCurrent_score(current_score);

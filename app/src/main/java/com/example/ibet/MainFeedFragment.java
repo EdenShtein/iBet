@@ -87,8 +87,6 @@ public class MainFeedFragment extends Fragment {
         groupsList_rv.setLayoutManager(layoutManager);
         groupAdapter = new GroupAdapter();
 
-        User user = new User();
-
         //GroupViewModel groupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
         //groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
         /*Group group = new Group("1","First Group","1234");

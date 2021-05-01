@@ -86,11 +86,11 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupHolder>
 
         public void bindData(Group group, int position){
             groupText.setText(group.getName());
-            groupSubText.setText(group.getCurrent_score());
-            groupImage.setImageResource(R.drawable.brplayer);
-            if (group.getGroupLogo() != null) {
+            groupSubText.setText(group.getCurrentUser().getScore());
+            groupImage.setImageResource(R.drawable.nbalogo);
+           /* if (group.getGroupLogo() != null) {
                 Picasso.get().load(group.getGroupLogo()).placeholder(R.drawable.brplayer).into(groupImage);
-            }
+            }*/
 
             this.position = position;
         }

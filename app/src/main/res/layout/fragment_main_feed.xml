@@ -17,8 +17,10 @@
         android:src="@drawable/dunk"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/mainfeed_refresh_layout"
@@ -70,7 +72,6 @@
         android:id="@+id/bottom_navigation_bar"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginTop="20dp"
         android:background="?attr/colorButtonNormal"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="@+id/mainfeed_background"
@@ -79,7 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainfeed_create_group"
         app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/nav_menu" >
+        app:menu="@menu/nav_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

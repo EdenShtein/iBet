@@ -58,11 +58,10 @@ public class CreateGroupFragment extends Fragment {
         fullTimePointsPicker = view.findViewById(R.id.create_group_picker2);
         totalGamePointsPicker = view.findViewById(R.id.create_group_picker3);
 
-
         setPointsPicker(fullTimePointsPicker, 1, 20, 1);
         setPointsPicker(totalGamePointsPicker, 1, 20, 2);
 
-        groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
+        //groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 
         fullTimePointsPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override

@@ -19,8 +19,8 @@
         ></item>
 
     <item
-        android:id="@+id/nav_group_statistic"
-        android:icon="@drawable/statistic_icon"
-        android:title="Statistic"
+        android:id="@+id/nav_group_share"
+        android:icon="@drawable/share_btn3"
+        android:title="Share Group"
         ></item>
 </menu>

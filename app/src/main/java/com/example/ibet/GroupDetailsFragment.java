@@ -63,7 +63,7 @@ public class GroupDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_group_details, container, false);
         setHasOptionsMenu(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         bottomNav = view.findViewById(R.id.bottom_navigation_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -102,42 +102,42 @@ public class GroupDetailsFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.group_menu,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        inflater.inflate(R.menu.group_menu,menu);
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
 //            case R.id.group_back:
 //                if(view != null) {
 //                    Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_mainFeedFragment);
 //                }
 //                break;
-            case R.id.group_invite:
-                if(view != null) {
-                    Model.instance.shareCode(currentGroup, new Model.GroupListener() {
-                        @Override
-                        public void onComplete(boolean result, Group group) {
-                            Intent sendIntent = new Intent();
-                            sendIntent.setAction(Intent.ACTION_SEND);
-                            sendIntent.putExtra(Intent.EXTRA_TEXT, group.getShareCode());
-                            sendIntent.setType("text/plain");
-
-                            Intent shareIntent = Intent.createChooser(sendIntent, null);
-                            startActivity(shareIntent);
-                        }
-                    });
-                }
-                break;
-            default:
-
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
+//            case R.id.group_invite:
+//                if(view != null) {
+//                    Model.instance.shareCode(currentGroup, new Model.GroupListener() {
+//                        @Override
+//                        public void onComplete(boolean result, Group group) {
+//                            Intent sendIntent = new Intent();
+//                            sendIntent.setAction(Intent.ACTION_SEND);
+//                            sendIntent.putExtra(Intent.EXTRA_TEXT, group.getShareCode());
+//                            sendIntent.setType("text/plain");
+//
+//                            Intent shareIntent = Intent.createChooser(sendIntent, null);
+//                            startActivity(shareIntent);
+//                        }
+//                    });
+//                }
+//                break;
+//            default:
+//
+//        }
+//        return super.onOptionsItemSelected(item);
+//
+//    }
 
     public void onInit(){
         group_id = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupID();
@@ -179,9 +179,20 @@ public class GroupDetailsFragment extends Fragment {
                         Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_leagueDetailsFragment);
                     }
                     break;
-                case R.id.nav_group_statistic:
-                    if(view!=null){
+                case R.id.nav_group_share:
+                    if(view != null) {
+                        Model.instance.shareCode(currentGroup, new Model.GroupListener() {
+                            @Override
+                            public void onComplete(boolean result, Group group) {
+                                Intent sendIntent = new Intent();
+                                sendIntent.setAction(Intent.ACTION_SEND);
+                                sendIntent.putExtra(Intent.EXTRA_TEXT, group.getShareCode());
+                                sendIntent.setType("text/plain");
 
+                                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                                startActivity(shareIntent);
+                            }
+                        });
                     }
                     break;
 

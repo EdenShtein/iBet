@@ -55,9 +55,9 @@ public class TeamsResultFragment extends Fragment {
     }
 
     public void initTable(){
-        Model.instance.getAlgoResults(new Model.TeamDataListener() {
+        Model.instance.getAlgoResults(new Model.AlgoListener() {
             @Override
-            public void onComplete(ArrayList<Team> teamData) {
+            public void onComplete(ArrayList<Team> algoData) {
 
 //                new Handler(Looper.getMainLooper()).post(new Runnable() {
 //                    @Override
@@ -82,31 +82,31 @@ public class TeamsResultFragment extends Fragment {
                         tbrow0.addView(tr3);
                         table.addView(tbrow0);
 
-                        for(int i=0;i<teamData.size();i++)
+                        for(int i = 0; i< algoData.size(); i++)
                         {
                             TableRow row= new TableRow(getActivity().getApplicationContext());
                             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                             row.setLayoutParams(lp);
 
-                            String teamName = teamData.get(i).getTeamName();
+                            String teamName = algoData.get(i).getTeamName();
                             TextView name = new TextView(getActivity().getApplicationContext());
                             name.setText(teamName);
                             name.setGravity(Gravity.LEFT);
                             row.addView(name);
 
-                            String wins = teamData.get(i).getWins();
+                            String wins = algoData.get(i).getWins();
                             TextView win = new TextView(getActivity().getApplicationContext());
                             win.setText(wins);
                             win.setGravity(Gravity.CENTER);
                             row.addView(win);
 
-                            String losses = teamData.get(i).getLosses();
+                            String losses = algoData.get(i).getLosses();
                             TextView lose = new TextView(getActivity().getApplicationContext());
                             lose.setText(losses);
                             lose.setGravity(Gravity.CENTER);
                             row.addView(lose);
 
-                            Boolean isEliminated = teamData.get(i).getEliminated();
+                            Boolean isEliminated = algoData.get(i).getEliminated();
                             TextView eliminated = new TextView(getActivity().getApplicationContext());
                             eliminated.setText(String.valueOf(isEliminated));
                             eliminated.setGravity(Gravity.CENTER);

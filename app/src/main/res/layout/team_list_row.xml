@@ -8,10 +8,22 @@
     android:background="@drawable/customborder"
     android:backgroundTint="#202E7E">
 
+    <TextView
+        android:id="@+id/team_list_row_w2"
+        android:layout_width="133dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:text="is Eliminated? : "
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/team_list_row_title" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="77dp"
-        android:layout_height="79dp"
+        android:layout_height="95dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/customborder"
         android:backgroundTint="#FFFFFF"

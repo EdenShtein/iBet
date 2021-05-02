@@ -282,7 +282,7 @@ public class Server {
         thread.start();
     }*/
 
-    public void getAlgoResult(Model.TeamDataListener listener,Activity mActivity) {
+    public void getAlgoResult(Model.AlgoListener listener,Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
         final String url = "http://ibet-app.herokuapp.com/api/algo/standings";
 

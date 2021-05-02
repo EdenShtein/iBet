@@ -56,8 +56,12 @@ public class Model {
     public interface TeamDataListener{
         public void onComplete(ArrayList<Team> teamData);
     }
+    public interface AlgoListener{
+        public void onComplete(ArrayList<Team> algoData);
+    }
 
-    public void getAlgoResults(TeamDataListener listener) {
+
+    public void getAlgoResults(AlgoListener listener) {
         server.getAlgoResult(listener,mActivity);
     }
 

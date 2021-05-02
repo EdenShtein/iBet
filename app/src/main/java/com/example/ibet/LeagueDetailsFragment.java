@@ -41,6 +41,8 @@ public class LeagueDetailsFragment extends Fragment {
     private TeamViewModel teamViewModel;
     List<Team> teamList = new LinkedList<Team>();
 
+    ArrayList <Team> out;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,15 +55,27 @@ public class LeagueDetailsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         teamsList_rv.setLayoutManager(layoutManager);
         teamAdapter = new TeamAdapter();
-
+        out = new ArrayList<>();
         //teamViewModel = ViewModelProviders.of(getActivity()).get(TeamViewModel.class);
 
         Model.instance.getTeamData(new Model.TeamDataListener() {
             @Override
             public void onComplete(ArrayList<Team> teamData) {
-                teamList = teamData;
-                teamAdapter.setTeamsData(teamList);
-                teamsList_rv.setAdapter(teamAdapter);
+                Model.instance.getAlgoResults(new Model.AlgoListener() {
+                    @Override
+                    public void onComplete(ArrayList<Team> algoData) {
+                        for(int i=0;i<teamData.size();i++){
+                            Team t = teamData.get(i);
+                            t.setEliminated(algoData.get(i).getEliminated());
+                            out.add(t);
+                        }
+                        teamList = out;
+                        teamAdapter.setTeamsData(teamList);
+                        teamsList_rv.setAdapter(teamAdapter);
+                    }
+                });
+
+
                 /*for (Team team : teamList) {
                     teamViewModel.insert(team);
                 }*/

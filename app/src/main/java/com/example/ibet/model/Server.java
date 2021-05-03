@@ -340,7 +340,9 @@ public class Server {
                         JSONObject data = response.getJSONObject("data");
                         String email = data.getString("email");
                         String username = data.getString("userName");
+                        String id = data.getString("_id");
                         user = new User(email,username);
+                        user.setId(id);
                         listener.onComplete(user);
                     }
                     else{
@@ -987,7 +989,7 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void getGroupBets(Model.BetListener listener,Activity mActivity,String token,String id) {
+    public void getGroupBets(Model.BetListener listener,Activity mActivity,String token,String id,String userId) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
         final String url = "http://ibet-app.herokuapp.com/api/groups/"+id;
 
@@ -1002,8 +1004,15 @@ public class Server {
                         JSONObject arr = response.getJSONObject("group");
                         JSONObject data = arr.getJSONObject("data");
                         JSONArray userGroupBets = data.getJSONArray("userGroupBets");
-                        JSONObject user = userGroupBets.getJSONObject(0);
-                        JSONArray userBets = user.getJSONArray("userBets");
+                        JSONObject currentUser = new JSONObject();
+                        for(int j=0;j<userGroupBets.length();j++){
+                            JSONObject user = userGroupBets.getJSONObject(j);
+                            if(user.getString("user").equals(userId)){
+                                currentUser = user;
+                                break;
+                            }
+                        }
+                        JSONArray userBets = currentUser.getJSONArray("userBets");
                         for(int i=0;i<userBets.length();i++){
                             Bet bet = new Bet(userBets.getJSONObject(i).getString("finalMatchWinner"),
                                     userBets.getJSONObject(i).getString("totalPoints") ,

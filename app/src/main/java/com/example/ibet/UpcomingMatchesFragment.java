@@ -29,6 +29,7 @@ import com.example.ibet.model.Model;
 import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.Team.TeamAdapter;
 import com.example.ibet.model.Team.TeamViewModel;
+import com.example.ibet.model.User.User;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -55,6 +56,7 @@ public class UpcomingMatchesFragment extends Fragment {
     ProgressBar pb;
 
     ArrayList<Bet> bets;
+    String userId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,12 +81,22 @@ public class UpcomingMatchesFragment extends Fragment {
         pb=view.findViewById(R.id.upcoming_pb);
         pb.setVisibility(View.VISIBLE);
 
-        Model.instance.getGroupBets(groupId, new Model.BetListener() {
+
+
+        Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
             @Override
-            public void onComplete(ArrayList<Bet> betsLists) {
-                bets = betsLists;
+            public void onComplete(User user) {
+                userId = user.getId();
+                Model.instance.getGroupBets(userId,groupId, new Model.BetListener() {
+                    @Override
+                    public void onComplete(ArrayList<Bet> betsLists) {
+                        bets = betsLists;
+                    }
+                });
             }
         });
+
+
 
 
         Model.instance.getUpComingMatches(new Model.MatchListener() {

@@ -168,10 +168,10 @@ public class Model {
         public void onComplete(ArrayList<Bet> betsLists);
     }
 
-    public void getGroupBets(String groudId,BetListener listener){
+    public void getGroupBets(String userId,String groudId,BetListener listener){
         pref = mActivity.getSharedPreferences("MyPref", 0);
         String token = pref.getString("token",null);
-        server.getGroupBets(listener,mActivity,token,groudId);
+        server.getGroupBets(listener,mActivity,token,groudId,userId);
     }
 
 

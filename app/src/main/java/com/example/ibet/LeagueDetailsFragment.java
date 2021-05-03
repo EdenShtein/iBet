@@ -1,5 +1,6 @@
 package com.example.ibet;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupAdapter;
@@ -43,13 +47,18 @@ public class LeagueDetailsFragment extends Fragment {
 
     ArrayList <Team> out;
 
+    Dialog myDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_league_details, container, false);
         setHasOptionsMenu(true);
+        myDialog = new Dialog(view.getContext());
+
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("League Page");
         teamsList_rv = view.findViewById(R.id.league_details_rv);
         teamsList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -100,9 +109,24 @@ public class LeagueDetailsFragment extends Fragment {
         return view;
     }
 
+    public void ShowPopup(View v){
+
+        Button confirmBtn;
+        myDialog.setContentView(R.layout.fragment_help_pop_up);
+        confirmBtn = (Button) myDialog.findViewById(R.id.help_confirm_btn);
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.show();
+    }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.back_menu,menu);
+        inflater.inflate(R.menu.league_menu,menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -112,6 +136,11 @@ public class LeagueDetailsFragment extends Fragment {
             case R.id.back_btn:
                 if(view != null) {
                     Navigation.findNavController(view).popBackStack();
+                }
+                break;
+            case R.id.help_btn:
+                if(view != null) {
+                    ShowPopup(view);
                 }
                 break;
             default:

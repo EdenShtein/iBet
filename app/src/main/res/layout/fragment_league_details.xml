@@ -7,24 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".LeagueDetailsFragment">
 
-    <ImageView
-        android:id="@+id/league_details_background"
-        android:layout_width="416dp"
-        android:layout_height="241dp"
-        android:layout_marginTop="42dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/nbabackground2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/league_details_rv"
         android:layout_width="382dp"
-        android:layout_height="450dp"
+        android:layout_height="440dp"
+        android:layout_marginTop="250dp"
+        android:elevation="2px"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/league_details_background" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/league_details_gif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@drawable/leaguegif2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

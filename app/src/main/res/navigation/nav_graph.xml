@@ -200,4 +200,9 @@
             android:id="@+id/action_dashboard_to_rules"
             app:destination="@id/rulesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/helpPopUpFragment"
+        android:name="com.example.ibet.HelpPopUpFragment"
+        android:label="fragment_help_pop_up"
+        tools:layout="@layout/fragment_help_pop_up" />
 </navigation>

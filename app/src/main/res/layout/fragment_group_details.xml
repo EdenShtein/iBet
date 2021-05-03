@@ -121,13 +121,15 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_bar"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="70dp"
         android:background="?attr/colorButtonNormal"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="@+id/group_details_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/group_details_background"
+        app:layout_constraintTop_toBottomOf="@+id/group_details_rv"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/nav_group_details" />
 

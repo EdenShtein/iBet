@@ -70,6 +70,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder>  {
         TextView teamLosses;
         TextView teamRemaining;
         ImageView teamImage;
+        ImageView eliminatedIcon;
         int position;
 
         public TeamHolder(@NonNull View itemView) {
@@ -80,6 +81,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder>  {
             teamLosses = itemView.findViewById(R.id.team_list_row_l_input);
             teamRemaining = itemView.findViewById(R.id.team_list_row_r_input);
             teamRank = itemView.findViewById(R.id.team_list_row_subtitle);
+            eliminatedIcon= itemView.findViewById(R.id.team_list_row_eliminated);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,6 +105,13 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamHolder>  {
                 Picasso.get().load(team.getUrl()).placeholder(R.drawable.brplayer).into(teamImage);
             }
 
+            if (team.getEliminated()){
+                eliminatedIcon.setVisibility(View.INVISIBLE);
+            }
+            else
+            {
+                eliminatedIcon.setVisibility(View.VISIBLE);
+            }
             this.position = position;
         }
     }

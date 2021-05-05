@@ -19,6 +19,10 @@
         ></item>
 
     <item
+        android:id="@+id/nav_group_team_pick"
+        android:icon="@android:drawable/star_big_off"
+        android:title="Bet Winner"></item>
+    <item
         android:id="@+id/nav_group_share"
         android:icon="@drawable/share_btn3"
         android:title="Share Group"

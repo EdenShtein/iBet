@@ -1,5 +1,6 @@
 package com.example.ibet;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,8 +19,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -57,6 +60,8 @@ public class GroupDetailsFragment extends Fragment {
 
     BottomNavigationView bottomNav;
 
+    Dialog myDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,6 +72,8 @@ public class GroupDetailsFragment extends Fragment {
 
         bottomNav = view.findViewById(R.id.bottom_navigation_bar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        myDialog = new Dialog(view.getContext());
 
         usersList_rv = view.findViewById(R.id.group_details_rv);
         usersList_rv.setHasFixedSize(true);
@@ -159,6 +166,32 @@ public class GroupDetailsFragment extends Fragment {
         });
     }
 
+    public void ShowPopup(View v){
+
+        Button confirmBtn;
+        myDialog.setContentView(R.layout.fragment_league_winner);
+        confirmBtn = (Button) myDialog.findViewById(R.id.popup_winner_btn);
+
+        Spinner leagueDropDown;
+        leagueDropDown = myDialog.findViewById(R.id.winner_teams_list);
+
+        //create a list of items for the spinner.
+        String[] leagues = new String[]{"NBA","A","B","C"};
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, leagues);
+        //set the spinners adapter to the previously created one.
+        leagueDropDown.setAdapter(adapter);
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.show();
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -193,6 +226,11 @@ public class GroupDetailsFragment extends Fragment {
                                 startActivity(shareIntent);
                             }
                         });
+                    }
+                    break;
+                case R.id.nav_group_team_pick:
+                    if(view!=null){
+                        ShowPopup(view);
                     }
                     break;
 

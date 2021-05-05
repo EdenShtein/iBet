@@ -205,4 +205,9 @@
         android:name="com.example.ibet.HelpPopUpFragment"
         android:label="fragment_help_pop_up"
         tools:layout="@layout/fragment_help_pop_up" />
+    <fragment
+        android:id="@+id/leagueWinnerFragment"
+        android:name="com.example.ibet.LeagueWinnerFragment"
+        android:label="fragment_league_winner"
+        tools:layout="@layout/fragment_league_winner" />
 </navigation>

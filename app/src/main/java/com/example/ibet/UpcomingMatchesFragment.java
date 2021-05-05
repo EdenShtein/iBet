@@ -3,6 +3,7 @@ package com.example.ibet;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
@@ -64,6 +65,8 @@ public class UpcomingMatchesFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_upcoming_matches, container, false);
         setHasOptionsMenu(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Upcoming Matches");
 
         matchesList_rv = view.findViewById(R.id.upcoming_matches_rv);
         matchesList_rv.setHasFixedSize(true);

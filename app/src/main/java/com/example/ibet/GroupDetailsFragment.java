@@ -32,6 +32,7 @@ import com.example.ibet.model.Match.Match;
 import com.example.ibet.model.Match.MatchAdapter;
 import com.example.ibet.model.Match.MatchViewModel;
 import com.example.ibet.model.Model;
+import com.example.ibet.model.Team.Team;
 import com.example.ibet.model.User.User;
 import com.example.ibet.model.User.UserAdapter;
 import com.example.ibet.model.User.UserViewModel;
@@ -177,9 +178,20 @@ public class GroupDetailsFragment extends Fragment {
 
         //create a list of items for the spinner.
         String[] leagues = new String[]{"NBA","A","B","C"};
+        List<String> teams = new ArrayList<>();
+        teams.add("Select winning team");
+        Model.instance.getTeamData(new Model.TeamDataListener() {
+            @Override
+            public void onComplete(ArrayList<Team> teamData) {
+                for(int i=0;i<teamData.size();i++){
+                    Team t = teamData.get(i);
+                    teams.add(t.getTeamName());
+                }
+            }
+        });
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, leagues);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, teams);
         //set the spinners adapter to the previously created one.
         leagueDropDown.setAdapter(adapter);
 

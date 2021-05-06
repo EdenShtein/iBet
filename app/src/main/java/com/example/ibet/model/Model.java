@@ -174,7 +174,12 @@ public class Model {
         server.getGroupBets(listener,mActivity,token,groudId,userId);
     }
 
-
+    public void winningTeamBet(String groupId,String teamName,SuccessListener listener)
+    {
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.winningTeamBet(listener,mActivity,token,groupId,teamName);
+    }
 
 
 

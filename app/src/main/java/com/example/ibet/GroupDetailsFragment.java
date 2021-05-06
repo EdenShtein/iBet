@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ibet.model.Group.Group;
 import com.example.ibet.model.Group.GroupViewModel;
@@ -62,6 +63,8 @@ public class GroupDetailsFragment extends Fragment {
     BottomNavigationView bottomNav;
 
     Dialog myDialog;
+
+    String teamName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -176,6 +179,7 @@ public class GroupDetailsFragment extends Fragment {
         Spinner leagueDropDown;
         leagueDropDown = myDialog.findViewById(R.id.winner_teams_list);
 
+
         //create a list of items for the spinner.
         String[] leagues = new String[]{"NBA","A","B","C"};
         List<String> teams = new ArrayList<>();
@@ -198,7 +202,24 @@ public class GroupDetailsFragment extends Fragment {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myDialog.dismiss();
+                teamName = leagueDropDown.getSelectedItem().toString();
+                if (teamName.equals("Select winning team")) {
+                    myDialog.dismiss();
+                }else{
+                    Model.instance.winningTeamBet(group_id, teamName, new Model.SuccessListener() {
+                        @Override
+                        public void onComplete(boolean result) {
+                            if(result){
+                                Toast.makeText(getActivity(), "Successful Bet on: " + teamName, Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    });
+                    myDialog.dismiss();
+                }
+
             }
         });
         myDialog.show();

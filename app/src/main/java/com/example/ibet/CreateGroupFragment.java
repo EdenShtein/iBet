@@ -96,7 +96,7 @@ public class CreateGroupFragment extends Fragment {
                         @Override
                         public void onComplete(boolean result, Group group) {
                             if (result) {
-                                groupViewModel.insert(group);
+                                //groupViewModel.insert(group);
                                 Navigation.findNavController(view).navigate(R.id.action_createGroupFragment_to_mainFeedFragment);
                             } else {
                                 Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();

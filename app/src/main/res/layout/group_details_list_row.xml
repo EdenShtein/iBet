@@ -13,12 +13,13 @@
 
     <TextView
         android:id="@+id/group_listrow_rank"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
+        android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -30,10 +31,11 @@
 
     <TextView
         android:id="@+id/group_listrow_score"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -44,10 +46,11 @@
 
     <TextView
         android:id="@+id/group_listrow_username"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TextView"
+        android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"

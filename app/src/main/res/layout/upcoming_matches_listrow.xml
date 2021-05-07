@@ -65,17 +65,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upcoming_away_title">
 
-        <EditText
+        <Spinner
             android:id="@+id/upcoming_winner_input"
-            android:layout_width="135dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/customborder"
-            android:ems="10"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
+            android:layout_width="119dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/upcoming_winner_title" />
 

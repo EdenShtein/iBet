@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ibet.model.Bets.Bet;
@@ -47,7 +48,7 @@ public class UpcomingMatchesFragment extends Fragment {
     List<Match> MatchList = new ArrayList<>();
 
     Button confirmBtn;
-    EditText winningTeam;
+    Spinner winningTeam;
     EditText totalScore;
 
     String groupId;
@@ -186,7 +187,7 @@ public class UpcomingMatchesFragment extends Fragment {
                 confirmBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        winning = winningTeam.getText().toString();
+                        winning = winningTeam.getSelectedItem().toString();
                         score = totalScore.getText().toString();
                         if (winning.isEmpty() || score.isEmpty() || winning.charAt(0)>= '3' || winning.charAt(0) <= '0'){
                             Toast.makeText(getActivity(), "Please Enter Winner 1 or 2 and score above 0", Toast.LENGTH_SHORT).show();

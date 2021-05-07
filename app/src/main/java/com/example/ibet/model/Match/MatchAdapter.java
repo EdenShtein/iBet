@@ -3,9 +3,11 @@ package com.example.ibet.model.Match;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,12 +73,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         TextView AwayScore;
         ImageView homeImage;
         ImageView awayImage;
-        EditText winnerInput;
+        Spinner winnerInput;
         EditText scoreInput;
         TextView winnerTitle;
         TextView scoreTitle;
         Button confirmBtn;
         int position;
+        Spinner teamDropDown;
 
         public MatchHolder(@NonNull View itemView) {
 
@@ -94,6 +97,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             winnerTitle = itemView.findViewById(R.id.upcoming_winner_title);
             scoreTitle = itemView.findViewById(R.id.upcoming_score_title);
 
+            winnerInput = itemView.findViewById(R.id.upcoming_winner_input);
+            String[] teams = new String[]{"0","1","2"};
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_spinner_dropdown_item, teams);
+            winnerInput.setAdapter(adapter);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -110,7 +118,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             if (match.getStatus().equals("Finished") || match.getStatus().equals("NotYet")){
                 winnerInput.setEnabled(false);
                 winnerInput.setVisibility(View.VISIBLE);
-                winnerInput.setText(match.getUserBet().getWinner());
+                winnerInput.setSelection(Integer.parseInt(match.getUserBet().getWinner()));
                 scoreInput.setEnabled(false);
                 scoreInput.setVisibility(View.VISIBLE);
                 scoreInput.setText(match.getUserBet().getTotalScore());
@@ -122,7 +130,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             else{
                 winnerInput.setEnabled(true);
                 winnerInput.setVisibility(View.VISIBLE);
-                winnerInput.setText(match.getUserBet().getWinner());
+                winnerInput.setSelection(Integer.parseInt(match.getUserBet().getWinner()));
                 scoreInput.setEnabled(true);
                 scoreInput.setVisibility(View.VISIBLE);
                 scoreInput.setText(match.getUserBet().getTotalScore());

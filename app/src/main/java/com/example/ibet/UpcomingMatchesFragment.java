@@ -112,27 +112,43 @@ public class UpcomingMatchesFragment extends Fragment {
 
 
                 ArrayList<Match> updatedThisWeekMatches= new ArrayList<>();
-               // if(bets.size()==0){
-                    for(int k=0;k<thisWeekMatches.size();k++){
-                        Match match = thisWeekMatches.get(k);
-                        match.setUserBet(new Bet("0","0",match.getId()));
-                        updatedThisWeekMatches.add(match);
-                    }
-//                }
-//                else {
-                    for (int i = 0; i < thisWeekMatches.size(); i++) {
-                        Match match = thisWeekMatches.get(i);
-                        for (int j = 0; j < bets.size(); j++) {
-                            if (bets.get(j).getGameId().equals(match.getId())) {
-                                match.setUserBet(bets.get(j));
-                                break;
-                            } else {
-                                match.setUserBet(new Bet("0", "0", match.getId()));
-                            }
+                ArrayList<Match> updatedFinishedMatches= new ArrayList<>();
+
+                for(int k=0;k<thisWeekMatches.size();k++){
+                    Match match = thisWeekMatches.get(k);
+                    match.setUserBet(new Bet("0","0",match.getId()));
+                    updatedThisWeekMatches.add(match);
+                }
+                for(int k=0;k<finishedMatches.size();k++){
+                    Match match = finishedMatches.get(k);
+                    match.setUserBet(new Bet("0","0",match.getId()));
+                    updatedFinishedMatches.add(match);
+                }
+                for (int i = 0; i < thisWeekMatches.size(); i++) {
+                    Match match = thisWeekMatches.get(i);
+                    for (int j = 0; j < bets.size(); j++) {
+                        if (bets.get(j).getGameId().equals(match.getId())) {
+                            match.setUserBet(bets.get(j));
+                            break;
+                        } else {
+                            match.setUserBet(new Bet("0", "0", match.getId()));
                         }
-                        updatedThisWeekMatches.add(match);
                     }
-               // }
+                    updatedThisWeekMatches.add(match);
+                }
+                for (int i = 0; i < finishedMatches.size(); i++) {
+                    Match match = finishedMatches.get(i);
+                    for (int j = 0; j < bets.size(); j++) {
+                        if (bets.get(j).getGameId().equals(match.getId())) {
+                            match.setUserBet(bets.get(j));
+                            break;
+                        } else {
+                            match.setUserBet(new Bet("0", "0", match.getId()));
+                        }
+                    }
+                    updatedFinishedMatches.add(match);
+                }
+
 
 
 

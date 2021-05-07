@@ -109,9 +109,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         public void bindData(Match match, int position){
             if (match.getStatus().equals("Finished") || match.getStatus().equals("NotYet")){
                 winnerInput.setEnabled(false);
-                winnerInput.setVisibility(View.INVISIBLE);
+                winnerInput.setVisibility(View.VISIBLE);
+                winnerInput.setText(match.getUserBet().getWinner());
                 scoreInput.setEnabled(false);
-                scoreInput.setVisibility(View.INVISIBLE);
+                scoreInput.setVisibility(View.VISIBLE);
+                scoreInput.setText(match.getUserBet().getTotalScore());
                 confirmBtn.setEnabled(false);
                 confirmBtn.setVisibility(View.INVISIBLE);
                 winnerTitle.setVisibility(View.INVISIBLE);

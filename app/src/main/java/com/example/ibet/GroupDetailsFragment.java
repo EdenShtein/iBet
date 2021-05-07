@@ -66,6 +66,8 @@ public class GroupDetailsFragment extends Fragment {
 
     String teamName;
 
+    User currentUser;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,72 +87,12 @@ public class GroupDetailsFragment extends Fragment {
         usersList_rv.setLayoutManager(layoutManager);
         userAdapter = new UserAdapter();
 
-        //groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
-        //userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
+
 
         group_name= view.findViewById(R.id.group_details_title);
-        //upcoming_matches= view.findViewById(R.id.group_details_upcoming);
-
-        onInit();
-
-        /*userViewModel.getAllUsers().observe(getViewLifecycleOwner(), new Observer<List<User>>() {
-            @Override
-            public void onChanged(List<User> users) {
-
-            }
-        });*/
 
 
-//        upcoming_matches.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                GroupDetailsFragmentDirections.ActionGroupDetailsToUpcomingMatches action = GroupDetailsFragmentDirections.actionGroupDetailsToUpcomingMatches(group_id);
-//                Navigation.findNavController(view).navigate(action);
-//            }
-//        });
-
-
-        return view;
-    }
-
-//    @Override
-//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-//        inflater.inflate(R.menu.group_menu,menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.group_back:
-//                if(view != null) {
-//                    Navigation.findNavController(view).navigate(R.id.action_groupDetailsFragment_to_mainFeedFragment);
-//                }
-//                break;
-//            case R.id.group_invite:
-//                if(view != null) {
-//                    Model.instance.shareCode(currentGroup, new Model.GroupListener() {
-//                        @Override
-//                        public void onComplete(boolean result, Group group) {
-//                            Intent sendIntent = new Intent();
-//                            sendIntent.setAction(Intent.ACTION_SEND);
-//                            sendIntent.putExtra(Intent.EXTRA_TEXT, group.getShareCode());
-//                            sendIntent.setType("text/plain");
-//
-//                            Intent shareIntent = Intent.createChooser(sendIntent, null);
-//                            startActivity(shareIntent);
-//                        }
-//                    });
-//                }
-//                break;
-//            default:
-//
-//        }
-//        return super.onOptionsItemSelected(item);
-//
-//    }
-
-    public void onInit(){
+        currentUser = new User();
         group_id = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupID();
         group_name.setText(GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupName());
         Model.instance.getGroupData(group_id, new Model.GroupListener() {
@@ -168,7 +110,20 @@ public class GroupDetailsFragment extends Fragment {
                 usersList_rv.setAdapter(userAdapter);
             }
         });
+        Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
+            @Override
+            public void onComplete(User user) {
+                currentUser = user;
+                if(!isAdmin()){
+                    bottomNav.getMenu().findItem(R.id.nav_group_share).setVisible(false);
+                }
+            }
+        });
+
+        return view;
     }
+
+
 
     public void ShowPopup(View v){
 
@@ -273,4 +228,13 @@ public class GroupDetailsFragment extends Fragment {
             return true;
         }
     };
+
+    public boolean isAdmin(){
+        if(currentUser.getId().equals(currentGroup.getAdmin_id())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

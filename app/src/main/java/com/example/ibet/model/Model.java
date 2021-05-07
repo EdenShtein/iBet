@@ -97,9 +97,7 @@ public class Model {
         server.getTeamData(listener,mActivity,token);
     }
 
-    public interface IdListener{
-        public void onComplete(boolean result,String id);
-    }
+
 
     public interface GroupListener{
         public void onComplete(boolean result, Group group);
@@ -180,6 +178,12 @@ public class Model {
         String token = pref.getString("token",null);
         server.winningTeamBet(listener,mActivity,token,groupId,teamName);
     }
+
+    public interface IdListener{
+        public void onComplete(String id);
+    }
+
+
 
 
 

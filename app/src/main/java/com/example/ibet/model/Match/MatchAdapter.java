@@ -98,9 +98,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             scoreTitle = itemView.findViewById(R.id.upcoming_score_title);
 
             winnerInput = itemView.findViewById(R.id.upcoming_winner_input);
-            String[] teams = new String[]{"0","1","2"};
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_spinner_dropdown_item, teams);
-            winnerInput.setAdapter(adapter);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -115,6 +113,11 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
         }
 
         public void bindData(Match match, int position){
+
+            String[] teams = new String[]{"0",match.getHome(),match.getAway()};
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(itemView.getContext(), android.R.layout.simple_spinner_dropdown_item, teams);
+            winnerInput.setAdapter(adapter);
+
             if (match.getStatus().equals("Finished") || match.getStatus().equals("NotYet")){
                 winnerInput.setEnabled(false);
                 winnerInput.setVisibility(View.VISIBLE);

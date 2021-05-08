@@ -181,10 +181,10 @@ public class UpcomingMatchesFragment extends Fragment {
                 confirmBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        winning = winningTeam.getSelectedItem().toString();
+                        winning = String.valueOf(winningTeam.getSelectedItemPosition());
                         score = totalScore.getText().toString();
-                        if (winning.isEmpty() || score.isEmpty() || winning.charAt(0)>= '3' || winning.charAt(0) <= '0'){
-                            Toast.makeText(getActivity(), "Please Enter Winner 1 or 2 and score above 0", Toast.LENGTH_SHORT).show();
+                        if (winning.isEmpty() || score.isEmpty() || winning.charAt(0) == '0' ){
+                            Toast.makeText(getActivity(), "Error with selecting winning team", Toast.LENGTH_SHORT).show();
                         }else{
                             Log.d("TAG",winning);
                             Log.d("TAG",score);

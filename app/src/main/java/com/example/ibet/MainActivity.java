@@ -1,7 +1,6 @@
 package com.example.ibet;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -14,7 +13,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 
 import com.example.ibet.model.Model;
-import com.example.ibet.model.Notifications.AlarmNotificationReceiver;
+import com.example.ibet.model.Notifications.NotificationReceiver;
 
 import java.util.Calendar;
 
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 userIsLogin();
             }
         }
-        startAlarm(true,true);
+        startNotification();
 
     }
 
@@ -47,24 +46,19 @@ public class MainActivity extends AppCompatActivity {
         navController.navigate(R.id.action_login_to_mainFreed);
     }
 
-    private void startAlarm(boolean isNotification, boolean isRepeat) {
-        AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        Intent myIntent;
-        PendingIntent pendingIntent;
-
-        // SET TIME HERE
-        Calendar calendar= Calendar.getInstance();
+    public void startNotification(){
+        Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY,8);
         calendar.set(Calendar.MINUTE,00);
+        calendar.set(Calendar.SECOND,00);
 
-
-        myIntent = new Intent(MainActivity.this, AlarmNotificationReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this,0,myIntent,0);
-
-
-        if(!isRepeat)
-            manager.set(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime()+3000,pendingIntent);
-        else
-            manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,pendingIntent);
+        Intent i = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,i,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY,pendingIntent);
     }
+
+
 }

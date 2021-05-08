@@ -2,9 +2,11 @@ package com.example.ibet;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -40,6 +42,7 @@ import com.example.ibet.model.User.UserViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -103,13 +106,23 @@ public class GroupDetailsFragment extends Fragment {
         });
 
         Model.instance.getGroupUsers(group_id,new Model.UserListListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onComplete(List<User> users) {
                 usersList = users;
+                usersList.sort(new Comparator<User>() {
+                    @Override
+                    public int compare(User o1, User o2) {
+                        int a = Integer.parseInt(o1.getScore());
+                        int b = Integer.parseInt(o2.getScore());
+                        return b-a;
+                    }
+                });
                 userAdapter.setUsersData(usersList);
                 usersList_rv.setAdapter(userAdapter);
             }
         });
+
         Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
             @Override
             public void onComplete(User user) {

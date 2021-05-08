@@ -135,7 +135,7 @@ public class GroupDetailsFragment extends Fragment {
             @Override
             public void onComplete(User user) {
                 currentUser = user;
-                if(!isAdmin()){
+                if(!currentUser.getId().equals(currentGroup.getAdmin_id())){
                     bottomNav.getMenu().findItem(R.id.nav_group_share).setVisible(false);
                 }
             }
@@ -250,12 +250,12 @@ public class GroupDetailsFragment extends Fragment {
         }
     };
 
-    public boolean isAdmin(){
+   /* public boolean isAdmin(){
         if(currentUser.getId().equals(currentGroup.getAdmin_id())){
             return true;
         }
         else{
             return false;
         }
-    }
+    }*/
 }

@@ -29,7 +29,7 @@
             android:background="@drawable/customborder"
             android:backgroundTint="#151F59"
             android:ems="10"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"

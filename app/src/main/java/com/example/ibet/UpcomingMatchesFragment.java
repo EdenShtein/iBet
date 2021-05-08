@@ -108,23 +108,11 @@ public class UpcomingMatchesFragment extends Fragment {
             public void onComplete(ArrayList<Match> finishedMatches,
                                    ArrayList<Match> thisWeekMatches,
                                    ArrayList<Match> notYetMatches) {
-                MatchList.addAll(finishedMatches);
-                int pos = finishedMatches.size();
-
 
                 ArrayList<Match> updatedThisWeekMatches= new ArrayList<>();
                 ArrayList<Match> updatedFinishedMatches= new ArrayList<>();
+                ArrayList<Match> updatedNotYetMatches= new ArrayList<>();
 
-                for(int k=0;k<thisWeekMatches.size();k++){
-                    Match match = thisWeekMatches.get(k);
-                    match.setUserBet(new Bet("0","0",match.getId()));
-                    updatedThisWeekMatches.add(match);
-                }
-                for(int k=0;k<finishedMatches.size();k++){
-                    Match match = finishedMatches.get(k);
-                    match.setUserBet(new Bet("0","0",match.getId()));
-                    updatedFinishedMatches.add(match);
-                }
                 for (int i = 0; i < thisWeekMatches.size(); i++) {
                     Match match = thisWeekMatches.get(i);
                     for (int j = 0; j < bets.size(); j++) {
@@ -149,12 +137,18 @@ public class UpcomingMatchesFragment extends Fragment {
                     }
                     updatedFinishedMatches.add(match);
                 }
+                for (int i = 0; i < notYetMatches.size(); i++) {
+                    Match match = notYetMatches.get(i);
+                    for (int j = 0; j < bets.size(); j++) {
+                        match.setUserBet(new Bet("0", "0", match.getId()));
+                    }
+                    updatedNotYetMatches.add(match);
+                }
 
-
-
-
+                MatchList.addAll(updatedFinishedMatches);
+                int pos = updatedFinishedMatches.size();
                 MatchList.addAll(updatedThisWeekMatches);
-                MatchList.addAll(notYetMatches);
+                MatchList.addAll(updatedNotYetMatches);
                 matchAdapter.setMatchesData(MatchList);
                 matchesList_rv.setAdapter(matchAdapter);
                 matchesList_rv.scrollToPosition(pos);

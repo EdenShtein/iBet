@@ -142,6 +142,9 @@
         <action
             android:id="@+id/action_groupDetails_to_upcomingMatches"
             app:destination="@id/upcomingMatchesFragment" />
+        <action
+            android:id="@+id/action_groupDetailsFragment_to_userBetsPopUpFragment"
+            app:destination="@id/userBetsPopUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/leagueDetailsFragment"
@@ -210,4 +213,19 @@
         android:name="com.example.ibet.LeagueWinnerFragment"
         android:label="fragment_league_winner"
         tools:layout="@layout/fragment_league_winner" />
+    <fragment
+        android:id="@+id/userBetsPopUpFragment"
+        android:name="com.example.ibet.UserBetsPopUpFragment"
+        android:label="fragment_user_bets_pop_up"
+        tools:layout="@layout/fragment_user_bets_pop_up" >
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="groupId"
+            app:argType="string" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+    </fragment>
 </navigation>

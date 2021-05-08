@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -90,14 +91,12 @@ public class GroupDetailsFragment extends Fragment {
         usersList_rv.setLayoutManager(layoutManager);
         userAdapter = new UserAdapter();
 
-
-
         group_name= view.findViewById(R.id.group_details_title);
-
 
         currentUser = new User();
         group_id = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupID();
         group_name.setText(GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupName());
+
         Model.instance.getGroupData(group_id, new Model.GroupListener() {
             @Override
             public void onComplete(boolean result, Group group) {
@@ -120,6 +119,15 @@ public class GroupDetailsFragment extends Fragment {
                 });
                 userAdapter.setUsersData(usersList);
                 usersList_rv.setAdapter(userAdapter);
+            }
+        });
+
+        userAdapter.setOnItemClickListener(new UserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(User user, View view) {
+                GroupDetailsFragmentDirections.ActionGroupDetailsFragmentToUserBetsPopUpFragment action = GroupDetailsFragmentDirections.
+                        actionGroupDetailsFragmentToUserBetsPopUpFragment(user.getId(),group_id,user.getUserName());
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

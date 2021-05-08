@@ -121,10 +121,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             if (match.getStatus().equals("Finished") || match.getStatus().equals("NotYet")){
                 winnerInput.setEnabled(false);
                 winnerInput.setVisibility(View.VISIBLE);
-                winnerInput.setSelection(Integer.parseInt(match.getUserBet().getWinner()));
+                if (match.getUserBet() == null){
+                    winnerInput.setSelection(0);
+                    scoreInput.setText("0");
+                }else{
+                    winnerInput.setSelection(Integer.parseInt(match.getUserBet().getWinner()));
+                    scoreInput.setText(match.getUserBet().getTotalScore());
+                }
                 scoreInput.setEnabled(false);
                 scoreInput.setVisibility(View.VISIBLE);
-                scoreInput.setText(match.getUserBet().getTotalScore());
                 confirmBtn.setEnabled(false);
                 confirmBtn.setVisibility(View.INVISIBLE);
                 winnerTitle.setVisibility(View.INVISIBLE);
@@ -133,10 +138,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             else{
                 winnerInput.setEnabled(true);
                 winnerInput.setVisibility(View.VISIBLE);
-                winnerInput.setSelection(Integer.parseInt(match.getUserBet().getWinner()));
+                if (match.getUserBet() == null){
+                    winnerInput.setSelection(0);
+                    scoreInput.setText("0");
+                }else{
+                    winnerInput.setSelection(Integer.parseInt(match.getUserBet().getWinner()));
+                    scoreInput.setText(match.getUserBet().getTotalScore());
+                }
                 scoreInput.setEnabled(true);
                 scoreInput.setVisibility(View.VISIBLE);
-                scoreInput.setText(match.getUserBet().getTotalScore());
                 confirmBtn.setEnabled(true);
                 confirmBtn.setVisibility(View.VISIBLE);
                 winnerTitle.setVisibility(View.VISIBLE);

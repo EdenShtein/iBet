@@ -18,6 +18,22 @@
         android:theme="@style/Theme.IBet"
         android:usesCleartextTraffic="true">
 
+        <receiver android:name=".model.Notifications.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".model.Notifications.AlarmNotificationReceiver"/>
+
+        <service
+            android:name=".model.Notifications.MyService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity android:name=".Splash_Screen"
             android:theme="@style/AppTheme_Splash">
             <intent-filter>
@@ -29,6 +45,9 @@
         <activity android:name=".MainActivity">
 
         </activity>
+
+
+
     </application>
 
 </manifest>

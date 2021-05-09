@@ -101,7 +101,7 @@ public class GroupDetailsFragment extends Fragment {
             @Override
             public void onComplete(boolean result, Group group) {
                 currentGroup = group;
-                Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
+               /* Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
                     @Override
                     public void onComplete(User user) {
                         currentUser = user;
@@ -109,7 +109,7 @@ public class GroupDetailsFragment extends Fragment {
                             bottomNav.getMenu().findItem(R.id.nav_group_share).setVisible(false);
                         }
                     }
-                });
+                });*/
             }
         });
 

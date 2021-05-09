@@ -733,8 +733,8 @@ public class Server {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("Error1", error.getMessage());
+                Toast.makeText(mActivity, "Error with joining group", Toast.LENGTH_SHORT).show();
+                //Log.e("Error1", error.getMessage());
             }
         })
         {

@@ -101,6 +101,15 @@ public class GroupDetailsFragment extends Fragment {
             @Override
             public void onComplete(boolean result, Group group) {
                 currentGroup = group;
+                Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
+                    @Override
+                    public void onComplete(User user) {
+                        currentUser = user;
+                        if(!currentUser.getId().equals(currentGroup.getAdmin_id())){
+                            bottomNav.getMenu().findItem(R.id.nav_group_share).setVisible(false);
+                        }
+                    }
+                });
             }
         });
 
@@ -131,15 +140,7 @@ public class GroupDetailsFragment extends Fragment {
             }
         });
 
-        Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
-            @Override
-            public void onComplete(User user) {
-                currentUser = user;
-                if(!currentUser.getId().equals(currentGroup.getAdmin_id())){
-                    bottomNav.getMenu().findItem(R.id.nav_group_share).setVisible(false);
-                }
-            }
-        });
+
 
         return view;
     }

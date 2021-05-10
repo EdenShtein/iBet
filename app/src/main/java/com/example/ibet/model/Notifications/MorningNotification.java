@@ -11,10 +11,10 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.ibet.MainActivity;
+
 import com.example.ibet.R;
 
-public class NotificationReceiver extends BroadcastReceiver {
+public class MorningNotification extends BroadcastReceiver {
     public final String CHANNEL_ID = "1";
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

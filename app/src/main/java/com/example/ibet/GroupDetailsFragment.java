@@ -51,9 +51,9 @@ public class GroupDetailsFragment extends Fragment {
 
     View view;
 
-    //Button upcoming_matches;
-
     TextView group_name;
+    TextView group_points1;
+    TextView group_points2;
 
     String group_id;
     Group currentGroup;
@@ -97,10 +97,15 @@ public class GroupDetailsFragment extends Fragment {
         group_id = GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupID();
         group_name.setText(GroupDetailsFragmentArgs.fromBundle(getArguments()).getGroupName());
 
+        group_points1 = view.findViewById(R.id.group_details_score_input);
+        group_points2 = view.findViewById(R.id.group_details_winner_input);
+
         Model.instance.getGroupData(group_id, new Model.GroupListener() {
             @Override
             public void onComplete(boolean result, Group group) {
                 currentGroup = group;
+                group_points1.setText(currentGroup.getPointsTotal());
+                group_points2.setText(currentGroup.getPointsWinner());
                /* Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
                     @Override
                     public void onComplete(User user) {

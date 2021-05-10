@@ -2,10 +2,12 @@ package com.example.ibet;
 
 import android.app.Dialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -13,6 +15,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -61,6 +64,8 @@ public class MainFeedFragment extends Fragment {
 
    BottomNavigationView bottomNav;
 
+    AlertDialog.Builder alertBuilder;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,6 +91,8 @@ public class MainFeedFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
         groupsList_rv.setLayoutManager(layoutManager);
         groupAdapter = new GroupAdapter();
+
+        alertBuilder = new AlertDialog.Builder(getActivity());
 
         //GroupViewModel groupViewModel = new ViewModelProvider(requireActivity()).get(GroupViewModel.class);
         //groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
@@ -141,6 +148,41 @@ public class MainFeedFragment extends Fragment {
             }
         });
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.UP | ItemTouchHelper.DOWN) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                String groupId = groupAdapter.getGroups(viewHolder.getAdapterPosition()).getId();
+                alertBuilder.setMessage("Are You Sure You Want To Delete the group?")
+                        .setCancelable(false)
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Model.instance.deleteGroup(groupId, new Model.SuccessListener() {
+                                    @Override
+                                    public void onComplete(boolean result) {
+                                        Toast.makeText(getActivity(), "Group has been deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+                AlertDialog alert = alertBuilder.create();
+                alert.setTitle("Delete Group");
+                alert.show();
+            }
+        }).attachToRecyclerView(groupsList_rv);
 
 //        groupViewModel.getAllGroups().observe(getViewLifecycleOwner(), new Observer<List<Group>>() {
 //            @Override

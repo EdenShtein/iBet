@@ -35,8 +35,11 @@ public class Group {
     @ColumnInfo(name = "league_name")
     private String leagueName;
 
-    @ColumnInfo(name = "points_manager")
-    private int pointsManager;
+    @ColumnInfo(name = "points_total")
+    private String pointsTotal;
+
+    @ColumnInfo(name = "points_winner")
+    private String pointsWinner;
 
     @ColumnInfo(name = "group_players")
     private String group_players;
@@ -129,14 +132,6 @@ public class Group {
         this.lastUpdated = lastUpdated;
     }
 
-    public int getPointsManager() {
-        return pointsManager;
-    }
-
-    public void setPointsManager(int pointsManager) {
-        this.pointsManager = pointsManager;
-    }
-
     public String getGroup_players() {
         return group_players;
     }
@@ -167,6 +162,22 @@ public class Group {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public String getPointsTotal() {
+        return pointsTotal;
+    }
+
+    public void setPointsTotal(String pointsTotal) {
+        this.pointsTotal = pointsTotal;
+    }
+
+    public String getPointsWinner() {
+        return pointsWinner;
+    }
+
+    public void setPointsWinner(String pointsWinner) {
+        this.pointsWinner = pointsWinner;
     }
 
 }

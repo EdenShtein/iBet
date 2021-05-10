@@ -602,6 +602,8 @@ public class Server {
                 String current_score ="0";
                 String user_name;
                 String user_id;
+                String totalScore;
+                String matchWinner;
                 User new_user = new User();
 
                 try {
@@ -611,6 +613,10 @@ public class Server {
                         group_id = arr.getString("_id");
                         group_name = arr.getString("groupName");
                         admin_id = arr.getString("adminUser");
+
+                        JSONObject pointsFormat = arr.getJSONObject("pointsFormat");
+                        totalScore = pointsFormat.getString("Total");
+                        matchWinner = pointsFormat.getString("FinalMatchWinner");
 
                         JSONObject data = arr.getJSONObject("data");
                         JSONArray userGroupBets = data.getJSONArray("userGroupBets");
@@ -626,6 +632,8 @@ public class Server {
 
                         /*do*/
                         Group group = new Group(group_id,group_name,admin_id,new_user);
+                        group.setPointsTotal(totalScore);
+                        group.setPointsWinner(matchWinner);
                        // try{
                         //group.setCurrent_score(current_score);}catch (Exception e){}
                         //group.setCurrent_score(current_score);
@@ -1113,8 +1121,8 @@ public class Server {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("Error1", error.getMessage());
+                Toast.makeText(mActivity, "Error with deleting group!", Toast.LENGTH_SHORT).show();
+                //Log.e("Error1", error.getMessage());
             }
         })
         {

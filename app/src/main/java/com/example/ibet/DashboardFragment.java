@@ -71,7 +71,7 @@ public class DashboardFragment extends Fragment {
                             }
                         });
                 AlertDialog alert = alertBuilder.create();
-                alert.setTitle("Signout");
+                alert.setTitle("Sign Out");
                 alert.show();
             }
 

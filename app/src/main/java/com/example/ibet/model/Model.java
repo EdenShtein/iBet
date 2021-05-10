@@ -179,9 +179,13 @@ public class Model {
         server.winningTeamBet(listener,mActivity,token,groupId,teamName);
     }
 
-    public interface IdListener{
-        public void onComplete(String id);
+    public void deleteGroup(String id,SuccessListener listener){
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.deleteGroup(listener,mActivity,token,id);
     }
+
+
 
 
 

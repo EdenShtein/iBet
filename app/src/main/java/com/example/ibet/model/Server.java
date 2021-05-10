@@ -670,6 +670,69 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void getCurrentUserScore(Model.GroupListener listener,Activity mActivity,String token,Group group,String userId) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://ibet-app.herokuapp.com/api/groups/"+group.getId();
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                String current_score ="0";
+                String user_id;
+                User new_user = new User();
+
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONObject arr = response.getJSONObject("group");
+
+                        JSONObject data = arr.getJSONObject("data");
+                        JSONArray userGroupBets = data.getJSONArray("userGroupBets");
+                        for (int i=0; i<userGroupBets.length(); i++){
+                            JSONObject user = userGroupBets.getJSONObject(i);
+                            current_score = user.getString("currentScore");
+                            user_id = user.getString("user");
+                            if(user_id.equals(userId)){
+                                new_user.setId(user_id);
+                                new_user.setScore(current_score);
+                                break;
+                            }
+
+                        }
+                        group.setCurrentUser(new_user);
+                        listener.onComplete(true,group);
+
+                    }
+                    else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
+
     public void shareGroup(Model.GroupListener listener,Activity mActivity,String token,Group group) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
         String id = group.getId();

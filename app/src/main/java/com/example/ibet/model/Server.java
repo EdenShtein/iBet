@@ -588,9 +588,9 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void getGroupData(Model.GroupListener listener,Activity mActivity,String token,String id) {
+    public void getGroupData(Model.GroupListener listener,Activity mActivity,String token,String group_id,String cUser_id) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
-        final String url = "http://ibet-app.herokuapp.com/api/groups/"+id;
+        final String url = "http://ibet-app.herokuapp.com/api/groups/"+group_id;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -605,6 +605,7 @@ public class Server {
                 String totalScore;
                 String matchWinner;
                 User new_user = new User();
+                User current_user = new User();
 
                 try {
                     status = response.getString("status");
@@ -628,10 +629,15 @@ public class Server {
                             new_user.setId(user_id);
                             new_user.setUserName(user_name);
                             new_user.setScore(current_score);
+                            if (user_id.equals(cUser_id)){
+                                current_user.setId(user_id);
+                                current_user.setUserName(user_name);
+                                current_user.setScore(current_score);
+                            }
                         }
 
                         /*do*/
-                        Group group = new Group(group_id,group_name,admin_id,new_user);
+                        Group group = new Group(group_id,group_name,admin_id,current_user);
                         group.setPointsTotal(totalScore);
                         group.setPointsWinner(matchWinner);
                        // try{

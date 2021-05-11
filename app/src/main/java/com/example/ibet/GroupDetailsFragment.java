@@ -100,21 +100,12 @@ public class GroupDetailsFragment extends Fragment {
         group_points1 = view.findViewById(R.id.group_details_score_input);
         group_points2 = view.findViewById(R.id.group_details_winner_input);
 
-        Model.instance.getGroupData(group_id, new Model.GroupListener() {
+        Model.instance.getGroupData(group_id, "", new Model.GroupListener() {
             @Override
             public void onComplete(boolean result, Group group) {
                 currentGroup = group;
                 group_points1.setText(currentGroup.getPointsTotal());
                 group_points2.setText(currentGroup.getPointsWinner());
-               /* Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
-                    @Override
-                    public void onComplete(User user) {
-                        currentUser = user;
-                        if(!currentUser.getId().equals(currentGroup.getAdmin_id())){
-                            bottomNav.getMenu().findItem(R.id.nav_group_share).setVisible(false);
-                        }
-                    }
-                });*/
             }
         });
 

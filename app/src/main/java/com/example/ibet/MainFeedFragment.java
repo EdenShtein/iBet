@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,13 +59,18 @@ public class MainFeedFragment extends Fragment {
    //LiveData<List<Group>> groupList;
    Dialog myDialog;
    String group_id;
-    SwipeRefreshLayout swipeRefreshLayout;
+   SwipeRefreshLayout swipeRefreshLayout;
 
-    ArrayList<Group> groupList;
+   ArrayList<Group> groupList;
 
    BottomNavigationView bottomNav;
 
-    AlertDialog.Builder alertBuilder;
+   AlertDialog.Builder alertBuilder;
+
+   User main_user;
+   String cUser_id;
+
+    ProgressBar pb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +86,9 @@ public class MainFeedFragment extends Fragment {
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         decorView.setSystemUiVisibility(uiOptions);*/
         //setHasOptionsMenu(true);
+
+        pb=view.findViewById(R.id.mainfeed_pb);
+        pb.setVisibility(View.VISIBLE);
 
         groupList = new ArrayList<>();
 
@@ -99,23 +108,33 @@ public class MainFeedFragment extends Fragment {
         /*Group group = new Group("1","First Group","1234");
         groupViewModel.delete(group);*/
 
-        Model.instance.getUsersGroup(new Model.GroupIdsListener() {
+        Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
             @Override
-            public void onComplete(ArrayList<String> groupIds) {
-                for(String id: groupIds){
-                    Model.instance.getGroupData(id, new Model.GroupListener() {
-                        @Override
-                        public void onComplete(boolean result, Group group) {
-                            if(result){
-                                groupList.add(group);
-                                groupAdapter.setGroupsData(groupList);
-                                groupsList_rv.setAdapter(groupAdapter);
-                            }
+            public void onComplete(User user) {
+                main_user = user;
+                cUser_id = main_user.getId();
+                Model.instance.getUsersGroup(new Model.GroupIdsListener() {
+                @Override
+                public void onComplete(ArrayList<String> groupIds) {
+                    for(String group_id: groupIds){
+                        Model.instance.getGroupData(group_id, cUser_id, new Model.GroupListener() {
+                            @Override
+                            public void onComplete(boolean result, Group group) {
+                                if(result){
+                                    groupList.add(group);
+                                    groupAdapter.setGroupsData(groupList);
+                                    groupsList_rv.setAdapter(groupAdapter);
+                                    pb.setVisibility(View.INVISIBLE);
+                                    }
+                                }
+                            });
                         }
-                    });
-                }
+                    }
+                });
             }
         });
+
+
 
         swipeRefreshLayout = view.findViewById(R.id.mainfeed_refresh_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.design_default_color_primary,
@@ -127,23 +146,33 @@ public class MainFeedFragment extends Fragment {
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
                 ArrayList<Group> refreshedList = new ArrayList<>();
-                Model.instance.getUsersGroup(new Model.GroupIdsListener() {
+
+                Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
                     @Override
-                    public void onComplete(ArrayList<String> groupIds) {
-                        for(String id: groupIds){
-                            Model.instance.getGroupData(id, new Model.GroupListener() {
-                                @Override
-                                public void onComplete(boolean result, Group group) {
-                                    if(result){
-                                        refreshedList.add(group);
-                                        groupAdapter.setGroupsData(refreshedList);
-                                        groupsList_rv.setAdapter(groupAdapter);
-                                    }
+                    public void onComplete(User user) {
+                        main_user = user;
+                        cUser_id = main_user.getId();
+                        Model.instance.getUsersGroup(new Model.GroupIdsListener() {
+                            @Override
+                            public void onComplete(ArrayList<String> groupIds) {
+                                for(String group_id: groupIds){
+                                    Model.instance.getGroupData(group_id, main_user.getId(), new Model.GroupListener() {
+                                        @Override
+                                        public void onComplete(boolean result, Group group) {
+                                            if(result){
+                                                refreshedList.add(group);
+                                                groupAdapter.setGroupsData(refreshedList);
+                                                groupsList_rv.setAdapter(groupAdapter);
+                                            }
+                                        }
+                                    });
                                 }
-                            });
-                        }
+                            }
+                        });
                     }
                 });
+
+
                 swipeRefreshLayout.setRefreshing(false);
             }
         });

@@ -8,6 +8,18 @@
     android:hapticFeedbackEnabled="false"
     tools:context=".MainFeedFragment">
 
+    <ProgressBar
+        android:id="@+id/mainfeed_pb"
+        style="@android:style/Widget.Holo.Light.ProgressBar"
+        android:layout_width="107dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="200dp"
+        android:elevation="10px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/mainfeed_gif"
         android:layout_width="0dp"

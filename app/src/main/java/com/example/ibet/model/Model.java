@@ -109,10 +109,10 @@ public class Model {
         server.createGroup(listener,mActivity,token,groupName,finalMatchWinner,total);
     }
 
-    public void getGroupData(String id,GroupListener listener){
+    public void getGroupData(String group_id,String user_id,GroupListener listener){
         pref = mActivity.getSharedPreferences("MyPref", 0);
         String token = pref.getString("token",null);
-        server.getGroupData(listener,mActivity,token,id);
+        server.getGroupData(listener,mActivity,token,group_id,user_id);
     }
 
     public void shareCode(Group group,GroupListener listener){

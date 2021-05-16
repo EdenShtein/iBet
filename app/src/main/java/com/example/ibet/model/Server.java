@@ -78,8 +78,6 @@ public class Server {
                         String user_id = user_obj.getString("_id");
                         User user = new User(email,username);
                         user.setId(user_id);
-//                        UserViewModel userViewModel = ViewModelProviders.of((FragmentActivity) mActivity).get(UserViewModel.class);
-//                        userViewModel.insert(user);
                         listener.onComplete(true);
                     }
                     else { listener.onComplete(false); }
@@ -128,11 +126,7 @@ public class Server {
                         AppRepository appRepository = new AppRepository(mActivity.getApplication(),user);
                         appRepository.currentUser = user;
                         appRepository.insert(user);
-                        //userViewModel.insert(user);
 
-                        /*AppDatabase appDatabase = AppDatabase.getInstance(mActivity,user);
-                        UserOnlyDao uoDao = appDatabase.getUserOnlyDao();
-                        uoDao.insertUserLog(new UserLog(user,"UOLogged in was Good"));*/
 
                         listener.onComplete(true,token);
                     }
@@ -215,72 +209,6 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
-    /*public void getAlgoResult(Model.TeamDataListener listener) {
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL("http://" + ip +":3000/api/algo/standings"); //You need to write your IPV4 (cmd ipconfig)
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-
-                    conn.setDoInput(true);
-
-
-                    InputStream is = conn.getInputStream();
-                    JSONObject jObj = null;
-                    String json = "";
-
-
-                    try {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                                is, "iso-8859-1"), 8);
-                        StringBuilder sb = new StringBuilder();
-                        String line = null;
-                        while ((line = reader.readLine()) != null) {
-                            sb.append(line + "\n");
-                        }
-                        is.close();
-                        json = sb.toString();
-                    } catch (Exception e) {
-                        Log.e("Buffer Error", "Error converting result " + e.toString());
-                    }
-
-                    // try parse the string to a JSON object
-                    try {
-                        jObj = new JSONObject(json);
-                    } catch (JSONException e) {
-                        Log.e("JSON Parser", "Error parsing data " + e.toString());
-                    }
-                    JSONArray resultArray = jObj.getJSONArray("data");
-                    ArrayList<Team> teamsData = new ArrayList<>(resultArray.length());
-                    if(conn.getResponseCode() == 200) {
-
-                        for(int i=0;i<resultArray.length();i++)
-                        {
-                            String teamName = resultArray.getJSONObject(i).getString("teamName");
-                            String wins = resultArray.getJSONObject(i).getString("wins");
-                            String losses = resultArray.getJSONObject(i).getString("losses");
-                            Boolean isEliminated = resultArray.getJSONObject(i).getBoolean("isEliminated");
-                            Team t = new Team(teamName,wins,losses,isEliminated);
-                            teamsData.add(t);
-                        }
-                        listener.onComplete(teamsData);
-                    }
-                    else {  }
-
-                    conn.disconnect();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        thread.start();
-    }*/
 
     public void getAlgoResult(Model.AlgoListener listener,Activity mActivity) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());

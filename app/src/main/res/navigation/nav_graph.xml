@@ -234,4 +234,9 @@
             android:name="userName"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/mainHelpFragment"
+        android:name="com.example.ibet.MainHelpFragment"
+        android:label="fragment_main_help"
+        tools:layout="@layout/fragment_main_help" />
 </navigation>

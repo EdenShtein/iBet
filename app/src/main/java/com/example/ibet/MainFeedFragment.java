@@ -55,10 +55,7 @@ public class MainFeedFragment extends Fragment {
    public RecyclerView groupsList_rv;
    Button createGroup;
    GroupAdapter groupAdapter;
-   private GroupViewModel groupViewModel;
-   //LiveData<List<Group>> groupList;
-   Dialog myDialog;
-   String group_id;
+
    SwipeRefreshLayout swipeRefreshLayout;
 
    ArrayList<Group> groupList;
@@ -66,6 +63,8 @@ public class MainFeedFragment extends Fragment {
    BottomNavigationView bottomNav;
 
    AlertDialog.Builder alertBuilder;
+   Dialog helpDialog;
+   Dialog myDialog;
 
    User main_user;
    String cUser_id;
@@ -242,6 +241,7 @@ public class MainFeedFragment extends Fragment {
         });
 
         myDialog = new Dialog(view.getContext());
+        helpDialog = new Dialog(view.getContext());
 
 
         return view;
@@ -281,6 +281,21 @@ public class MainFeedFragment extends Fragment {
                         }
                     }
                 });
+            }
+        });
+        myDialog.show();
+    }
+
+    public void HelpPopup(View v){
+
+        Button confirmBtn;
+        myDialog.setContentView(R.layout.fragment_main_help);
+        confirmBtn = (Button) myDialog.findViewById(R.id.main_help_btn);
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
             }
         });
         myDialog.show();
@@ -327,11 +342,11 @@ public class MainFeedFragment extends Fragment {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                /*case R.id.nav_my_profile:
+                case R.id.nav_help:
                     if (view != null) {
-                        Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
+                        HelpPopup(view);
                     }
-                    break;*/
+                    break;
                 case R.id.nav_join:
                     if (view != null) {
                         ShowPopup(view);

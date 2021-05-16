@@ -6,11 +6,11 @@
         android:title="Main Feed"
         ></item>
 
-    <item
+    <!--<item
         android:id="@+id/nav_my_profile"
         android:icon="@drawable/profile_img"
         android:title="My Profile"
-         />
+         />-->
 
     <item
     android:id="@+id/nav_join"

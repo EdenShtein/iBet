@@ -202,6 +202,12 @@
         <action
             android:id="@+id/action_dashboard_to_rules"
             app:destination="@id/rulesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_editUserFragment"
+            app:destination="@id/editUserFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_leagueDetailsFragment"
+            app:destination="@id/leagueDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/helpPopUpFragment"

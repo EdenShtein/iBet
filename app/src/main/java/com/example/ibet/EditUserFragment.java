@@ -26,9 +26,6 @@ public class EditUserFragment extends Fragment {
 
     View view;
 
-    SharedPreferences pref;
-    SharedPreferences.Editor editor;
-
     EditText email;
     EditText username;
     EditText password;
@@ -122,7 +119,7 @@ public class EditUserFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.back_btn:
                 if(view != null) {
-                    Navigation.findNavController(view).navigate(R.id.action_editUserFragment_to_myProfileFragment);
+                    Navigation.findNavController(view).popBackStack();
                 }
                 break;
             default:

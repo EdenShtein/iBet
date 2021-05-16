@@ -32,10 +32,6 @@ public class Splash_Screen extends AppCompatActivity {
         Animation animation2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
         splash2.startAnimation(animation);
 
-        splash3 = findViewById(R.id.SplashBall);
-        Animation animation3 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
-        splash3.startAnimation(animation);
-
         pref = this.getSharedPreferences("MyPref", 0);
         editor = pref.edit();
 

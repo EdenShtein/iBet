@@ -327,11 +327,11 @@ public class MainFeedFragment extends Fragment {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.nav_my_profile:
+                /*case R.id.nav_my_profile:
                     if (view != null) {
                         Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_myProfile);
                     }
-                    break;
+                    break;*/
                 case R.id.nav_join:
                     if (view != null) {
                         ShowPopup(view);

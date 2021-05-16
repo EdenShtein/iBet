@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -12,9 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,6 +23,8 @@ public class DashboardFragment extends Fragment {
     CardView teamsResult;
     CardView back;
     CardView rules;
+    CardView profile;
+    CardView league;
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -45,8 +43,10 @@ public class DashboardFragment extends Fragment {
 
         signout =view.findViewById(R.id.dash_signout);
         teamsResult =view.findViewById(R.id.dash_team_results);
-        back = view.findViewById(R.id.nav_back);
-        rules = view.findViewById(R.id.nav_rules);
+        back = view.findViewById(R.id.dash_nav_back);
+        rules = view.findViewById(R.id.dash_nav_rules);
+        profile = view.findViewById(R.id.dash_myprofile);
+        league = view.findViewById(R.id.dash_league);
         alertBuilder = new AlertDialog.Builder(getActivity());
 
         pref = getActivity().getSharedPreferences("MyPref", 0);
@@ -95,6 +95,20 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_dashboard_to_rules);
+            }
+        });
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_dashboardFragment_to_editUserFragment);
+            }
+        });
+
+        league.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_dashboardFragment_to_leagueDetailsFragment);
             }
         });
 

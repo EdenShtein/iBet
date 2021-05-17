@@ -1072,4 +1072,60 @@ public class Server {
         requestQueue.getCache().clear();
         requestQueue.add(jsonObjectRequest);
     }
+
+    public void backInTime( Model.SuccessListener listener, Activity mActivity) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "https://ibet-app.herokuapp.com/api/time/back";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        listener.onComplete(true);
+                    }
+                    else { listener.onComplete(false); }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    public void backToFuture( Model.SuccessListener listener, Activity mActivity) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "https://ibet-app.herokuapp.com/api/time/now";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        listener.onComplete(true);
+                    }
+                    else { listener.onComplete(false); }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+    }
 }

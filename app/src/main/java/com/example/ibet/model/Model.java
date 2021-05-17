@@ -185,6 +185,14 @@ public class Model {
         server.deleteGroup(listener,mActivity,token,id);
     }
 
+    public void backInTime(SuccessListener listener) {
+        server.backInTime(listener,mActivity);
+    }
+
+    public void backToFuture(SuccessListener listener) {
+        server.backToFuture(listener,mActivity);
+    }
+
 
 
 

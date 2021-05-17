@@ -29,6 +29,17 @@
         app:layout_constraintTop_toTopOf="@+id/textView7"
         tools:ignore="MissingConstraints"></NumberPicker>
 
+    <NumberPicker
+        android:id="@+id/create_group_picker"
+        android:layout_width="53dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="90dp"
+        android:backgroundTint="#202E7E"
+        android:theme="@style/NumberPickerTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        tools:ignore="MissingConstraints"></NumberPicker>
+
     <EditText
         android:id="@+id/create_group_input_name"
         android:layout_width="318dp"
@@ -52,7 +63,7 @@
         android:id="@+id/create_group_league_dropdown"
         android:layout_width="259dp"
         android:layout_height="43dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_group_picker3" />
+        app:layout_constraintTop_toBottomOf="@+id/create_group_picker" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -140,5 +151,16 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="36dp"
+        android:text="League Winner"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

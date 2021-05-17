@@ -103,10 +103,10 @@ public class Model {
         public void onComplete(boolean result, Group group);
     }
 
-    public void createGroup(String groupName,int finalMatchWinner,int total,GroupListener listener){
+    public void createGroup(String groupName,int finalMatchWinner,int total,int leagueWinner, GroupListener listener){
         pref = mActivity.getSharedPreferences("MyPref", 0);
         String token = pref.getString("token",null);
-        server.createGroup(listener,mActivity,token,groupName,finalMatchWinner,total);
+        server.createGroup(listener,mActivity,token,groupName,finalMatchWinner,total, leagueWinner);
     }
 
     public void getGroupData(String group_id,String user_id,GroupListener listener){

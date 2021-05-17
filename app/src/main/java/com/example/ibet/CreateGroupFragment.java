@@ -35,9 +35,11 @@ public class CreateGroupFragment extends Fragment {
 
     NumberPicker fullTimePointsPicker;
     NumberPicker totalGamePointsPicker;
+    NumberPicker leagueWinnerPicker;
 
     int finalMatchWinner = 1;
     int total = 2;
+    int leagueWinner = 30;
 
     Button create;
 
@@ -57,9 +59,11 @@ public class CreateGroupFragment extends Fragment {
 
         fullTimePointsPicker = view.findViewById(R.id.create_group_picker2);
         totalGamePointsPicker = view.findViewById(R.id.create_group_picker3);
+        leagueWinnerPicker = view.findViewById(R.id.create_group_picker);
 
         setPointsPicker(fullTimePointsPicker, 1, 20, 1);
         setPointsPicker(totalGamePointsPicker, 1, 20, 2);
+        setPointsPicker(leagueWinnerPicker, 30, 100, 30);
 
         //groupViewModel = ViewModelProviders.of(getActivity()).get(GroupViewModel.class);
 
@@ -74,6 +78,13 @@ public class CreateGroupFragment extends Fragment {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 total = newVal;
+            }
+        });
+
+        leagueWinnerPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                leagueWinner = newVal;
             }
         });
 
@@ -92,7 +103,7 @@ public class CreateGroupFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please Enter a valid group name!", Toast.LENGTH_SHORT).show();
                 } else {
                     String name = groupName.getText().toString();
-                    Model.instance.createGroup(name, finalMatchWinner, total, new Model.GroupListener() {
+                    Model.instance.createGroup(name, finalMatchWinner, total, leagueWinner, new Model.GroupListener() {
                         @Override
                         public void onComplete(boolean result, Group group) {
                             if (result) {

@@ -26,6 +26,25 @@
         app:layout_constraintTop_toTopOf="@+id/group_details_winner_txt" />
 
     <TextView
+        android:id="@+id/group_details_leaguewinner_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="50dp"
+        android:background="#DF000000"
+        android:backgroundTint="#DF000000"
+        android:elevation="5px"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="##"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/group_details_winner_txt"
+        app:layout_constraintTop_toTopOf="@+id/group_details_leaguewinner_txt" />
+
+    <TextView
         android:id="@+id/group_details_winner_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,6 +59,22 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/group_details_score_txt" />
+
+    <TextView
+        android:id="@+id/group_details_leaguewinner_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:background="#DF000000"
+        android:backgroundTint="#DF000000"
+        android:elevation="5px"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="League Winner bet:"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_details_winner_txt" />
 
     <TextView
         android:id="@+id/group_details_score_input"
@@ -98,13 +133,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="55dp"
         android:elevation="1px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group_details_winner_txt">
+        app:layout_constraintTop_toBottomOf="@+id/group_details_leaguewinner_txt">
 
         <TableRow
             android:id="@+id/group_details_table_main"

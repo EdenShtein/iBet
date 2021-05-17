@@ -41,6 +41,9 @@ public class Group {
     @ColumnInfo(name = "points_winner")
     private String pointsWinner;
 
+    @ColumnInfo(name = "points_league_winner")
+    private String pointsLeagueWinner;
+
     @ColumnInfo(name = "group_players")
     private String group_players;
 
@@ -178,6 +181,14 @@ public class Group {
 
     public void setPointsWinner(String pointsWinner) {
         this.pointsWinner = pointsWinner;
+    }
+
+    public String getPointsLeagueWinner() {
+        return pointsLeagueWinner;
+    }
+
+    public void setPointsLeagueWinner(String pointsLeagueWinner) {
+        this.pointsLeagueWinner = pointsLeagueWinner;
     }
 
 }

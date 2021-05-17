@@ -54,6 +54,7 @@ public class GroupDetailsFragment extends Fragment {
     TextView group_name;
     TextView group_points1;
     TextView group_points2;
+    TextView group_points3;
 
     String group_id;
     Group currentGroup;
@@ -99,6 +100,7 @@ public class GroupDetailsFragment extends Fragment {
 
         group_points1 = view.findViewById(R.id.group_details_score_input);
         group_points2 = view.findViewById(R.id.group_details_winner_input);
+        group_points3 = view.findViewById(R.id.group_details_leaguewinner_input);
 
         Model.instance.getGroupData(group_id, "", new Model.GroupListener() {
             @Override
@@ -106,6 +108,7 @@ public class GroupDetailsFragment extends Fragment {
                 currentGroup = group;
                 group_points1.setText(currentGroup.getPointsTotal());
                 group_points2.setText(currentGroup.getPointsWinner());
+                group_points3.setText(currentGroup.getPointsLeagueWinner());
             }
         });
 

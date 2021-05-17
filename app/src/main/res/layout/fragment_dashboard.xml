@@ -353,4 +353,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ibetlogored" />
 
+    <Button
+        android:id="@+id/dash_past_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:text="Past"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <Button
+        android:id="@+id/dash_present_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Present"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dash_past_btn"
+        app:layout_constraintTop_toTopOf="@+id/dash_past_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

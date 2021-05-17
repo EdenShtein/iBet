@@ -13,6 +13,10 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.ibet.model.Model;
 
 
 public class DashboardFragment extends Fragment {
@@ -28,6 +32,9 @@ public class DashboardFragment extends Fragment {
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+
+    Button pastBtn;
+    Button presentBtn;
 
     AlertDialog.Builder alertBuilder;
 
@@ -48,6 +55,35 @@ public class DashboardFragment extends Fragment {
         profile = view.findViewById(R.id.dash_myprofile);
         league = view.findViewById(R.id.dash_league);
         alertBuilder = new AlertDialog.Builder(getActivity());
+
+        pastBtn = view.findViewById(R.id.dash_past_btn);
+        presentBtn = view.findViewById(R.id.dash_present_btn);
+
+        pastBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.instance.backInTime(new Model.SuccessListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+                        if (result){
+                            Toast.makeText(getActivity(), "back in time Marty", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+
+        presentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.instance.backToFuture(new Model.SuccessListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+                        Toast.makeText(getActivity(), "back to the future Marty", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
         pref = getActivity().getSharedPreferences("MyPref", 0);
         editor = pref.edit();

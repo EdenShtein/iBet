@@ -8,6 +8,8 @@ import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -44,6 +46,21 @@ public class SignUpFragment extends Fragment {
         repassword = view.findViewById(R.id.signup_repass_input);
         signup=view.findViewById(R.id.signup_continue_btn);
         signin=view.findViewById(R.id.signin_link);
+
+        InputFilter filter = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        email.setFilters(new InputFilter[] { filter });
+        password.setFilters(new InputFilter[] { filter });
+        repassword.setFilters(new InputFilter[] { filter });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override

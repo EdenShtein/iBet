@@ -108,7 +108,7 @@
         android:background="@drawable/customborder"
         android:ems="10"
         android:hint="Your Email"
-        android:inputType="textPersonName"
+        android:inputType="textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

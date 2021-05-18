@@ -68,7 +68,7 @@
         android:background="@drawable/customborder"
         android:ems="10"
         android:hint="Your Email"
-        android:inputType="text|textEmailAddress"
+        android:inputType="textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edituser_username_input" />

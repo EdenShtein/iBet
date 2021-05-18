@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,6 +53,24 @@ public class EditUserFragment extends Fragment {
 
         setHasOptionsMenu(true);
         onInit();
+
+
+        InputFilter filter = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
+        email.setFilters(new InputFilter[] { filter });
+        password.setFilters(new InputFilter[] { filter });
+        newPass.setFilters(new InputFilter[] { filter });
+        confirmPass.setFilters(new InputFilter[] { filter });
 
         updateMe.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1038,6 +1038,57 @@ public class Server {
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void getWinningTeamBet(Model.StringListener listener,Activity mActivity,String token,String groupId,String userId) {
+        RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());
+        final String url = "http://ibet-app.herokuapp.com/api/groups/"+groupId;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String status;
+                String teamChoice = null;
+                try {
+                    status = response.getString("status");
+                    if(status.equals("success")) {
+                        JSONObject arr = response.getJSONObject("group");
+                        JSONObject data = arr.getJSONObject("data");
+                        JSONArray userGroupBets = data.getJSONArray("userGroupBets");
+                        for(int j=0;j<userGroupBets.length();j++){
+                            JSONObject user = userGroupBets.getJSONObject(j);
+                            if(user.getString("user").equals(userId)){
+                                teamChoice = user.getString("teamChoice");
+                                break;
+                            }
+                        }
+                        listener.onComplete(teamChoice);
+
+                    }
+                    else { listener.onComplete("Error"); }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mActivity, "Error", Toast.LENGTH_SHORT).show();
+                //Log.e("Error1", error.getMessage());
+            }
+        })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                headers.put("Authorization","Bearer "+token);
+                return headers;
+            }
+
+        };
+        requestQueue.getCache().clear();
+        requestQueue.add(jsonObjectRequest);
+    }
+
 
     public void deleteGroup(Model.SuccessListener listener, Activity mActivity, String token, String id) {
         RequestQueue requestQueue = Volley.newRequestQueue(mActivity.getApplicationContext());

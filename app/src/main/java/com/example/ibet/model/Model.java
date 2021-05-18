@@ -22,6 +22,9 @@ public class Model {
     public final static Model instance = new Model(){};
     Server server = new Server();
 
+    public interface StringListener {
+        void onComplete(String string);
+    }
 
     public void setActivity(Activity activity){
         this.mActivity = activity;
@@ -60,7 +63,6 @@ public class Model {
         public void onComplete(ArrayList<Team> algoData);
     }
 
-
     public void getAlgoResults(AlgoListener listener) {
         server.getAlgoResult(listener,mActivity);
     }
@@ -96,8 +98,6 @@ public class Model {
         String token = pref.getString("token",null);
         server.getTeamData(listener,mActivity,token);
     }
-
-
 
     public interface GroupListener{
         public void onComplete(boolean result, Group group);
@@ -185,6 +185,12 @@ public class Model {
         server.deleteGroup(listener,mActivity,token,id);
     }
 
+    public void getWinningTeamBet(String groupId,String userId,StringListener listener)
+    {
+        pref = mActivity.getSharedPreferences("MyPref", 0);
+        String token = pref.getString("token",null);
+        server.getWinningTeamBet(listener,mActivity,token,groupId,userId);
+    }
     public void backInTime(SuccessListener listener) {
         server.backInTime(listener,mActivity);
     }

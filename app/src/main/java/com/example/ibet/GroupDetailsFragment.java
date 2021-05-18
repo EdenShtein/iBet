@@ -55,6 +55,7 @@ public class GroupDetailsFragment extends Fragment {
     TextView group_points1;
     TextView group_points2;
     TextView group_points3;
+    TextView teamChoice;
 
     String group_id;
     Group currentGroup;
@@ -102,6 +103,8 @@ public class GroupDetailsFragment extends Fragment {
         group_points2 = view.findViewById(R.id.group_details_winner_input);
         group_points3 = view.findViewById(R.id.group_details_leaguewinner_input);
 
+        teamChoice = view.findViewById(R.id.group_details_leaguewinner_input2);
+
         Model.instance.getGroupData(group_id, "", new Model.GroupListener() {
             @Override
             public void onComplete(boolean result, Group group) {
@@ -130,6 +133,19 @@ public class GroupDetailsFragment extends Fragment {
             }
         });
 
+        Model.instance.getCurrentUserDetails(new Model.UserDetailsListener() {
+            @Override
+            public void onComplete(User user) {
+                currentUser = user;
+                Model.instance.getWinningTeamBet(group_id, currentUser.getId(), new Model.StringListener() {
+                    @Override
+                    public void onComplete(String string) {
+                        teamChoice.setText(string);
+                    }
+                });
+            }
+        });
+
         userAdapter.setOnItemClickListener(new UserAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(User user, View view) {
@@ -144,17 +160,14 @@ public class GroupDetailsFragment extends Fragment {
         return view;
     }
 
-
-
     public void ShowPopup(View v){
 
         Button confirmBtn;
         myDialog.setContentView(R.layout.fragment_league_winner);
-        confirmBtn = (Button) myDialog.findViewById(R.id.popup_winner_btn);
+        confirmBtn = myDialog.findViewById(R.id.popup_winner_btn);
 
         Spinner leagueDropDown;
         leagueDropDown = myDialog.findViewById(R.id.winner_teams_list);
-
 
         //create a list of items for the spinner.
         String[] leagues = new String[]{"NBA","A","B","C"};
@@ -179,22 +192,20 @@ public class GroupDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 teamName = leagueDropDown.getSelectedItem().toString();
-                if (teamName.equals("Select winning team")) {
-                    myDialog.dismiss();
-                }else{
+                if (!teamName.equals("Select winning team")) {
                     Model.instance.winningTeamBet(group_id, teamName, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {
-                            if(result){
+                            if (result) {
                                 Toast.makeText(getActivity(), "Successful Bet on: " + teamName, Toast.LENGTH_SHORT).show();
-                            }else{
+                            } else {
                                 Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
                             }
 
                         }
                     });
-                    myDialog.dismiss();
                 }
+                myDialog.dismiss();
 
             }
         });
@@ -249,13 +260,4 @@ public class GroupDetailsFragment extends Fragment {
             return true;
         }
     };
-
-   /* public boolean isAdmin(){
-        if(currentUser.getId().equals(currentGroup.getAdmin_id())){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }*/
 }

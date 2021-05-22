@@ -548,7 +548,7 @@ public class Server {
                         JSONObject pointsFormat = arr.getJSONObject("pointsFormat");
                         totalScore = pointsFormat.getString("Total");
                         matchWinner = pointsFormat.getString("FinalMatchWinner");
-                        leagueWinner = pointsFormat.getString("FinalMatchWinner");
+                        leagueWinner = pointsFormat.getString("LeagueWinner");
 
                         JSONObject data = arr.getJSONObject("data");
                         JSONArray userGroupBets = data.getJSONArray("userGroupBets");
@@ -1020,7 +1020,7 @@ public class Server {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(mActivity, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, "Error, Already Chosen the winning team!", Toast.LENGTH_SHORT).show();
                 //Log.e("Error1", error.getMessage());
             }
         })

@@ -114,7 +114,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
 
         public void bindData(Match match, int position){
 
-            String[] teams = new String[]{"0",match.getHome(),match.getAway()};
+            String[] teams = new String[]{"Select Team",match.getHome(),match.getAway()};
             ArrayAdapter<String> adapter = new ArrayAdapter<>(itemView.getContext(), android.R.layout.simple_spinner_dropdown_item, teams);
             winnerInput.setAdapter(adapter);
 

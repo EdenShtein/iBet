@@ -163,11 +163,9 @@
 
     <TableLayout
         android:id="@+id/group_details_table"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="55dp"
         android:elevation="1px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -250,7 +248,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/group_details_rv"
-        android:layout_width="305dp"
+        android:layout_width="wrap_content"
         android:layout_height="353dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

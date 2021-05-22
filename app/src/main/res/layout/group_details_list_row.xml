@@ -52,7 +52,7 @@
             android:textStyle="bold" />
 
         <Space
-            android:layout_width="42dp"
+            android:layout_width="35dp"
             android:layout_height="match_parent" />
 
         <TextView

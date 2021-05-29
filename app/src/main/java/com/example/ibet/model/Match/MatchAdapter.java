@@ -98,7 +98,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchHolder>
             scoreTitle = itemView.findViewById(R.id.upcoming_score_title);
 
             winnerInput = itemView.findViewById(R.id.upcoming_winner_input);
-
+            
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
